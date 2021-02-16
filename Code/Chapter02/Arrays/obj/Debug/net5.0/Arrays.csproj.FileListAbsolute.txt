@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.exe
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.deps.json
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.dll
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\ref\Arrays.dll
+F:\github\dotNetLearning\Code\Chapter02\Arrays\bin\Debug\net5.0\Arrays.pdb
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.dll
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\ref\Arrays.dll
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.pdb
+F:\github\dotNetLearning\Code\Chapter02\Arrays\obj\Debug\net5.0\Arrays.genruntimeconfig.cache

@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.exe
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.deps.json
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.dll
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\ref\Variables.dll
+F:\github\dotNetLearning\Code\Chapter02\Variables\bin\Debug\net5.0\Variables.pdb
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.dll
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\ref\Variables.dll
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.pdb
+F:\github\dotNetLearning\Code\Chapter02\Variables\obj\Debug\net5.0\Variables.genruntimeconfig.cache

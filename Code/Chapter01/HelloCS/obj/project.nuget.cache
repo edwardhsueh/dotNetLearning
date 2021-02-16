@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9k+JURq7wPUEpyOoniFQGdTYudSTCcPJOnYsf1iD/qM9Bx0A1CaBDugYk91alAaYM+nW3WflZSd5TajwVcoRsQ==",
+  "dgSpecHash": "BwmB9Bp57+J6SyVw16WgeFCS7r5RIfT5dx6QLyV/PjqpEMPRCAcEqT4U/23mcf8wGIcRs7DwuQvx9j2u7+AZWQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edwar\\OneDrive\\文件\\cSharpLearning\\Code\\Chapter01\\HelloCS\\HelloCS.csproj",
+  "projectFilePath": "F:\\github\\dotNetLearning\\Code\\Chapter01\\HelloCS\\HelloCS.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

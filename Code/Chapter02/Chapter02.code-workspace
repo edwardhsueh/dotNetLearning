@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "Numbers"
+		},
+		{
+			"path": "Basics"
+		},
+		{
+			"path": "Variables"
+		},
+		{
+			"path": "Arrays"
+		}
+	],
+	"settings": {}
+}

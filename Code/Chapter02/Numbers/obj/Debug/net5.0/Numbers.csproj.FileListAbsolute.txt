@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.exe
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.deps.json
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.dll
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\ref\Numbers.dll
+F:\github\dotNetLearning\Code\Chapter02\Numbers\bin\Debug\net5.0\Numbers.pdb
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.dll
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\ref\Numbers.dll
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.pdb
+F:\github\dotNetLearning\Code\Chapter02\Numbers\obj\Debug\net5.0\Numbers.genruntimeconfig.cache
