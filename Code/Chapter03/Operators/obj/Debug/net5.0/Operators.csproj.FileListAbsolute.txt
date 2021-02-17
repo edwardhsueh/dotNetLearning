@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.exe
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.deps.json
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.dll
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\ref\Operators.dll
+F:\github\dotNetLearning\Code\Chapter03\Operators\bin\Debug\net5.0\Operators.pdb
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.dll
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\ref\Operators.dll
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.pdb
+F:\github\dotNetLearning\Code\Chapter03\Operators\obj\Debug\net5.0\Operators.genruntimeconfig.cache

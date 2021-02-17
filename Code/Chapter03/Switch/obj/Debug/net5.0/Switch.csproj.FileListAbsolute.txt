@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.exe
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.deps.json
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.dll
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\ref\Switch.dll
+F:\github\dotNetLearning\Code\Chapter03\Switch\bin\Debug\net5.0\Switch.pdb
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.dll
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\ref\Switch.dll
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.pdb
+F:\github\dotNetLearning\Code\Chapter03\Switch\obj\Debug\net5.0\Switch.genruntimeconfig.cache

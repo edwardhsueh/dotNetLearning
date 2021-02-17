@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.exe
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.deps.json
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.dll
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\ref\Formatting.dll
+F:\github\dotNetLearning\Code\Chapter02\Formatting\bin\Debug\net5.0\Formatting.pdb
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.dll
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\ref\Formatting.dll
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.pdb
+F:\github\dotNetLearning\Code\Chapter02\Formatting\obj\Debug\net5.0\Formatting.genruntimeconfig.cache

@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.exe
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.deps.json
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.dll
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\ref\CastingConverting.dll
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\bin\Debug\net5.0\CastingConverting.pdb
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.dll
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\ref\CastingConverting.dll
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.pdb
+F:\github\dotNetLearning\Code\Chapter03\CastingConverting\obj\Debug\net5.0\CastingConverting.genruntimeconfig.cache
