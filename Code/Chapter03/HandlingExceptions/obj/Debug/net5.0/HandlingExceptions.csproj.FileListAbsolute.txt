@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.exe
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.deps.json
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.dll
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\ref\HandlingExceptions.dll
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\bin\Debug\net5.0\HandlingExceptions.pdb
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.dll
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\ref\HandlingExceptions.dll
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.pdb
+F:\github\dotNetLearning\Code\Chapter03\HandlingExceptions\obj\Debug\net5.0\HandlingExceptions.genruntimeconfig.cache

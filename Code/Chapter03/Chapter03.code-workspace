@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "CastingConverting"
+		},
+		{
+			"path": "HandlingExceptions"
+		},
+		{
+			"path": "Exercise03"
 		}
 	]
 }
