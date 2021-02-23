@@ -1,0 +1,12 @@
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\bin\Debug\net5.0\CalculatorLib.deps.json
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\bin\Debug\net5.0\CalculatorLib.dll
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\bin\Debug\net5.0\ref\CalculatorLib.dll
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\bin\Debug\net5.0\CalculatorLib.pdb
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.dll
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\ref\CalculatorLib.dll
+F:\github\dotNetLearning\Code\Chapter04\CalculatorLib\obj\Debug\net5.0\CalculatorLib.pdb
