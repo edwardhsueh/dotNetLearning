@@ -1,7 +1,7 @@
 ﻿using System;
 using Packt.Shared;
 using static System.Console;
-
+using System.Collections.Generic;
 namespace PeopleApp
 {
     class Program
@@ -13,8 +13,6 @@ namespace PeopleApp
             bob.Name = "Bob Smith";
             bob.DateOfBirth = new DateTime(1965, 12, 2);
             bob.FavoriteAncientWonder = WondersOfTheAncientWorld.StatueOfZeusAtOlympia;
-            bob.Children.Add(new Person { Name = "Alfred" });
-            bob.Children.Add(new Person { Name = "Zoe" });
             WriteLine(
                 format: "{0} was born on {1:dddd, dd/MM/yyyy}",
                 arg0: bob.Name,
@@ -24,15 +22,32 @@ namespace PeopleApp
             arg0: bob.Name,
             arg1: bob.FavoriteAncientWonder,
             arg2: (int)bob.FavoriteAncientWonder);
+
+            bob.Children.Add(new Person { Name = "Alfred" });
+            bob.Children.Add(new Person { Name = "Zoe" });
             WriteLine(
                 $"{bob.Name} has {bob.Children.Count} children:");
             for (int child = 0; child < bob.Children.Count; child++)
             {
                 WriteLine($" {bob.Children[child].Name}");
             }
+            WriteLine($"{bob.Name}'s 1st child is {bob.Children[0].Name}");
+            // indexer
+            WriteLine($"{bob.Name}'s 1st child is {bob[0].Name}");
+            // const field
             WriteLine(
                 $"{bob.Name} is a {Person.Species}");
-
+            // Add Friend
+            bob.addFriend(new Person("Edward", "Earth"));
+            bob.addFriend(new Person("Edwin", "Mars"));
+            List<Person> allFriends = bob.getFriend();
+            for(int idx=0; idx< allFriends.Count; idx++){
+                WriteLine($"{bob.Name}'s friend {idx}: {allFriends[idx].Name}");
+            }
+            for(int idx=0; idx< allFriends.Count; idx++){
+                string idxString = idx.ToString();
+                WriteLine($"{bob.Name}'s friend {idx}: {bob[idxString].Name}");
+            }
             // calling Method
             WriteLine("** WriteLine(bob.GetOrigin())");
             WriteLine(bob.GetOrigin());
@@ -48,7 +63,6 @@ namespace PeopleApp
             WriteLine($"Deconstructed 2: {dcFruit.fruitName}, {dcFruit.fruitNumber}");
             WriteLine(bob.SayHello());
             WriteLine(bob.SayHello("Edward"));
-
             WriteLine(bob.OptionalParameters());
             WriteLine(bob.OptionalParameters("Jump!", 98.5));
             WriteLine(bob.OptionalParameters(command: "ALL!", active: false));
@@ -113,14 +127,14 @@ namespace PeopleApp
 
             // Try Property
             var sam = new Person(initialName:"Sam", homePlanet:"Mars", initBirth: new DateTime(1972, 1, 27));
-            
+
             WriteLine(sam.Origin);
             WriteLine(sam.Greeting);
-            WriteLine(sam.Age);  
+            WriteLine(sam.Age);
             sam.FavoriteIceCream = "Stars";
-            WriteLine($"{sam.Name}'s favorite icecream is {sam.FavoriteIceCream}");  
+            WriteLine($"{sam.Name}'s favorite icecream is {sam.FavoriteIceCream}");
             sam.FavoritePrimaryColor="red";
-            WriteLine($"{sam.Name}'s favorite Color is {sam.FavoritePrimaryColor}");  
+            WriteLine($"{sam.Name}'s favorite Color is {sam.FavoritePrimaryColor}");
             try{
                 sam.FavoritePrimaryColor="yellow";
             }

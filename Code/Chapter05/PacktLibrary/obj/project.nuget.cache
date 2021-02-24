@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "A7JejfZMTpK/YtbDITDlA0yRnl+lYmZnifaCnqv+ktqYZv2CrH4rtWqGLVV37dSGn0wh4ie3W8WZp885bqMzZA==",
+  "dgSpecHash": "sBYhMppo4UPRXcDnNbRc+A9HCoAUIR2n8W1OhcZK0LsJK4EAxWvNKppEvHdetbRKgKLBfCnSucpqO5E6sB8zyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edwar\\OneDrive\\文件\\GitHub\\dotNetLearning\\Code\\Chapter05\\PacktLibrary\\PacktLibrary.csproj",
+  "projectFilePath": "F:\\github\\dotNetLearning\\Code\\Chapter05\\PacktLibrary\\PacktLibrary.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\edwar\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\edwar\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -5,6 +5,13 @@ namespace Packt.Shared
 {
     public partial class Person : object
     {
+        private List<Person> friends = new List<Person>();
+        public void addFriend(Person friend){
+            friends.Add(friend);
+        }
+        public List<Person> getFriend(){
+            return friends;
+        }
         // ----------------------------
         // Read Only Property
         // ----------------------------
@@ -19,7 +26,7 @@ namespace Packt.Shared
         // two properties defined using C# 6+ lambda expression syntax
         public string Greeting => $"{Name} says 'Hello!'";
         public string Age => $"{Name}'s Age is {System.DateTime.Today.Year - DateOfBirth.Year}";
-         // ----------------------------
+        // ----------------------------
         // R/W Property
         // ----------------------------
         public string FavoriteIceCream { get; set; } // auto-syntax
@@ -45,6 +52,36 @@ namespace Packt.Shared
                         "Choose from: red, green, blue.");
                 }
             }
-        }        
+        }
+        // indexers
+        public Person this[int index]
+        {
+            get
+            {
+                return Children[index];
+            }
+            set
+            {
+                Children[index] = value;
+            }
+        }
+        public Person this[string indexString]
+        {
+            get
+            {
+                if(int.TryParse(indexString, out int idx)){
+                    return friends[idx];
+                }
+                else {
+                    return friends[0];
+                }
+            }
+            set
+            {
+                if(int.TryParse(indexString, out int idx)){
+                    friends[idx] = value;
+                }
+            }
+        }
    }
 }
