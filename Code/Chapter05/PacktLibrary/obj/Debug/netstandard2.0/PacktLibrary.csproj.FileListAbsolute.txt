@@ -7,3 +7,12 @@ F:\github\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\Pa
 F:\github\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.csproj.CoreCompileInputs.cache
 F:\github\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.dll
 F:\github\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.pdb
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\bin\Debug\netstandard2.0\PacktLibrary.deps.json
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\bin\Debug\netstandard2.0\PacktLibrary.dll
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\bin\Debug\netstandard2.0\PacktLibrary.pdb
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.csprojAssemblyReference.cache
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.AssemblyInfoInputs.cache
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.AssemblyInfo.cs
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.csproj.CoreCompileInputs.cache
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.dll
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PacktLibrary\obj\Debug\netstandard2.0\PacktLibrary.pdb

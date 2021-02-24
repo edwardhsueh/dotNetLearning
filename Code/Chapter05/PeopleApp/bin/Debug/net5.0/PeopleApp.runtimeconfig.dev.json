@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\edwar_cxw29j7\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\edwar_cxw29j7\\.nuget\\packages"
+      "C:\\Users\\edwar\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\edwar\\.nuget\\packages"
     ]
   }
 }
