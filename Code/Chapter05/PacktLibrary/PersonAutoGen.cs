@@ -65,6 +65,7 @@ namespace Packt.Shared
                 Children[index] = value;
             }
         }
+        // reload indexer
         public Person this[string indexString]
         {
             get

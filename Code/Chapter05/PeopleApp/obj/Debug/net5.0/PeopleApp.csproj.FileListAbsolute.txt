@@ -36,3 +36,5 @@ C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PeopleApp\ob
 C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PeopleApp\obj\Debug\net5.0\ref\PeopleApp.dll
 C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PeopleApp\obj\Debug\net5.0\PeopleApp.pdb
 C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter05\PeopleApp\obj\Debug\net5.0\PeopleApp.genruntimeconfig.cache
+F:\github\dotNetLearning\Code\Chapter05\PeopleApp\bin\Debug\net5.0\PacktLibrary9.dll
+F:\github\dotNetLearning\Code\Chapter05\PeopleApp\bin\Debug\net5.0\PacktLibrary9.pdb

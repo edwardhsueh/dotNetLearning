@@ -141,6 +141,52 @@ namespace PeopleApp
             catch (ArgumentException argEx){
                 WriteLine($"{argEx.GetType()} says {argEx.Message}");
             }
+            // --------------------------------------
+            // Flight Patterns(object pattern matching)
+            // --------------------------------------
+            WriteLine("// -------------------------------");
+            WriteLine("//Flight Patterns(object pattern matching");
+            WriteLine("// -------------------------------");
+            object[] passengers = new object[]{
+                new FirstClassPassenger { AirMiles = 1_419 },
+                new FirstClassPassenger { AirMiles = 16_562 },
+                new BusinessClassPassenger(),
+                new CoachClassPassenger { CarryOnKG = 25.7 },
+                new CoachClassPassenger { CarryOnKG = 0 },
+            };
+            foreach (object passenger in passengers)
+            {
+                decimal flightCost = passenger switch
+                {
+                    FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
+                    FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
+                    FirstClassPassenger _ => 2000M,
+                    BusinessClassPassenger _ => 1000M,
+                    CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+                    CoachClassPassenger _ => 650M,
+                    _ => 800M
+                };
+                WriteLine($"Flight costs {flightCost:C} for {passenger}");
+                WriteLine($"Flight costs {CalFlightCost(passenger):C} for {passenger}");
+            }
+        }
+        static decimal CalFlightCost(object passenger){
+            switch(passenger){
+                case FirstClassPassenger p when p.AirMiles > 35000:
+                    return 1500M;
+                case FirstClassPassenger p when p.AirMiles > 15000:
+                    return 1500M;
+                case FirstClassPassenger p:
+                    return 2000M;
+                case BusinessClassPassenger p:
+                    return 1500M;
+                case CoachClassPassenger p when p.CarryOnKG < 10.0:
+                    return 1500M;
+                case CoachClassPassenger p:
+                    return 650M;
+                default:
+                    return 800M;
+            }
         }
     }
 }
