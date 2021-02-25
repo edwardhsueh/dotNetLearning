@@ -45,6 +45,7 @@ namespace Packt.Shared
         {
             return ("Apples", 5);
         }
+        // Named tuple
         public (string Name, int Number) GetNamedFruit()
         {
             return (Name: "Apples", Number: 10);

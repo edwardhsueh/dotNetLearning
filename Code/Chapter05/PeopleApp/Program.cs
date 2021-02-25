@@ -1,4 +1,5 @@
-﻿using System;
+﻿// #error version
+using System;
 using Packt.Shared;
 using static System.Console;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace PeopleApp
             arg1: bob.FavoriteAncientWonder,
             arg2: (int)bob.FavoriteAncientWonder);
 
-            bob.Children.Add(new Person { Name = "Alfred" });
+            bob.Children.Add(new Person());
             bob.Children.Add(new Person { Name = "Zoe" });
             WriteLine(
                 $"{bob.Name} has {bob.Children.Count} children:");
@@ -147,7 +148,7 @@ namespace PeopleApp
             WriteLine("// -------------------------------");
             WriteLine("//Flight Patterns(object pattern matching");
             WriteLine("// -------------------------------");
-            object[] passengers = new object[]{
+            var passengers = new object[5]{
                 new FirstClassPassenger { AirMiles = 1_419 },
                 new FirstClassPassenger { AirMiles = 16_562 },
                 new BusinessClassPassenger(),
@@ -167,8 +168,56 @@ namespace PeopleApp
                     _ => 800M
                 };
                 WriteLine($"Flight costs {flightCost:C} for {passenger}");
-                WriteLine($"Flight costs {CalFlightCost(passenger):C} for {passenger}");
+                WriteLine($"Flight costs swith case{CalFlightCost(passenger: passenger):C} for {passenger}");
             }
+
+            foreach(object passenger in passengers){
+                decimal flightCost = passenger switch
+                {
+                    /* C# 8 syntax
+                    FirstClassPassenger p when p.AirMiles > 35000 => 1500M,
+                    FirstClassPassenger p when p.AirMiles > 15000 => 1750M,
+                    FirstClassPassenger => 2000M, */
+                    // C# 9 syntax
+                    FirstClassPassenger p => p.AirMiles switch
+                    {
+                        > 35000 => 1500M,
+                        > 15000 => 1750M,
+                        _ => 2000M
+                    },
+                    BusinessClassPassenger => 1000M,
+                    CoachClassPassenger p when p.CarryOnKG < 10.0 => 500M,
+                    CoachClassPassenger => 650M,
+                    _ => 800M
+                };
+                WriteLine($"c# 9 Flight costs {flightCost:C} for {passenger}");
+            }
+
+            // init-Only property with get/init only
+            var jeff = new ImmutablePerson{
+                FirstName = "Jeff",
+                LastName = "Wang"
+            };
+            WriteLine($"FirstName:{jeff.FirstName}, LastName:{jeff.LastName}");
+            // jeff.LastName = "Geoff";
+            // Record(nonDestructive Mutation)
+            WriteLine("****** Records");
+            var car = new ImmutableVehicle
+            {
+                Brand = "Mazda MX-5 RF",
+                Color = "Soul Red Crystal Metallic",
+                Wheels = 4
+            };
+            var repaintedCar = car with { Color = "Polymetal Grey Metallic" };
+            var newBrandCar = repaintedCar with { Brand = "Audi" };
+            WriteLine($"car:{car.Brand}, {car.Color}, {car.Wheels}");
+            WriteLine($"repaintedCar:{repaintedCar.Brand}, {repaintedCar.Color}, {repaintedCar.Wheels}");
+            WriteLine($"newBrandCar:{newBrandCar.Brand}, {newBrandCar.Color}, {newBrandCar.Wheels}");
+
+            var oscar = new ImmutableAnimal(Name:"Oscar", Species:"Labrador");
+            var (who, what) = oscar; // calls Deconstruct method
+            WriteLine($"{who} is a {what}.");
+            WriteLine($"{oscar.Name} is a {oscar.Species}.");
         }
         static decimal CalFlightCost(object passenger){
             switch(passenger){
