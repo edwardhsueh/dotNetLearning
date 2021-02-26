@@ -1,0 +1,12 @@
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\bin\Debug\net5.0\PacktLibrary.deps.json
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\bin\Debug\net5.0\PacktLibrary.dll
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\bin\Debug\net5.0\ref\PacktLibrary.dll
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\bin\Debug\net5.0\PacktLibrary.pdb
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.dll
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\ref\PacktLibrary.dll
+F:\github\dotNetLearning\Code\Chapter06\PacktLibrary\obj\Debug\net5.0\PacktLibrary.pdb
