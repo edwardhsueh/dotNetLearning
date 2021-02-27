@@ -35,6 +35,8 @@ namespace Packt.Shared
         {
             return Procreate(this, partner);
         }
+
+        // local function
         public int Factorial(int number)
         {
             if (number < 0)
@@ -44,6 +46,7 @@ namespace Packt.Shared
             }
             else {
                 return localFactorial(number);
+                // local function test
                 int localFactorial(int localNumber) // local function
                 {
                     if (localNumber < 1) return 1;
@@ -51,6 +54,25 @@ namespace Packt.Shared
                 }
             }
 
+        }
+        // public EventHandler Shout;
+        // enforce event check(+=/-=)
+        public event EventHandler Shout;
+        // data field
+        public int AngerLevel{get;set;}
+        // method
+        public void Poke()
+        {
+            AngerLevel++;
+            if (AngerLevel >= 3)
+            {
+                // if something is listening...
+                if (Shout != null)
+                {
+                // ...then call the delegate
+                    Shout(this, EventArgs.Empty);
+                }
+            }
         }
     }
 }
