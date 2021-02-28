@@ -37,7 +37,11 @@ namespace PeopleApp
                 jill.Name, i, jill.Children[i].Name);
             }
             WriteLine($"Person Factorial 5: {may.Factorial(5)}");
-            // event handler
+            // event handler: assign Event Listener
+            // When assigning a method to a delegate field, you should not use the simple assignment operator as we did in the preceding example, and as shown in the following code:
+            // harry.Shout = Harry_Shout;
+            //  If the Shout delegate field was already referencing one or more methods, by assigning a method, it would replace all the others. With delegates that are used for events
+            // we usuallywant to make sure that a programmer only ever uses either the += operator or the -= operator to assign and remove methods:
             harry.Shout += Harry_Shout;
             harry.Shout += Harry_Shout;
             harry.Shout += Harry_Shout;
@@ -46,6 +50,57 @@ namespace PeopleApp
             harry.Poke();
             harry.Poke();
             harry.Poke();
+            // -----------------------------------
+            // test interface by Array.Sort
+            // -----------------------------------
+            Person[] people =
+            {
+                new Person { Name = "Simon" },
+                new Person { Name = "Jenny" },
+                new Person { Name = "Adam" },
+                new Person { Name = "Richard" }
+            };
+            WriteLine("Initial list of people:");
+            foreach (var person in people)
+            {
+                WriteLine($" {person.Name}");
+            }
+            WriteLine("Use Person's IComparable implementation to sort:");
+            Array.Sort(people);
+            foreach (var person in people)
+            {
+                WriteLine($" {person.Name}");
+            }
+            for(int idx=0;idx<people.Length;idx++){
+                WriteLine($" {people[idx].Name}");
+            }
+            WriteLine("Use PersonComparer's IComparer implementation to sort:");
+            Array.Sort(people, new PersonComparer());
+            foreach (var person in people)
+            {
+                WriteLine($" {person.Name}");
+            }
+            var dvdplayer = new DvdPlayer();
+            dvdplayer.Play();
+            dvdplayer.Pause();
+            dvdplayer.Stop();
+            dvdplayer.Error();
+            dvdplayer.Error2();
+            var odvdplayer = new DvdPlayerOld();
+            odvdplayer.Play();
+            odvdplayer.Pause();
+            odvdplayer.Stop();
+            odvdplayer.Error();
+            // ----------------------------
+            // test generics
+            // ----------------------------
+            var gt1 = new GenericThing<int>{
+                Data = 42
+            };
+            WriteLine($"GenericThing with an integer: {gt1.Process(42)}");
+            var gt2 = new GenericThing<string>();
+            gt2.Data = "apple";
+            WriteLine($"GenericThing with a string: {gt2.Process("apple")}");
         }
     }
 }

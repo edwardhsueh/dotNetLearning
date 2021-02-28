@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using static System.Console;
 namespace Packt.Shared
 {
-    public class Person
+    public class Person : IComparable<Person>
     {
         // fields
         public string Name {get;set;}
@@ -72,6 +72,40 @@ namespace Packt.Shared
                 // ...then call the delegate
                     Shout(this, EventArgs.Empty);
                 }
+            }
+        }
+
+        public int CompareTo(Person other)
+        {
+            if(Name != null) {
+                return -1;
+            }
+            else if(other.Name == null) {
+                return 1;
+            }
+            else{
+                return Name.CompareTo(other.Name);
+            }
+        }
+    }
+
+    public class PersonComparer : IComparer<Person>
+    {
+        public int Compare(Person x, Person y)
+        {
+        // Compare the Name lengths...
+            int result = x.Name.Length
+            .CompareTo(y.Name.Length);
+            // ...if they are equal...
+            if (result == 0)
+            {
+                // ...then compare by the Names...
+                return x.Name.CompareTo(y.Name);
+            }
+            else
+            {
+                // ...otherwise compare by the lengths.
+                return result;
             }
         }
     }
