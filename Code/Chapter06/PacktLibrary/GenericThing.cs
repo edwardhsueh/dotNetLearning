@@ -8,6 +8,10 @@ namespace Packt.Shared
   // • GenericThing has a T field named Data.
   // • GenericThing has a method named Process that accepts a T input parameter
   // and returns a string value.
+  /// <summary>
+  /// GenericThing to learn generic type
+  /// </summary>
+  /// <typeparam name="T"></typeparam>
   public class GenericThing<T> where T : IComparable
   {
     public T Data = default(T);

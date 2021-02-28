@@ -51,7 +51,7 @@ namespace PeopleApp
             harry.Poke();
             harry.Poke();
             // -----------------------------------
-            // test interface by Array.Sort
+            // test coommon interface[Icomparable/Icompare] by Array.Sort
             // -----------------------------------
             Person[] people =
             {
@@ -80,6 +80,7 @@ namespace PeopleApp
             {
                 WriteLine($" {person.Name}");
             }
+            // Defining interfaces with default implementations
             var dvdplayer = new DvdPlayer();
             dvdplayer.Play();
             dvdplayer.Pause();
@@ -92,7 +93,15 @@ namespace PeopleApp
             odvdplayer.Stop();
             odvdplayer.Error();
             // ----------------------------
-            // test generics
+            // test generics Type:
+            // ----------------------------
+            // Note the following:
+            // • When instantiating an instance of a generic type, the developer must pass a
+            // type parameter. In this example, we pass int as the type parameter for gt1 and
+            // string as the type parameter for gt2, so wherever T appears in the GenericThing
+            // class, it is replaced with int and string.
+            // • When setting the Data field and passing the input parameter, the compiler
+            // enforces the use of an int value, such as 42, for
             // ----------------------------
             var gt1 = new GenericThing<int>{
                 Data = 42
@@ -101,6 +110,15 @@ namespace PeopleApp
             var gt2 = new GenericThing<string>();
             gt2.Data = "apple";
             WriteLine($"GenericThing with a string: {gt2.Process("apple")}");
+
+            string number1 = "4.5";
+            WriteLine("{0} squared is {1}",
+            arg0: number1,
+            arg1: Squarer.Square<string>(number1));
+            byte number2 = 3;
+            WriteLine("{0} squared is {1}",
+            arg0: number2,
+            arg1: Squarer.Square(number2));
         }
     }
 }
