@@ -1,6 +1,9 @@
 using static System.Console;
 namespace Packt.Shared
 {
+  /// <summary>
+  /// dvdPlayer test
+  /// </summary>
   public class DvdPlayer : IPlayable
   {
     public void Pause()

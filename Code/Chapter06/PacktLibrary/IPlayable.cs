@@ -1,6 +1,9 @@
 using static System.Console;
 namespace Packt.Shared
 {
+  /// <summary>
+  /// interface type
+  /// </summary>
   public interface IPlayable
   {
     void Play();
