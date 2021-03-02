@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Exercise02/1.0.0": {
+        "dependencies": {
+          "Exercise02Lib": "1.0.0"
+        },
+        "runtime": {
+          "Exercise02.dll": {}
+        }
+      },
+      "Exercise02Lib/1.0.0": {
+        "runtime": {
+          "Exercise02Lib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Exercise02/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Exercise02Lib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

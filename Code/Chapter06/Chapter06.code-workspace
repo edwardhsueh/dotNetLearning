@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "PeopleApp"
+		},
+		{
+			"path": "Exercise02"
+		},
+		{
+			"path": "Exercise02Lib"
 		}
 	]
 }

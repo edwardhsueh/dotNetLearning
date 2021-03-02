@@ -1,0 +1,12 @@
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\bin\Debug\net5.0\Exercise02Lib.deps.json
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\bin\Debug\net5.0\Exercise02Lib.dll
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\bin\Debug\net5.0\ref\Exercise02Lib.dll
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\bin\Debug\net5.0\Exercise02Lib.pdb
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.dll
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\ref\Exercise02Lib.dll
+F:\github\dotNetLearning\Code\Chapter06\Exercise02Lib\obj\Debug\net5.0\Exercise02Lib.pdb

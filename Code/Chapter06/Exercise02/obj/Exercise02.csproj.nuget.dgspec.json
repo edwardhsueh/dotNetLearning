@@ -1,0 +1,120 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02\\Exercise02.csproj": {}
+  },
+  "projects": {
+    "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\Exercise02Lib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\Exercise02Lib.csproj",
+        "projectName": "Exercise02Lib",
+        "projectPath": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\Exercise02Lib.csproj",
+        "packagesPath": "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\",
+        "outputPath": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\edwar_cxw29j7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02\\Exercise02.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02\\Exercise02.csproj",
+        "projectName": "Exercise02",
+        "projectPath": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02\\Exercise02.csproj",
+        "packagesPath": "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\",
+        "outputPath": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\edwar_cxw29j7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\Exercise02Lib.csproj": {
+                "projectPath": "F:\\github\\dotNetLearning\\Code\\Chapter06\\Exercise02Lib\\Exercise02Lib.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
