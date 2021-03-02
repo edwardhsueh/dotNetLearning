@@ -139,19 +139,105 @@ namespace PeopleApp
             WriteLine($"{john.Name} was hired on {john.HireDate:dd/MM/yy}");
             john.WriteToConsole();
 
+            WriteLine("==============================");
             WriteLine("Testing polymorphic");
+            WriteLine("==============================");
             Person pMike = new Person();
-            WriteLine($"Person ToString():{pMike.ToString()}");
             Employee aliceInEmployee = new Employee{
                 Name = "Alice", EmployeeCode = "AA123"
             };
+            // implicit casting
             Person aliceInPerson = aliceInEmployee;
+            // When a method is hidden with new, the compiler is not smart enough to know that the object is an Employee, so it calls the WriteToConsole method in Person.
             aliceInEmployee.WriteToConsole();
             aliceInPerson.WriteToConsole();
-            WriteLine(aliceInEmployee.ToString());
-            WriteLine(aliceInPerson.ToString());
+            // When a method is overridden with virtual and override, the compiler is smart enough to know that although the variable is declared as a Person class, the object itself is an Employee class and, therefore, the Employee implementation of ToString is called.
+            WriteLine($"Person ToString():{pMike.ToString()}");
+            WriteLine($"aliceInEmployee ToString():{aliceInEmployee.ToString()}");
+            WriteLine($"aliceInPerson ToString():{aliceInPerson.ToString()}");
+            WriteLine("==============================");
+            WriteLine("Testing casting");
+            WriteLine("==============================");
+            // checking type before casting using "is"
+            if (aliceInPerson is Employee)
+            {
+                WriteLine($"{nameof(aliceInPerson)} IS an Employee");
+                Employee explicitAlice = (Employee) aliceInPerson;
+                explicitAlice.WriteToConsole();
+            }
+            else {
+                WriteLine($"{nameof(pMike)} is NOT an Employee");
+            }
+            // checking type before casting  using "is"
+            if (pMike is Employee)
+            {
+                WriteLine($"{nameof(pMike)} IS an Employee");
+                Employee explicitMike = (Employee) pMike;
+                explicitMike.WriteToConsole();
+            }
+            else {
+                WriteLine($"{nameof(pMike)} is NOT an Employee");
+            }
+            // checking type before casting  using "as"
+            WriteLine("*** checking type before casting  using 'is'");
 
-
+            Employee aliceAsEmployee = aliceInPerson as Employee;
+            if (aliceAsEmployee != null)
+            {
+                WriteLine($"{nameof(aliceInPerson)} AS an Employee");
+            }
+            else
+            {
+                WriteLine($"{nameof(aliceInPerson)} NOT as an Employee");
+            }
+            // checking type before casting  using "as"
+            WriteLine("*** checking type before casting  using 'as'");
+            Employee mikeAsEmployee = pMike as Employee;
+            if (mikeAsEmployee != null)
+            {
+                WriteLine($"{nameof(pMike)} AS an Employee");
+            }
+            else
+            {
+                WriteLine($"{nameof(pMike)} NOT as an Employee");
+            }
+            try
+            {
+                john.TimeTravel(new DateTime(1999, 12, 31));
+                john.TimeTravel(new DateTime(1950, 12, 25));
+            }
+            catch (PersonException ex)
+            {
+                WriteLine(ex.Message);
+            }
+            try
+            {
+                john.TimeTravel2(new DateTime(1999, 12, 31));
+                john.TimeTravel2(new DateTime(1950, 12, 25));
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex.Message);
+            }
+            WriteLine("===================================");
+            WriteLine("Testing Extending types when you can't inherit");
+            WriteLine("===================================");
+            string email1 = "pamela@test.com";
+            string email2 = "ian&test.com";
+            WriteLine("*** Using static methods to reuse functionality");
+            WriteLine(format:"{0} is a valid e-mail address: {1}",
+            arg0: email1,
+            arg1: StringExtensions.IsValidEmail(email1));
+            WriteLine(format: "{0} is a valid e-mail address: {1}",
+            arg0: email2,
+            arg1: StringExtensions.IsValidEmail(email2));
+            WriteLine("*** Using extension methods to reuse functionality");
+            WriteLine(format:"{0} is a valid e-mail address: {1}",
+            arg0: email1,
+            arg1: email1.IsValidEmail());
+            WriteLine(format: "{0} is a valid e-mail address: {1}",
+            arg0: email2,
+            arg1: email2.IsValidEmail());
 
         }
     }

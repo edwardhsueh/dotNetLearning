@@ -74,7 +74,11 @@ namespace Packt.Shared
                 }
             }
         }
-
+        /// <summary>
+        /// implement IComparable interface
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public int CompareTo(Person other)
         {
             if(Name != null) {
@@ -85,6 +89,29 @@ namespace Packt.Shared
             }
             else{
                 return Name.CompareTo(other.Name);
+            }
+        }
+
+        public void TimeTravel(DateTime when)
+        {
+            if (when <= DateOfBirth)
+            {
+                throw new PersonException("PersonException: If you travelback in time to a date earlier than your own birth, then the universe will explode!");
+            }
+            else
+            {
+                WriteLine($"Welcome to {when:yyyy}!");
+            }
+        }
+        public void TimeTravel2(DateTime when)
+        {
+            if (when <= DateOfBirth)
+            {
+                throw new Exception("Exception: If you travelback in time to a date earlier than your own birth, then the universe will explode!");
+            }
+            else
+            {
+                WriteLine($"Welcome to {when:yyyy}!");
             }
         }
     }
