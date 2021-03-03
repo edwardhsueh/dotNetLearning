@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "WorkingWithText"
+		},
+		{
+			"path": "WorkingWithRegularExpressions"
 		}
 	]
 }
