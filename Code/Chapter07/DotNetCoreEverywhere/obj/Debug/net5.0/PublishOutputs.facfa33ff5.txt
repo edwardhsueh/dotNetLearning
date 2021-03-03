@@ -1,0 +1,5 @@
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter07\DotNetCoreEverywhere\bin\Debug\net5.0\publish\DotNetCoreEverywhere.exe
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter07\DotNetCoreEverywhere\bin\Debug\net5.0\publish\DotNetCoreEverywhere.dll
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter07\DotNetCoreEverywhere\bin\Debug\net5.0\publish\DotNetCoreEverywhere.deps.json
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter07\DotNetCoreEverywhere\bin\Debug\net5.0\publish\DotNetCoreEverywhere.runtimeconfig.json
+C:\Users\edwar\OneDrive\文件\GitHub\dotNetLearning\Code\Chapter07\DotNetCoreEverywhere\bin\Debug\net5.0\publish\DotNetCoreEverywhere.pdb

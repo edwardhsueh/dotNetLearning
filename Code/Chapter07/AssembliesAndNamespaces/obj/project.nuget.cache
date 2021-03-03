@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "W1dWzC88fHjspzHTVupjSV9Axzj6OJQH1+V5gLT7d6iJsGSNdnZtMznCnmfttMmtWdgMq2Prgp6OH00+LGKuoQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\edwar\\OneDrive\\文件\\GitHub\\dotNetLearning\\Code\\Chapter07\\AssembliesAndNamespaces\\AssembliesAndNamespaces.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edwar\\.nuget\\packages\\dialectsoftware.collections.matrix\\1.0.0\\dialectsoftware.collections.matrix.1.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 'net5.0' 還原了套件 'DialectSoftware.Collections.Matrix 1.0.0'。此套件與您的專案並非完全相容。",
+      "libraryId": "DialectSoftware.Collections.Matrix",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

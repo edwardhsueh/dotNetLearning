@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "h38GkSvMEmOF4UsF6pHDi3e/k8iSueXs+FMyik4kcZDafY/4gpqzf1NTmBUpztiEu6DDOEFem6hyknJSSets2Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\edwar\\OneDrive\\文件\\GitHub\\dotNetLearning\\Code\\Chapter07\\DotNetCoreEverywhere\\DotNetCoreEverywhere.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edwar\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
