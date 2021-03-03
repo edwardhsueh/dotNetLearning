@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\ref\WorkingWithNumbers.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\bin\Debug\net5.0\WorkingWithNumbers.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\ref\WorkingWithNumbers.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNumbers\obj\Debug\net5.0\WorkingWithNumbers.genruntimeconfig.cache

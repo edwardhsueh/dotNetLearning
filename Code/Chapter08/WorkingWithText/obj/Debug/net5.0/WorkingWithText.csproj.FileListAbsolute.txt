@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\ref\WorkingWithText.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\bin\Debug\net5.0\WorkingWithText.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\ref\WorkingWithText.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithText\obj\Debug\net5.0\WorkingWithText.genruntimeconfig.cache
