@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\ref\WorkingWithDictionaries.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\bin\Debug\net5.0\WorkingWithDictionaries.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\ref\WorkingWithDictionaries.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithDictionaries\obj\Debug\net5.0\WorkingWithDictionaries.genruntimeconfig.cache

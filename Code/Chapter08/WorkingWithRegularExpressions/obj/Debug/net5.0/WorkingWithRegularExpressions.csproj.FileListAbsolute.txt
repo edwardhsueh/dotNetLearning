@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\ref\WorkingWithRegularExpressions.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\bin\Debug\net5.0\WorkingWithRegularExpressions.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\ref\WorkingWithRegularExpressions.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithRegularExpressions\obj\Debug\net5.0\WorkingWithRegularExpressions.genruntimeconfig.cache

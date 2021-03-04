@@ -8,6 +8,12 @@
 		},
 		{
 			"path": "WorkingWithRegularExpressions"
+		},
+		{
+			"path": "WorkingWithDictionaries"
+		},
+		{
+			"path": "WorkingWithLists"
 		}
 	]
 }

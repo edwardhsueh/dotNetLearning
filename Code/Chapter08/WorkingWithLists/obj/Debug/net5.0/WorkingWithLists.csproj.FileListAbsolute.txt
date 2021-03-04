@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\ref\WorkingWithLists.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\bin\Debug\net5.0\WorkingWithLists.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\ref\WorkingWithLists.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithLists\obj\Debug\net5.0\WorkingWithLists.genruntimeconfig.cache
