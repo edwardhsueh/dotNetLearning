@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\ref\WorkingWithSpans.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\bin\Debug\net5.0\WorkingWithSpans.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\ref\WorkingWithSpans.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithSpans\obj\Debug\net5.0\WorkingWithSpans.genruntimeconfig.cache

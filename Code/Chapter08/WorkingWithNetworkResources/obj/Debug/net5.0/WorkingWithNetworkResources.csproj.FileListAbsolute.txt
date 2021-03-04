@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.exe
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.deps.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\ref\WorkingWithNetworkResources.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\bin\Debug\net5.0\WorkingWithNetworkResources.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\ref\WorkingWithNetworkResources.dll
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.pdb
+F:\github\dotNetLearning\Code\Chapter08\WorkingWithNetworkResources\obj\Debug\net5.0\WorkingWithNetworkResources.genruntimeconfig.cache

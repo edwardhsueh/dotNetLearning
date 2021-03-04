@@ -20,7 +20,7 @@ namespace Packt.Shared
       @"[a-zA-Z0-9\.-_]+@[a-zA-Z0-9\.-_]+");
     }
   }
-  public static class StringMethodsExtensions
+  public class StringMethodsExtensions
   {
     /// <summary>
     /// Extending types when you can't inherit
