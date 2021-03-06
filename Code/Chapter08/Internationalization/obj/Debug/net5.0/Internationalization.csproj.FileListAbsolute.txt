@@ -1,0 +1,16 @@
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.exe
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.deps.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.runtimeconfig.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.runtimeconfig.dev.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\ref\Internationalization.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\bin\Debug\net5.0\Internationalization.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.csprojAssemblyReference.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.AssemblyInfoInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.AssemblyInfo.cs
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.csproj.CoreCompileInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\ref\Internationalization.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter08\Internationalization\obj\Debug\net5.0\Internationalization.genruntimeconfig.cache

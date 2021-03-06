@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wYFhuoQ/1l/X3OaTiLnA4xifgxYRBolImDQSSMN/y09QUzhHcv2FcuKXtn/2XB6hkyKH9fgDXtMvJRZ18l+fkQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter08\\WorkingWithImages\\WorkingWithImages.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edwar\\.nuget\\packages\\sixlabors.imagesharp\\1.0.3\\sixlabors.imagesharp.1.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

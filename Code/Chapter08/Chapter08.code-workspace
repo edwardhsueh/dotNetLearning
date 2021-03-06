@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "WorkingWithNetworkResources"
+		},
+		{
+			"path": "WorkingWithImages"
+		},
+		{
+			"path": "Internationalization"
 		}
 	]
 }
