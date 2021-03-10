@@ -1,0 +1,16 @@
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.exe
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.deps.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.runtimeconfig.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.runtimeconfig.dev.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\ref\WorkingWithFileSystems.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\bin\Debug\net5.0\WorkingWithFileSystems.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.csprojAssemblyReference.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.AssemblyInfoInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.AssemblyInfo.cs
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.csproj.CoreCompileInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\ref\WorkingWithFileSystems.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithFileSystems\obj\Debug\net5.0\WorkingWithFileSystems.genruntimeconfig.cache

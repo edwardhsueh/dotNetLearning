@@ -1,0 +1,16 @@
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.exe
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.deps.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.runtimeconfig.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.runtimeconfig.dev.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\ref\WorkWithDirectories.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\bin\Debug\net5.0\WorkWithDirectories.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.csprojAssemblyReference.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.AssemblyInfoInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.AssemblyInfo.cs
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.csproj.CoreCompileInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\ref\WorkWithDirectories.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkWithDirectories\obj\Debug\net5.0\WorkWithDirectories.genruntimeconfig.cache
