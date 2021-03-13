@@ -1,0 +1,16 @@
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.exe
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.deps.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.runtimeconfig.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.runtimeconfig.dev.json
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\ref\WorkingWithStreams.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\bin\Debug\net5.0\WorkingWithStreams.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.csprojAssemblyReference.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.AssemblyInfoInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.AssemblyInfo.cs
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.csproj.CoreCompileInputs.cache
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\ref\WorkingWithStreams.dll
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.pdb
+C:\Users\edwar\Github\dotNetLearning\Code\Chapter09\WorkingWithStreams\obj\Debug\net5.0\WorkingWithStreams.genruntimeconfig.cache
