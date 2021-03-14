@@ -1,0 +1,16 @@
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.exe
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.deps.json
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.runtimeconfig.json
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.runtimeconfig.dev.json
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.dll
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\ref\WorkingWithEncodings.dll
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\bin\Debug\net5.0\WorkingWithEncodings.pdb
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.dll
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\ref\WorkingWithEncodings.dll
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.pdb
+F:\github\dotNetLearning\Code\Chapter09\WorkingWithEncodings\obj\Debug\net5.0\WorkingWithEncodings.genruntimeconfig.cache
