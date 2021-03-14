@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cydtw0nwV3S4e0g0yL+GrQgTK5djcfOqhTFWrr00NpsSi6OWQMRzBK/xJneGd+7ol6eVA7NKfHGHhCvi7pPrng==",
+  "dgSpecHash": "i+vcaRKHtkjaX7GhddUNzomJ8nM40K1JqX1nfllEbxO5H7je0jcNwMcQxGons1zSQdFyEUqsqtTwU6TRd8TemQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter09\\WorkingWithStreams\\WorkingWithStreams.csproj",
+  "projectFilePath": "F:\\github\\dotNetLearning\\Code\\Chapter09\\WorkingWithStreams\\WorkingWithStreams.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

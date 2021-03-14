@@ -12,6 +12,34 @@ namespace PeopleApp
         }
         static void Main(string[] args)
         {
+            // Test Casting
+            // Person(base) casting to Employee(sub Class) is not ok
+            int a = 100;
+            WriteLine("INT type:{0}", a.GetType().Name);
+            Person edwardInPerson = new Person { Name = "Edward" };
+            if(edwardInPerson is Employee){
+                Employee edwardInEmployee = (Employee)edwardInPerson;
+            }
+            else{
+                WriteLine("EdwardInPerson is Not Employee, is {0}", edwardInPerson.GetType());
+            }
+            Employee YvonneInEmployee = new Employee{
+                Name = "Alice", EmployeeCode = "AA123"
+            };
+            if(YvonneInEmployee is Employee){
+                Person YvonneInPerson = YvonneInEmployee; // Employee casting to Person is ok
+                WriteLine("YvonneInPerson is {0}", YvonneInPerson.GetType());
+                WriteLine("YvonneInEmployee is {0}", YvonneInEmployee.GetType());
+                if(YvonneInPerson is Employee){
+                    WriteLine("YvonneInPerson is actually Employee!");
+                    Employee explicitYvonneInPersonToEmployee = (Employee) YvonneInPerson;
+                }
+            }
+            else{
+                WriteLine("YvonneInEmployee is Not Employee, is {0}", edwardInPerson.ToString());
+            }
+
+
             var harry = new Person { Name = "Harry" };
             var mary = new Person { Name = "Mary" };
             var jill = new Person { Name = "Jill" };
@@ -146,6 +174,7 @@ namespace PeopleApp
             Employee aliceInEmployee = new Employee{
                 Name = "Alice", EmployeeCode = "AA123"
             };
+
             // implicit casting
             Person aliceInPerson = aliceInEmployee;
             // When a method is hidden with new, the compiler is not smart enough to know that the object is an Employee, so it calls the WriteToConsole method in Person.

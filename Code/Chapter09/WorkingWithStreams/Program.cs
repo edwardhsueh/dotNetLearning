@@ -17,40 +17,66 @@ namespace WorkingWithStreams
         /// <summary>
         /// Compress XML Document
         /// </summary>
-        static void WorkWithCompression()
+        static void WorkWithCompression(bool useBrotli = true)
         {
         // compress the XML output
-
+            string fileExt = useBrotli ? "brotli" : "gzip";
             string gzipFilePath = Combine(
             CurrentDirectory, "streams.gzip");
-            FileStream gzipFile = File.Create(gzipFilePath);
-            using (GZipStream compressor = new GZipStream(
-            gzipFile, CompressionMode.Compress))
+            string filePath = Combine(
+            CurrentDirectory, $"streams.{fileExt}");
+            FileStream file = File.Create(filePath);
+            // using base class Stream to hold different compressor
+            Stream compressor;
+            if (useBrotli)
             {
-                using (XmlWriter xmlGzip = XmlWriter.Create(compressor))
+                compressor = new BrotliStream(file, CompressionMode.Compress);
+            }
+            else
+            {
+                compressor = new GZipStream(file, CompressionMode.Compress);
+            }
+            using (compressor)
+            {
+                using (XmlWriter xmlCompressWrite = XmlWriter.Create(compressor))
                 {
-                    xmlGzip.WriteStartDocument();
-                    xmlGzip.WriteStartElement("callsigns");
+                    xmlCompressWrite.WriteStartDocument();
+                    xmlCompressWrite.WriteStartElement("callsigns");
                     foreach (string item in callsigns)
                     {
-                        xmlGzip.WriteElementString("callsign", item);
+                        xmlCompressWrite.WriteElementString("callsign", item);
                     }
                     // the normal call to WriteEndElement is not necessary
                     // because when the XmlWriter disposes, it will
                     // automatically end any elements of any depth
-                    xmlGzip.WriteEndElement();
+                    xmlCompressWrite.WriteEndElement();
                 }
             } // also closes the underlying stream
                     // output all the contents of the compressed file
-            WriteLine("{0} contains {1:N0} bytes.",
-            gzipFilePath, new FileInfo(gzipFilePath).Length);
+            WriteLine("-----------------------------------");
+            if(compressor is BrotliStream){
+                WriteLine("{0} compressor method: {1}, length: {2}", filePath, compressor.ToString(), new FileInfo(filePath).Length);
+            }
+            if(compressor is GZipStream){
+                WriteLine("{0} compressor method: {1}, length: {2}", filePath, compressor.ToString(), new FileInfo(filePath).Length);
+            }
+            WriteLine("-----------------------------------");
+
             WriteLine($"The compressed contents:");
             WriteLine(File.ReadAllText(gzipFilePath));
             // read a compressed file
             WriteLine("Reading the compressed XML file:");
-            gzipFile = File.Open(gzipFilePath, FileMode.Open);
-            using (GZipStream decompressor = new GZipStream(
-            gzipFile, CompressionMode.Decompress))
+            file = File.Open(filePath, FileMode.Open);
+            Stream decompressor;
+            if (useBrotli)
+            {
+                decompressor = new BrotliStream(file, CompressionMode.Decompress);
+            }
+            else
+            {
+                decompressor = new GZipStream(file, CompressionMode.Decompress);
+            }
+            using (decompressor)
             {
                 using (XmlReader reader = XmlReader.Create(decompressor))
                 {
@@ -140,7 +166,9 @@ namespace WorkingWithStreams
             textFile2, new FileInfo(textFile2).Length);
             WriteLine(File.ReadAllText(textFile2));
         }
-
+        /// <summary>
+        /// finally block will be executed even Exception occurs
+        /// </summary>
         static void WorkingWithFinally(){
             int[] array1 = new int[2]{0, 0};
             int[] array2 = new int[2]{0, 0};
@@ -159,12 +187,32 @@ namespace WorkingWithStreams
                 Console.WriteLine("This statement is always executed.");
             }
         }
+        static void WorkingWithFinally2(){
+            WriteLine("Default Encoding:{0}", System.Text.Encoding.Default);
+            using (FileStream file2 = File.OpenWrite(
+                Path.Combine(Environment.CurrentDirectory, "file2.txt")))
+            {
+                using (StreamWriter writer2 = new StreamWriter(file2))
+                {
+                    try
+                    {
+                        writer2.WriteLine("Welcome, .NET!");
+                    }
+                    catch(Exception ex)
+                    {
+                        WriteLine($"{ex.GetType()} says {ex.Message}");
+                    }
+                } // automatically calls Dispose if the object is not null
+            } //
+        }
         static void Main(string[] args)
         {
             // WorkWithText();
             // WorkWithXml();
             // WorkingWithFinally();
+            // WorkingWithFinally2();
             WorkWithCompression();
+            WorkWithCompression(useBrotli:false);
 
         }
     }
