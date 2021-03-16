@@ -14,6 +14,15 @@ namespace WorkingWithSerialization
     {
         static async Task Main(string[] args)
         {
+            List<int> numbers = null;
+            int? a = null;
+
+            (numbers ??= new List<int>()).Add(5);
+            Console.WriteLine(string.Join(" ", numbers));  // output: 5
+
+            numbers.Add(a ??= 0);
+            Console.WriteLine(string.Join(" ", numbers));  // output: 5 0
+            Console.WriteLine(a);  // output: 0
             var child1 = new Person(0M) {
                         FirstName = "Sally",
                         LastName = "Cox",
