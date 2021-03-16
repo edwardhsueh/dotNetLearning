@@ -1,11 +1,22 @@
 <?xml version="1.0"?>
 <ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Person fname="Alice" name="Smith" dob="1974-03-14T00:00:00" />
-  <Person fname="Bob" name="Jones" dob="1969-11-23T00:00:00" />
-  <Person fname="Charlie" name="Cox" dob="1984-05-04T00:00:00">
+  <Person fname="Alice" name="Smith" dob="1974-03-14T00:00:00" id="1">
+    <Children />
+  </Person>
+  <Person fname="Bob" name="Jones" dob="1969-11-23T00:00:00" id="2">
+    <Children />
+  </Person>
+  <Person fname="Charlie" name="Cox" dob="1984-05-04T00:00:00" id="3">
     <Children>
-      <Person fname="Sally" name="Cox" dob="2000-07-12T00:00:00" />
-      <Person fname="John" name="Yang" dob="2000-07-12T00:00:00" />
+      <Person fname="Sally" name="Cox" dob="2000-07-12T00:00:00" id="11">
+        <Children />
+      </Person>
+      <Person fname="John" name="Yang" dob="2000-07-12T00:00:00" id="12">
+        <Children />
+      </Person>
+      <Person fname="Edward" name="Hsueh" dob="2000-07-31T00:00:00" id="13">
+        <Children />
+      </Person>
     </Children>
   </Person>
 </ArrayOfPerson>

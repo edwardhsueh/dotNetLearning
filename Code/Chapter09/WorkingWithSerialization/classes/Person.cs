@@ -22,7 +22,16 @@ namespace Packt.Shared
     public string LastName { get; set; }
     [XmlAttribute("dob")]
     public DateTime DateOfBirth { get; set; }
-    public HashSet<Person> Children { get; set; }
+    [XmlAttribute("id")]
+    public string Id { get; init; }
+    public string onlyRead { get{
+      return "OnlyForRead";
+    } }
+
+    public HashSet<Person> Children { get; set; } = new HashSet<Person>();
+    public void AddChild(Person child){
+      Children.Add(child);
+    }
     protected decimal Salary { get; set; }
     }
 }
