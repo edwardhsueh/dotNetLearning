@@ -14,6 +14,9 @@ namespace WorkingWithStreams
         static string[] callsigns = new string[] {
         "Husker", "Starbuck", "Apollo", "Boomer",
         "Bulldog", "Athena", "Helo", "Racetrack" };
+        static string[] callsigns_2 = new string[] {
+        "2Husker", "2Starbuck", "2Apollo", "2Boomer",
+        "2Bulldog", "2Athena", "2Helo", "2Racetrack" };
         /// <summary>
         /// Compress XML Document
         /// </summary>
@@ -145,26 +148,34 @@ namespace WorkingWithStreams
             string textFile2 = GetTempFileName();
             // create a text file and return a helper writer
             // file written using UTF-8 encoding text
-            StreamWriter text = File.CreateText(textFile);
-            StreamWriter text2 = File.CreateText(textFile2);
-            // enumerate the strings, writing each one
-            // to the stream on a separate line
-            foreach (string item in callsigns)
-            {
-                text.WriteLine(item);
-                text2.WriteLine(item);
+            using (StreamWriter text = File.CreateText(textFile)){
+                foreach (string item in callsigns)
+                {
+                    text.WriteLine(item);
+                }
             }
-            text.Close(); // release resources
-            text2.Close(); // release resources
+            using (StreamWriter text2 = File.CreateText(textFile2)){
+                foreach (string item in callsigns)
+                {
+                    text2.WriteLine(item);
+                }
+            }
             // output the contents of the file
             WriteLine("{0} contains {1:N0} bytes.",
             arg0: textFile,
             arg1: new FileInfo(textFile).Length);
             WriteLine(File.ReadAllText(textFile));
-            WriteLine(File.ReadAllText(textFile));
             WriteLine("{0} contains {1:N0} bytes.",
             textFile2, new FileInfo(textFile2).Length);
             WriteLine(File.ReadAllText(textFile2));
+
+            using (StreamWriter textA = File.AppendText(textFile)){
+                foreach (string item in callsigns_2)
+                {
+                    textA.WriteLine(item);
+                }
+            }
+            WriteLine(File.ReadAllText(textFile));
         }
         /// <summary>
         /// finally block will be executed even Exception occurs
@@ -207,12 +218,12 @@ namespace WorkingWithStreams
         }
         static void Main(string[] args)
         {
-            // WorkWithText();
+            WorkWithText();
             // WorkWithXml();
             // WorkingWithFinally();
             // WorkingWithFinally2();
-            WorkWithCompression();
-            WorkWithCompression(useBrotli:false);
+            // WorkWithCompression();
+            // WorkWithCompression(useBrotli:false);
 
         }
     }

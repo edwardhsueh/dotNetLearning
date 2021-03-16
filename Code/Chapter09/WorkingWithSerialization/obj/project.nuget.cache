@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "5IMxGOJhoevfv0qH4jXR37icLMqF2AhTmIbcDSKqq2BOvTooUx0yyDNXM3TsiwFmbDplESwtvZa5O0jl0AOLfA==",
+  "success": true,
+  "projectFilePath": "F:\\github\\dotNetLearning\\Code\\Chapter09\\WorkingWithSerialization\\WorkingWithSerialization.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
