@@ -26,12 +26,19 @@ namespace Packt.Shared
     public string Id { get; init; }
     public string onlyRead { get{
       return "OnlyForRead";
-    } }
+      }
+    }
+    public int Money {get;set;}
 
     public HashSet<Person> Children { get; set; } = new HashSet<Person>();
     public void AddChild(Person child){
       Children.Add(child);
     }
-    protected decimal Salary { get; set; }
+    public decimal GetSalary(){
+      return Salary;
     }
+
+    protected decimal Salary { get; set; }
+  }
+
 }

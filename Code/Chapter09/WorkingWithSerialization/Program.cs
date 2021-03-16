@@ -48,6 +48,9 @@ namespace WorkingWithSerialization
 
             var sum3 = SumNumbers(numberSets, 1);
             Console.WriteLine(sum3);  // output: NaN
+            var p1 = new Person(100M);
+            WriteLine("P1 money is {0}", p1.Money);
+            WriteLine("P1 salary is {0}", p1.GetSalary());
 
             var child1 = new Person(0M) {
                         FirstName = "Sally",
