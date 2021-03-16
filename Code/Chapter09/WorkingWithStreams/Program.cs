@@ -218,6 +218,10 @@ namespace WorkingWithStreams
         }
         static void Main(string[] args)
         {
+            string a = null;
+            if(a is null){
+                WriteLine("a is null");
+            }
             WorkWithText();
             // WorkWithXml();
             // WorkingWithFinally();
