@@ -10,3 +10,15 @@ C:\Users\edwar\Github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\ne
 C:\Users\edwar\Github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.dll
 C:\Users\edwar\Github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\ref\CryptographyLib.dll
 C:\Users\edwar\Github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.pdb
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\bin\Debug\net5.0\CryptographyLib.deps.json
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\bin\Debug\net5.0\CryptographyLib.dll
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\bin\Debug\net5.0\ref\CryptographyLib.dll
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\bin\Debug\net5.0\CryptographyLib.pdb
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.csprojAssemblyReference.cache
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.GeneratedMSBuildEditorConfig.editorconfig
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.AssemblyInfoInputs.cache
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.AssemblyInfo.cs
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.csproj.CoreCompileInputs.cache
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.dll
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\ref\CryptographyLib.dll
+F:\github\dotNetLearning\Code\Chapter10\CryptographyLib\obj\Debug\net5.0\CryptographyLib.pdb

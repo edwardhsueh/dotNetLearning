@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q3SP0iWQOxBogmTWS/UYJvfGpe3Bg1UpbRzXpC27Pp9Byt3BjUJ8Y9/ePwzqs8qLA7GKFDa95u/XfsQkvHk+5w==",
+  "dgSpecHash": "wr+upnORjArfK3RX/xUYjoE12TfHMlZsA9eOZb/beAmFsj2GVKMcnxiW1+8Stuc4Jjk20bmEl/OjUKMLpT/Axg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter10\\EncryptionApp\\EncryptionApp.csproj",
+  "projectFilePath": "F:\\github\\dotNetLearning\\Code\\Chapter10\\EncryptionApp\\EncryptionApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
