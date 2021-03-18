@@ -69,7 +69,9 @@ namespace Packt.Shared
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static User Register(string username, string password)
+        public static User Register(
+            string username, string password,
+            string[] roles = null)
         {
             byte[] saltBytes = new byte[16];
             //RNGCryptoServiceProvider is an implementation of a random number generator.
@@ -82,7 +84,8 @@ namespace Packt.Shared
             var user = new User
             {
                 Name = username, Salt = saltText,
-                SaltedHashedPassword = saltedhashedPassword
+                SaltedHashedPassword = saltedhashedPassword,
+                Roles = roles,
             };
             try{
                 Users.Add(user.Name, user);
@@ -91,6 +94,16 @@ namespace Packt.Shared
             catch(Exception ex){
                 Console.WriteLine("{0} says {1}", ex.GetType(), ex.Message);
                 return user;
+            }
+        }
+        public static void LogIn(string username, string password)
+        {
+            if (CheckPassword(username, password))
+            {
+                var identity = new GenericIdentity(name: username, type: "PacktAuth");
+                // return a GenericPrincipal
+                var principal = new GenericPrincipal(identity: identity, roles: Users[username].Roles);
+                System.Threading.Thread.CurrentPrincipal = principal;
             }
         }
         public static bool CheckPassword(string username, string password)
@@ -104,6 +117,7 @@ namespace Packt.Shared
             var saltedhashedPassword = SaltAndHashPassword(password, user.Salt);
             return (saltedhashedPassword == user.SaltedHashedPassword);
         }
+
         /// <summary>
         /// using SHA256 to generate Hash
         /// </summary>
@@ -117,6 +131,17 @@ namespace Packt.Shared
             // computeHash return byte[] and convert to base64String
             return Convert.ToBase64String(
             sha.ComputeHash(Encoding.Unicode.GetBytes(saltedPassword)));
+        }
+
+        public static byte[] GetRandomKeyOrIV(int size)
+        {
+            using (var r = RandomNumberGenerator.Create()){
+                var data = new byte[size];
+                r.GetNonZeroBytes(data);
+                // data is an array now filled with
+                // cryptographically strong random bytes
+                return data;
+            }
         }
     }
 }
