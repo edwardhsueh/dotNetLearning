@@ -9,7 +9,7 @@ namespace WorkingWithEFCore
     {
         static void QueryingCategories()
         {
-            using (var db = new Northwind())
+            using (var db = new Northwind()) // using is important
             {
                 WriteLine("Categories and how many products they have:");
                 // a query to get all categories and their related products
