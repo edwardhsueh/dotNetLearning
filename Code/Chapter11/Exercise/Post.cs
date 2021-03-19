@@ -5,8 +5,8 @@ namespace Edward.Shared{
       public string Title { get; set; }
       public string Content { get; set; }
       // represent relation to Blog
-      public int BlogId { get; set; }
-      public Blog Blog { get; set; }
+      public int MainBlogId { get; set; }
+      public Blog MainBlog { get; set; }
       // represent relation to Blog
       public int SubBlogId { get; set; }
       public Blog SubBlog { get; set; }

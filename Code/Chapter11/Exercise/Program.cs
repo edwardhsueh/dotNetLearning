@@ -1,12 +1,18 @@
 ﻿using System;
-
+using Edward.Shared;
 namespace Exercise
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // using is important
+
+            using (var db = new EdwardDb()){
+                db.Database.EnsureDeleted();
+                db.Database.EnsureCreated();
+            }
         }
+
     }
 }
