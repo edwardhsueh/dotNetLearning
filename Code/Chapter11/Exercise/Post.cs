@@ -8,9 +8,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 /// (1) we should keep only one non-nullable foregin key, which map to cacade
 ///     delete(by database)
 /// (2) other foregin Key should use nullable foreign key, which map to
-/// client-cascade in fluent API(Database use Delete no action)
+/// client-cascade in fluent API(Database use Delete no action)[OnDelete(DeleteBehavior.ClientCascade);]
 /// refer to https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete for
 /// more detail
+/// For PostGre SQL, no limit
 /// </summary>
 namespace Edward.Shared{
   public class Post
@@ -27,10 +28,10 @@ namespace Edward.Shared{
       public int MainBlogId { get; set; }
       public Blog MainBlog { get; set; }
       // represent relation to Blog
-      public int ? SubBlogId { get; set; }
+      public int SubBlogId { get; set; }
       public Blog SubBlog { get; set; }
       // represent relation to NameMap
-      public int ? NameMapId { get;set;}
+      public int NameMapId { get;set;}
       public NameMap NameMap {get;set;}
   }
   public class PostEntityTypeConfiguration : IEntityTypeConfiguration<Post>
@@ -45,28 +46,29 @@ namespace Edward.Shared{
             .Property(b => b.Title)
             .HasComment("The Title of the Post");
           // Define Foreign Key reference
+          // MS SQL Server should use only one Delete Cascasde on one Table,
+          // Other should use ClientCascade, PostGreSQL no limit
           builder
             .HasOne(p => p.MainBlog)
             .WithMany(b => b.MainPosts)
-            .HasForeignKey(p => p.MainBlogId)
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .HasForeignKey(p => p.MainBlogId);
+
           builder
             .HasOne(p => p.SubBlog)
             .WithMany(b => b.SubPosts)
-            .HasForeignKey(p => p.SubBlogId)
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .HasForeignKey(p => p.SubBlogId);
           builder
             .HasOne(p => p.NameMap)
             .WithOne(n => n.Post)
-            .HasForeignKey<Post>("NameMapId")
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .HasForeignKey<Post>("NameMapId");
           // Define Precision, usually for decimal and DataTime
           builder
             .Property(b => b.Pay)
             .HasPrecision(14, 2);
-          builder
-              .Property(b => b.LastUpated)
-              .HasPrecision(3);
+          // PostGreSQL doesn't support, but MSSQL is ok
+          // builder
+          //     .Property(b => b.LastUpated)
+          //     .HasPrecision(3);
       }
   }
 }

@@ -6,17 +6,35 @@ namespace Edward.Shared{
       public DbSet<Blog> Blogs { get; set; }
       public DbSet<Post> Posts { get; set; }
       public DbSet<NameMap> NameMaps {get;set;}
-      // sqlite
+      /// <summary>
+      /// Connect to Sqlite
+      /// </summary>
+      /// <param name="optionsBuilder"></param>
       // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       // {
       //      string path = Path.Combine(System.Environment.CurrentDirectory, "EdwardDb.db");
       //        optionsBuilder.UseSqlite($"Filename={path}");
       // }
-      // MS SQL Server
+
+      /// <summary>
+      /// Connect to MSSqlServer
+      /// </summary>
+      /// <param name="optionsBuilder"></param>
+      // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      // {
+      //        string connectionString = "Server=127.0.0.1,1433;Database=EdwardDb;User Id=sa;Password=@Domy5506987;";
+      //        optionsBuilder.UseSqlServer(connectionString);
+      // }
+
+      /// <summary>
+      /// Connect to PostgreSQL
+      /// </summary>
+      /// <param name="optionsBuilder"></param>
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
-             string connectionString = "Server=127.0.0.1,1433;Database=EdwardDb;User Id=sa;Password=@Domy5506987;";
-             optionsBuilder.UseSqlServer(connectionString);    }
+             string connectionString = "Server=127.0.0.1;Port=5432;Database=EdwardDb;User Id=postgres;Password=@Domy5506987;";
+             optionsBuilder.UseNpgsql(connectionString);
+      }
       protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
 

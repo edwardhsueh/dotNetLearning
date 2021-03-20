@@ -18,7 +18,7 @@ namespace Exercise
                 using (var fsWrite = File.CreateText(fileName)){
                     fsWrite.WriteLine(sql);
                 }
-                // Console.Write("Create Database SQL:"+sql);
+                Console.Write("Create Database SQL:"+sql);
                 dbContext.Database.EnsureCreated();
             }
         }
