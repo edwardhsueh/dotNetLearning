@@ -6112,19 +6112,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\edwar\\.nuget\\packages\\": {}
+    "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter11\\Exercise\\Exercise.csproj",
+      "projectUniqueName": "F:\\github\\dotNetLearning\\Code\\Chapter11\\Exercise\\Exercise.csproj",
       "projectName": "Exercise",
-      "projectPath": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter11\\Exercise\\Exercise.csproj",
-      "packagesPath": "C:\\Users\\edwar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\edwar\\Github\\dotNetLearning\\Code\\Chapter11\\Exercise\\obj\\",
+      "projectPath": "F:\\github\\dotNetLearning\\Code\\Chapter11\\Exercise\\Exercise.csproj",
+      "packagesPath": "C:\\Users\\edwar_cxw29j7\\.nuget\\packages\\",
+      "outputPath": "F:\\github\\dotNetLearning\\Code\\Chapter11\\Exercise\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\edwar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\edwar_cxw29j7\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6180,7 +6180,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
       }
     }
   }

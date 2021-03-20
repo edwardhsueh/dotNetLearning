@@ -19,6 +19,7 @@ namespace Edward.Shared{
       [Column(TypeName = "varchar(200)")]
       public string Title { get; set; }
       [MaxLength(500)]
+      [Required]
       public string Content { get; set; }
       public decimal Pay {get;set;}
       public DateTime LastUpated {get;set;}

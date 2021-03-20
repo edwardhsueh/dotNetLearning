@@ -24,7 +24,7 @@ GO
 CREATE TABLE [Posts] (
     [PostId] int NOT NULL IDENTITY,
     [Title] varchar(200) NULL,
-    [Content] nvarchar(500) NULL,
+    [Content] nvarchar(500) NOT NULL,
     [Pay] decimal(14,2) NOT NULL,
     [LastUpated] datetime2(3) NOT NULL,
     [MainBlogId] int NOT NULL,
