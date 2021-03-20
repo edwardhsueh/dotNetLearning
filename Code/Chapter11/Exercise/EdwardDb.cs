@@ -19,27 +19,10 @@ namespace Edward.Shared{
              optionsBuilder.UseSqlServer(connectionString);    }
       protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
-        // Use the shadow property as a foreign key
-          modelBuilder.Entity<Post>()
-            .HasOne(p => p.MainBlog)
-            .WithMany(b => b.MainPosts)
-            .HasForeignKey(p => p.MainBlogId)
-            .OnDelete(DeleteBehavior.ClientCascade);
-          modelBuilder.Entity<Post>()
-            .HasOne(p => p.SubBlog)
-            .WithMany(b => b.SubPosts)
-            .HasForeignKey(p => p.SubBlogId)
-            .OnDelete(DeleteBehavior.ClientCascade);
-          modelBuilder.Entity<Post>()
-            .HasOne(p => p.NameMap)
-            .WithOne(n => n.Post)
-            .HasForeignKey<Post>("NameMapId")
-            .OnDelete(DeleteBehavior.ClientCascade);
-          modelBuilder.Entity<Blog>()
-            .HasOne(b => b.NameMap)
-            .WithOne(n => n.Blog)
-            .HasForeignKey<Blog>("NameMapId")
-            .OnDelete(DeleteBehavior.ClientCascade);
+
+        new BlogEntityTypeConfiguration().Configure(modelBuilder.Entity<Blog>());
+        new PostEntityTypeConfiguration().Configure(modelBuilder.Entity<Post>());
+
       }
   }
 }
