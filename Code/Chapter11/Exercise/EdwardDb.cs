@@ -10,31 +10,14 @@ namespace Edward.Shared{
       /// Connect to Sqlite
       /// </summary>
       /// <param name="optionsBuilder"></param>
-      // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      // {
-      //      string path = Path.Combine(System.Environment.CurrentDirectory, "EdwardDb.db");
-      //        optionsBuilder.UseSqlite($"Filename={path}");
-      // }
-
-      /// <summary>
-      /// Connect to MSSqlServer
-      /// </summary>
-      /// <param name="optionsBuilder"></param>
-      // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-      // {
-      //        string connectionString = "Server=127.0.0.1,1433;Database=EdwardDb;User Id=sa;Password=@Domy5506987;";
-      //        optionsBuilder.UseSqlServer(connectionString);
-      // }
-
-      /// <summary>
-      /// Connect to PostgreSQL
-      /// </summary>
-      /// <param name="optionsBuilder"></param>
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
-             string connectionString = "Server=127.0.0.1;Port=5432;Database=EdwardDb;User Id=postgres;Password=@Domy5506987;";
-             optionsBuilder.UseNpgsql(connectionString);
+           string path = Path.Combine(System.Environment.CurrentDirectory, "EdwardDb.db");
+             optionsBuilder.UseSqlite($"Filename={path}");
       }
+
+
+
       protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
 

@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "Exercise"
+		},
+		{
+			"path": "MsSqlExercise"
+		},
+		{
+			"path": "PSqlExercise"
 		}
 	]
 }
