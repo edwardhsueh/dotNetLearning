@@ -46,7 +46,8 @@ namespace Edward.Shared{
             .Property(b => b.Title)
             .HasComment("The Title of the Post");
           // Define Foreign Key reference
-          // MS SQL Server should use only one Delete Cascasde on one Table,
+          // if two ore more Foreign Key refernce the same priciple table,
+          // MS SQL Server allow only one of them to be cascade delete
           // Other should use ClientCascade, PostGreSQL no limit
           builder
             .HasOne(p => p.MainBlog)
@@ -60,8 +61,7 @@ namespace Edward.Shared{
           builder
             .HasOne(p => p.NameMap)
             .WithOne(n => n.Post)
-            .HasForeignKey<Post>("NameMapId")
-            .OnDelete(DeleteBehavior.ClientCascade);
+            .HasForeignKey<Post>("NameMapId");
           // Define Precision, usually for decimal and DataTime
           builder
             .Property(b => b.Pay)

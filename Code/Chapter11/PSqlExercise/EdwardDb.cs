@@ -6,6 +6,10 @@ namespace Edward.Shared{
       public DbSet<Blog> Blogs { get; set; }
       public DbSet<Post> Posts { get; set; }
       public DbSet<NameMap> NameMaps {get;set;}
+      public DbSet<Car> Cars {get;set;}
+      public DbSet<Book> Books {get;set;}
+      public DbSet<Tag> Tags {get;set;}
+      public DbSet<PostTag> PostTags {get;set;}
       /// <summary>
       /// Connect to Sqlite
       /// </summary>
@@ -40,7 +44,8 @@ namespace Edward.Shared{
 
         new BlogEntityTypeConfiguration().Configure(modelBuilder.Entity<Blog>());
         new PostEntityTypeConfiguration().Configure(modelBuilder.Entity<Post>());
-
+        new CarEntityTypeConfiguration().Configure(modelBuilder.Entity<Car>());
+        new BookEntityTypeConfiguration().Configure(modelBuilder.Entity<Book>());
       }
   }
 }

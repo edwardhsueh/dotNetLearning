@@ -33,7 +33,7 @@ CREATE TABLE [Posts] (
     CONSTRAINT [PK_Posts] PRIMARY KEY ([PostId]),
     CONSTRAINT [FK_Posts_Blogs_MainBlogId] FOREIGN KEY ([MainBlogId]) REFERENCES [Blogs] ([BlogId]) ON DELETE CASCADE,
     CONSTRAINT [FK_Posts_Blogs_SubBlogId] FOREIGN KEY ([SubBlogId]) REFERENCES [Blogs] ([BlogId]) ON DELETE NO ACTION,
-    CONSTRAINT [FK_Posts_NameMaps_NameMapId] FOREIGN KEY ([NameMapId]) REFERENCES [NameMaps] ([NameMapId]) ON DELETE NO ACTION
+    CONSTRAINT [FK_Posts_NameMaps_NameMapId] FOREIGN KEY ([NameMapId]) REFERENCES [NameMaps] ([NameMapId]) ON DELETE CASCADE
 );
 DECLARE @defaultSchema AS sysname;
 SET @defaultSchema = SCHEMA_NAME();
