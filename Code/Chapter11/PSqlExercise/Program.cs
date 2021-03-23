@@ -2,6 +2,8 @@
 using Edward.Shared;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Linq;
+
 namespace Exercise
 {
     class Program
@@ -20,6 +22,15 @@ namespace Exercise
                 }
                 Console.Write("Create Database SQL:"+sql);
                 dbContext.Database.EnsureCreated();
+            }
+            using (var dbContext = new EdwardDb()){
+                IQueryable<Blog> qblog = dbContext.Blogs
+                    .Where(b => b.BlogId == 1);
+                // var blogs = qblog.ToList();
+                Console.WriteLine("query:{0}", qblog.ToQueryString());
+                foreach( Blog blog in qblog){
+                    Console.WriteLine("blog id:{0}, url:{1}", blog.BlogId, blog.Url);
+                }
             }
         }
 
