@@ -21,6 +21,7 @@ CREATE TABLE "NameMaps" (
     "Name" text NULL,
     CONSTRAINT "PK_NameMaps" PRIMARY KEY ("NameMapId")
 );
+COMMENT ON TABLE "NameMaps" IS 'NameMap by Edward';
 
 
 CREATE TABLE "Tags" (
@@ -67,6 +68,28 @@ CREATE TABLE "PostTags" (
 );
 
 
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (1, '中視');
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (2, '台視');
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (3, '華視');
+
+
+INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
+VALUES (1, 1, 'http://1.com');
+INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
+VALUES (2, 2, 'http://2.com');
+INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
+VALUES (3, 3, 'http://3.com');
+
+
+INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
+VALUES (1, '第一篇內容', TIMESTAMP '2021-03-23 17:45:14.612401', 1, 1, 0.0, 2, '第一篇');
+INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
+VALUES (2, '第二篇內容', TIMESTAMP '2021-03-23 17:45:14.61373', 1, 2, 0.0, 3, '第二篇');
+
+
 CREATE UNIQUE INDEX "IX_Blogs_NameMapId" ON "Blogs" ("NameMapId");
 
 
@@ -80,6 +103,20 @@ CREATE INDEX "IX_Posts_SubBlogId" ON "Posts" ("SubBlogId");
 
 
 CREATE INDEX "IX_PostTags_TagId" ON "PostTags" ("TagId");
+
+
+SELECT setval(
+    pg_get_serial_sequence('"NameMaps"', 'NameMapId'),
+    GREATEST(
+        (SELECT MAX("NameMapId") FROM "NameMaps") + 1,
+        nextval(pg_get_serial_sequence('"NameMaps"', 'NameMapId'))),
+    false);
+SELECT setval(
+    pg_get_serial_sequence('"Posts"', 'PostId'),
+    GREATEST(
+        (SELECT MAX("PostId") FROM "Posts") + 1,
+        nextval(pg_get_serial_sequence('"Posts"', 'PostId'))),
+    false);
 
 
 

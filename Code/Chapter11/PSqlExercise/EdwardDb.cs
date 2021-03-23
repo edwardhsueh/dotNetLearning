@@ -42,6 +42,7 @@ namespace Edward.Shared{
       protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
 
+        new NameMapEntityTypeConfiguration().Configure(modelBuilder.Entity<NameMap>());
         new BlogEntityTypeConfiguration().Configure(modelBuilder.Entity<Blog>());
         new PostEntityTypeConfiguration().Configure(modelBuilder.Entity<Post>());
         new CarEntityTypeConfiguration().Configure(modelBuilder.Entity<Car>());

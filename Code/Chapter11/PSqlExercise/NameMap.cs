@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Edward.Shared{
   public class NameMap
   {
-      public int ? NameMapId { get; set; }
+      public int NameMapId { get; set; }
       public string Name { get; set; }
 
       public Post Post {get;set;}
@@ -17,6 +17,12 @@ namespace Edward.Shared{
           // Define Table Description
            builder
             .HasComment("NameMap by Edward");
+           builder
+            .HasData(
+                new NameMap{NameMapId=1, Name="中視"},
+                new NameMap{NameMapId=2, Name="台視"},
+                new NameMap{NameMapId=3, Name="華視"}
+            );
       }
   }
 }

@@ -39,7 +39,12 @@ namespace Edward.Shared{
           // concurrency token for PostGreSQL
           builder
             .UseXminAsConcurrencyToken();
-
+          // data Seeding
+          builder.HasData(
+            new Blog { BlogId = 1, Url = "http://1.com" , NameMapId=1},
+            new Blog { BlogId = 2, Url = "http://2.com" , NameMapId=2 },
+            new Blog { BlogId = 3, Url = "http://3.com" , NameMapId=3 }
+          );
 
       }
   }

@@ -105,9 +105,13 @@ namespace Edward.Shared{
 
           // set Concurrency xmin column
           builder
-          .UseXminAsConcurrencyToken();
+            .UseXminAsConcurrencyToken();
 
-
+          builder
+            .HasData(
+              new Post{PostId=1, Title="第一篇", Content="第一篇內容", LastUpated=DateTime.Now, MainBlogId=1, SubBlogId =2, NameMapId=1},
+              new Post{PostId=2, Title="第二篇", Content="第二篇內容", LastUpated=DateTime.Now, MainBlogId=1, SubBlogId =3, NameMapId=2}
+            );
       }
   }
 }
