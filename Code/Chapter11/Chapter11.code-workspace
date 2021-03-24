@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "Concurrency"
+		},
+		{
+			"path": "LINQExercise"
 		}
 	]
 }

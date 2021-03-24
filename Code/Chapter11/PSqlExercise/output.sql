@@ -85,9 +85,9 @@ VALUES (3, 3, 'http://3.com');
 
 
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (1, '第一篇內容', TIMESTAMP '2021-03-24 11:37:40.414262', 1, 1, 0.0, 2, '第一篇');
+VALUES (1, '第一篇內容', TIMESTAMP '2021-03-24 17:49:00.135708', 1, 1, 0.0, 2, '第一篇');
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (2, '第二篇內容', TIMESTAMP '2021-03-24 11:37:40.415872', 1, 2, 0.0, 3, '第二篇');
+VALUES (2, '第二篇內容', TIMESTAMP '2021-03-24 17:49:00.137055', 1, 2, 0.0, 3, '第二篇');
 
 
 CREATE UNIQUE INDEX "IX_Blogs_NameMapId" ON "Blogs" ("NameMapId");
