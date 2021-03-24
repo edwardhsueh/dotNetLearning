@@ -32,6 +32,26 @@ namespace Exercise
                     Console.WriteLine("blog id:{0}, url:{1}", blog.BlogId, blog.Url);
                 }
             }
+            using (var dbContext = new EdwardDb()){
+                var query =
+                    from blog in dbContext.Blogs
+                    join post in dbContext.Posts on blog.BlogId equals post.MainBlogId
+                    select new
+                    {
+                        id = blog.BlogId,
+                        id2 = post.PostId,
+                    };
+                Console.WriteLine("query:{0}", query.ToQueryString());
+                var exeq = query.ToList();
+                foreach (var q in exeq){
+                    Console.WriteLine(q.ToString());
+                }
+                // foreach( var q in query){
+                //     //  Console.WriteLine("bid:{0}, pid:{1}, pblogid:{2}, pTitle:{3}", q.blogId, q.pId, q.pBlogId, q.pTitle);
+                //     Console.WriteLine();
+                // }
+
+            }
         }
 
     }
