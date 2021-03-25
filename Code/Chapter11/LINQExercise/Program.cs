@@ -12,9 +12,21 @@ namespace LINQExercise
             // QueryScore.ListScoreOverSort(2, 90);
             // QueryScore.ListScoreOverTransform(2);
             testLINQFrom.CompoundFrom();
-            testLINQFrom.GroupByChar();
-            testLINQFrom.GroupByBool();
             testLINQFrom.CrossJoin();
+            testLINQGroup.GroupByChar();
+            testLINQGroup.GroupByBool();
+            JoinDemonstration app = new JoinDemonstration();
+
+            app.InnerJoin();
+            app.GroupJoin();
+            app.GroupInnerJoin();
+            app.GroupJoin3();
+            app.LeftOuterJoin();
+            app.LeftOuterJoin2();
+            LeftJoinDemonstration ljApp = new LeftJoinDemonstration();
+
+            ljApp.LeftOuterJoin();
+
 
         }
     }

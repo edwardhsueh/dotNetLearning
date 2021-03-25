@@ -53,50 +53,6 @@ namespace Edward.tryLINQ{
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey();
         }
-        public static void GroupByChar()
-        {
-            // Group students by the first letter of their last name
-            // Query variable is an IEnumerable<IGrouping<char, Student>>
-            var studentQuery2 =
-                from student in students
-                group student by student.Last[0] into g
-                orderby g.Key
-                select g;
-            // Execute the queries.
-            Console.WriteLine("Group:");
-            // Iterate group items with a nested foreach. This IGrouping encapsulates
-            // a sequence of Student objects, and a Key of type char.
-            // For convenience, var can also be used in the foreach statement.
-            foreach (IGrouping<char, Student> studentGroup in studentQuery2)
-            {
-                Console.WriteLine(studentGroup.Key);
-                // Explicit type for student could also be used here.
-                foreach (var student in studentGroup)
-                {
-                    Console.WriteLine("   {0}, {1}", student.Last, student.First);
-                }
-            }
-        }
-        public static void GroupByBool()
-        {
-            // Group by true or false.
-            // Query variable is an IEnumerable<IGrouping<bool, Student>>
-            var booleanGroupQuery =
-                from student in students
-                group student by student.Scores.Average() >= 80; //pass or fail!
-
-            // Execute the query and access items in each group
-            foreach (var studentGroup in booleanGroupQuery)
-            {
-                Console.WriteLine(studentGroup.Key == true ? "High averages" : "Low averages");
-                foreach (var student in studentGroup)
-                {
-                    Console.WriteLine("   {0}, {1}:{2}", student.Last, student.First, student.Scores.Average());
-                }
-            }
-
-        }
-
         public static void  CrossJoin() {
             char[] upperCase = { 'A', 'B', 'C' };
             char[] lowerCase = { 'x', 'y', 'z' };
