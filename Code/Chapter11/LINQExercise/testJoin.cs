@@ -10,12 +10,21 @@ namespace Edward.tryLINQ
     {
       public string Name { get; set; }
       public int CategoryID { get; set; }
+      public override string ToString()
+      {
+        return "Name=" + Name + ",CategoryID=" + Convert.ToString(CategoryID);
+      }
     }
 
     class Category
     {
       public string Name { get; set; }
       public int ID { get; set; }
+      public override string ToString()
+      {
+        return "Name=" + Name + ",ID=" + Convert.ToString(ID);
+      }
+
     }
     #region Data
     // Specify the first data source.
@@ -64,6 +73,42 @@ namespace Edward.tryLINQ
       Console.WriteLine("InnerJoin: {0} items in 1 group.", innerJoinQuery.Count());
       Console.WriteLine(System.Environment.NewLine);
     }
+
+    public void InnerJoinAndUpdate()
+    {
+      // Create the query that selects
+      // a property from each element.
+      var innerJoinQuery =
+        from category in categories
+        join prod in products on category.ID equals prod.CategoryID
+        select new { category, prod };
+
+      Console.WriteLine("InnerJoin2:");
+      // Execute the query. Access results
+      // with a simple foreach statement.
+      Console.WriteLine("*** iteration InnerJoin2 Result and make change");
+      foreach (var item in innerJoinQuery)
+      {
+         Product prod = item.prod;
+         Console.WriteLine("    {0,-10}:{1,50}", nameof(prod), prod.ToString());
+        //  Console.WriteLine("{0,-10}:{0,50}", "prod", prod.ToString());
+         prod.Name = prod.Name + "/InnerJoin2";
+         Category category = item.category;
+         Console.WriteLine("    {0,-10}:{1,50}", nameof(category), category.ToString());
+         category.Name = category.Name + "/InnerJoin2";
+
+      }
+      Console.WriteLine("*** List categories Result after InterJoin2");
+      foreach(var c in categories){
+        Console.WriteLine("    "+c.ToString());
+      }
+      Console.WriteLine("*** List products Result after InterJoin2");
+      foreach(var p in products){
+        Console.WriteLine("    "+p.ToString());
+      }
+
+    }
+
 
     public void GroupJoin()
     {
