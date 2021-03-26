@@ -18,10 +18,10 @@ namespace LINQExercise
 
             JoinDemonstration app = new JoinDemonstration();
 
-            // app.InnerJoin();
-            // app.GroupJoin();
-            // app.GroupInnerJoin();
-            // app.GroupJoin3();
+            app.InnerJoin();
+            app.GroupJoin();
+            app.GroupInnerJoin();
+            app.GroupJoin3();
             // app.LeftOuterJoin();
             // app.LeftOuterJoin2();
             app.InnerJoinAndUpdate();

@@ -15,7 +15,7 @@ namespace EFSaving.Concurrency
                 setupContext.Database.EnsureDeleted();
                 setupContext.Database.EnsureCreated();
 
-                setupContext.People.Add(new Person { FirstName = "John", LastName = "Doe" });
+                setupContext.People.Add(new Person { FirstName = "John", LastName = "Doe", PhoneNumber = "111-111-1111" });
                 setupContext.SaveChanges();
             }
 
@@ -23,6 +23,7 @@ namespace EFSaving.Concurrency
             using var context = new PersonContext();
             // Fetch a person from database and change phone number
             var person = context.People.Single(p => p.PersonId == 1);
+            Console.WriteLine(person.ToString());
             person.PhoneNumber = "555-555-5555";
 
             // Change the person's name in the database to simulate a concurrency conflict
@@ -52,6 +53,11 @@ namespace EFSaving.Concurrency
                             {
                                 var proposedValue = proposedValues[property];
                                 var databaseValue = databaseValues[property];
+                                var x = property.Name;
+                                Console.WriteLine(x);
+                                if(x == "FirstName"){
+                                    proposedValues[property] = "xxx";
+                                }
 
                                 // TODO: decide which value should be written to database
                                 // proposedValues[property] = <value to be saved>;
@@ -70,6 +76,8 @@ namespace EFSaving.Concurrency
                 }
             }
             #endregion
+            person = context.People.Single(p => p.PersonId == 1);
+            Console.WriteLine(person.ToString());
         }
 
         public class PersonContext : DbContext
@@ -100,6 +108,10 @@ namespace EFSaving.Concurrency
             public string PhoneNumber { get; set; }
 
             public uint xmin {get;set;}
+
+            public override string ToString() {
+                return "PersonId:" + PersonId + " FirstName:"+ FirstName + " LastName:" + LastName + " PhoneNumber:" + PhoneNumber;
+            }
         }
     }
 }

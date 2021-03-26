@@ -83,19 +83,19 @@ namespace Edward.tryLINQ
         join prod in products on category.ID equals prod.CategoryID
         select new { category, prod };
 
-      Console.WriteLine("InnerJoin2:");
+      Console.WriteLine("InnerJoinAndUpdate:");
       // Execute the query. Access results
       // with a simple foreach statement.
-      Console.WriteLine("*** iteration InnerJoin2 Result and make change");
+      Console.WriteLine("*** iteration InnerJoinAndUpdate Result and make change");
       foreach (var item in innerJoinQuery)
       {
          Product prod = item.prod;
          Console.WriteLine("    {0,-10}:{1,50}", nameof(prod), prod.ToString());
         //  Console.WriteLine("{0,-10}:{0,50}", "prod", prod.ToString());
-         prod.Name = prod.Name + "/InnerJoin2";
+         prod.Name = prod.Name + "/InnerJoinAndUpdate";
          Category category = item.category;
          Console.WriteLine("    {0,-10}:{1,50}", nameof(category), category.ToString());
-         category.Name = category.Name + "/InnerJoin2";
+         category.Name = category.Name + "/InnerJoinAndUpdate";
 
       }
       Console.WriteLine("*** List categories Result after InterJoin2");
