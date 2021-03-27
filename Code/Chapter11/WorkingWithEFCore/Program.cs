@@ -85,6 +85,50 @@ namespace WorkingWithEFCore
                 }
             }
         }
+
+        static void FilteredIncludesQE()
+        {
+            using (var db = new Northwind())
+            {
+                Write("Enter a minimum for units in stock: ");
+                string unitsInStock = ReadLine();
+                int stock = int.Parse(unitsInStock);
+                var query = from cat in db.Categories
+                            join prod in db.Products on cat.CategoryID equals prod.CategoryID into prodGroup
+                            from subProd in prodGroup.DefaultIfEmpty()
+                            where subProd.Stock > stock
+                            orderby cat.CategoryID ascending, subProd.ProductID ascending
+                            select new {cat, subProd};
+                WriteLine($"** ToQueryString: {query.ToQueryString()}");
+                var qResult = query.ToList();
+                var grQuery = from q in qResult
+                              group q by q.cat.CategoryName;
+                WriteLine($"** grQuery: {grQuery.Count()}");
+                if(grQuery.Count() > 0){
+                    foreach (var gr in grQuery){
+                        WriteLine($"{gr.Key} has {gr.Count()} products with a minimum of {stock} units in stock.");
+                        foreach (var gItem  in gr){
+                            var prod = gItem.subProd;
+                            WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
+                        }
+                    }
+                }
+                else {
+                    WriteLine("No Product has stock more than {0} units", stock);
+                }
+                // IQueryable<Category> cats = db.Categories
+                // .Include(c => c.Products.Where(p => p.Stock >= stock));
+                // WriteLine($"ToQueryString: {cats.ToQueryString()}");
+                // foreach (Category c in cats)
+                // {
+                //     WriteLine($"{c.CategoryName} has {c.Products.Count} products with a minimum of {stock} units in stock.");
+                // foreach(Product p in c.Products)
+                // {
+                //     WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
+                // }
+                // }
+            }
+        }
         static void FilteredIncludes()
         {
             using (var db = new Northwind())
@@ -98,13 +142,16 @@ namespace WorkingWithEFCore
                 foreach (Category c in cats)
                 {
                     WriteLine($"{c.CategoryName} has {c.Products.Count} products with a minimum of {stock} units in stock.");
-                foreach(Product p in c.Products)
-                {
-                    WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
-                }
+                    foreach(Product p in c.Products)
+                    {
+                        WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
+                    }
                 }
             }
         }
+
+
+
         static void QueryingProducts()
         {
             using (var db = new Northwind())
@@ -133,7 +180,8 @@ namespace WorkingWithEFCore
             // QueryingCategories();
             tryJoin();
             QueryingCategoriesQE();
-            // FilteredIncludes();
+            FilteredIncludes();
+            FilteredIncludesQE();
             // QueryingProducts();
         }
     }
