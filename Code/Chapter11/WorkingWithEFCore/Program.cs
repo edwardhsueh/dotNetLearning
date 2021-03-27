@@ -116,6 +116,10 @@ namespace WorkingWithEFCore
                 foreach (var gr in grQuery){
                     foreach(var grVal in gr){
                         WriteLine($"{gr.Key} has {grVal.cat.Products.Count} products with a minimum of {stock} units in stock.");
+                        foreach (var p in grVal.cat.Products){
+                                WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
+                        }
+
                     }
                 }
                 // WriteLine($"** grQuery: {grQuery.Count()}");
@@ -174,36 +178,15 @@ namespace WorkingWithEFCore
                     foreach (var gr in grQuery){
                         foreach(var grVal in gr){
                             WriteLine($"{gr.Key} has {grVal.cat.Products.Count} products with a minimum of {stock} units in stock.");
+                            foreach (var p in grVal.cat.Products){
+                                 WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
+                            }
                         }
                     }
                 }
                 else {
                     WriteLine($"No one has products with a minimum of {stock} in stock");
                 }
-                // WriteLine($"** grQuery: {grQuery.Count()}");
-                // if(grQuery.Count() > 0){
-                //     foreach (var gr in grQuery){
-                //         // WriteLine($"{gr.Key} has {gr.Count()} products with a minimum of {stock} units in stock.");
-                //         foreach (var gItem  in gr){
-                //             var prod = gItem.subProd;
-                //             WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
-                //         }
-                //     }
-                // }
-                // else {
-                //     WriteLine("No Product has stock more than {0} units", stock);
-                // }
-                // IQueryable<Category> cats = db.Categories
-                // .Include(c => c.Products.Where(p => p.Stock >= stock));
-                // WriteLine($"ToQueryString: {cats.ToQueryString()}");
-                // foreach (Category c in cats)
-                // {
-                //     WriteLine($"{c.CategoryName} has {c.Products.Count} products with a minimum of {stock} units in stock.");
-                // foreach(Product p in c.Products)
-                // {
-                //     WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
-                // }
-                // }
             }
         }
 
