@@ -55,9 +55,9 @@ namespace EFSaving.Concurrency
                                 var databaseValue = databaseValues[property];
                                 var x = property.Name;
                                 Console.WriteLine(x);
-                                if(x == "FirstName"){
-                                    proposedValues[property] = "xxx";
-                                }
+                                // if(x == "FirstName"){
+                                //     proposedValues[property] = "xxx";
+                                // }
 
                                 // TODO: decide which value should be written to database
                                 // proposedValues[property] = <value to be saved>;
