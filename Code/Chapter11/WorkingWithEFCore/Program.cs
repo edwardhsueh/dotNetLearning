@@ -52,7 +52,7 @@ namespace WorkingWithEFCore
                 var query = from cat in db.Categories
                             join prod in db.Products on cat.CategoryID equals prod.CategoryID
                             select new {cat, prod};
-                WriteLine("Inner Query String:\n"+query.ToQueryString());
+                WriteLine("Inner Query String:\n\n"+query.ToQueryString());
                 // client Evaluation for group
                 var queryResult = query.AsEnumerable();
                 var groupResult = from qr in queryResult
