@@ -112,7 +112,7 @@ namespace WorkingWithEFCore
                 var grQuery = from q in qResult
                               group q by q.Cat;
                 foreach (var gr in grQuery){
-                    WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Count} products with a minimum of {stock} units in stock.");
+                    WriteLine($"{gr.Key.CategoryName} has {gr.Count(x => x.Prod != null)} products with a minimum of {stock} units in stock.");
                     WriteLine($"{gr.Key.CategoryName} Total Stock is {gr.Sum(x => x.Prod?.Stock ?? 0)}");
                     WriteLine($"{gr.Key.CategoryName} Average Cost is {gr.Average(x => x.Prod?.Cost ?? 0)}");
                     foreach(var prod in gr.Key.Products){
