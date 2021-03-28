@@ -1,0 +1,17 @@
+** Created on: 2021/3/28 16:30:20
+**Added on:2021/3/28 16:30:23
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+-- QueryPost
+
+SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
+FROM "Blogs" AS b
+WHERE b."BlogId" = 1
+**Added on:2021/3/28 16:30:23
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+-- Inner Join
+
+SELECT b."BlogId" AS id, p."PostId" AS id2
+FROM "Blogs" AS b
+INNER JOIN "Posts" AS p ON b."BlogId" = p."MainBlogId"

@@ -3,6 +3,9 @@ using Edward.Shared;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Exercise
 {
@@ -11,7 +14,10 @@ namespace Exercise
         static void Main(string[] args)
         {
             // using is important
-
+            string file = Path.Combine(Environment.CurrentDirectory, "db.log");
+            using(var fs = File.CreateText(file)){
+                fs.WriteLine("** Created on: "+ DateTime.Now.ToString());
+            }
             using (var dbContext = new EdwardDb()){
                 dbContext.Database.EnsureDeleted();
                 var sql = dbContext.Database.GenerateCreateScript();
@@ -24,15 +30,19 @@ namespace Exercise
                 dbContext.Database.EnsureCreated();
             }
             using (var dbContext = new EdwardDb()){
-                IQueryable<Blog> qblog = dbContext.Blogs
+                var loggerFactory = dbContext.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                IQueryable<Blog> qblog = dbContext.Blogs.TagWith("QueryPost")
                     .Where(b => b.BlogId == 1);
                 // var blogs = qblog.ToList();
-                Console.WriteLine("query:{0}", qblog.ToQueryString());
+                // Console.WriteLine("query:{0}", qblog.ToQueryString());
                 foreach( Blog blog in qblog){
                     Console.WriteLine("blog id:{0}, url:{1}", blog.BlogId, blog.Url);
                 }
             }
             using (var dbContext = new EdwardDb()){
+                var loggerFactory = dbContext.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 var query =
                     from blog in dbContext.Blogs
                     join post in dbContext.Posts on blog.BlogId equals post.MainBlogId
@@ -41,8 +51,8 @@ namespace Exercise
                         id = blog.BlogId,
                         id2 = post.PostId,
                     };
-                Console.WriteLine("query:{0}", query.ToQueryString());
-                var exeq = query.ToList();
+                // Console.WriteLine("query:{0}", query.ToQueryString());
+                var exeq = query.TagWith("Inner Join").ToList();
                 foreach (var q in exeq){
                     Console.WriteLine(q.ToString());
                 }
