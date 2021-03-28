@@ -50,22 +50,14 @@ namespace WorkingWithEFCore
 
                 // database Evaluation
                 var query = from cat in db.Categories
-                            join prod in db.Products on cat.CategoryID equals prod.CategoryID
-                            select new {cat, prod};
-                WriteLine("Inner Query String:\n\n"+query.ToQueryString());
-                // client Evaluation for group
-                var queryResult = query.AsEnumerable();
-                var groupResult = from qr in queryResult
-                                  group qr by new {qr.cat.CategoryName, qr.cat.CategoryID};
-                foreach (var gr in groupResult)
-                {
-                    WriteLine(gr.Key+ " has " + gr.Count() + " Products");
-                    // foreach(var grval in gr){
-                    //     var c = grval.cat;
-                    //     WriteLine($"{c.CategoryName} has {c.Products.Count} products.");
-                    // }
+                            join prod in db.Products on cat.CategoryID equals prod.CategoryID into prodGroup
+                            from subProd in prodGroup.DefaultIfEmpty()
+                            group subProd by cat.CategoryName into g
+                            select new {CategoryName = g.Key, ProductCount = g.Count()};
+                WriteLine("Left Join Query String:\n\n"+query.ToQueryString());
+                foreach(var qr in query){
+                    WriteLine("Category:{0} has {1} products", qr.CategoryName, qr.ProductCount);
                 }
-
 
             }
         }
@@ -85,9 +77,11 @@ namespace WorkingWithEFCore
                 }
             }
         }
-/// <summary>
-/// Left Join using LINQ Expression
-/// </summary>
+        /// <summary>
+        /// Left Join using LINQ Expression to update into Entities Property
+        /// Afterwards, using client Group to get Grouped information like Product Count or Product total Stock
+        /// with the same category
+        /// </summary>
         static void FilteredIncludesQE()
         {
             using (var db = new Northwind())
@@ -98,6 +92,7 @@ namespace WorkingWithEFCore
                 var prodQuery = from prod in db.Products
                                 where prod.Stock > stock
                                 select prod;
+                // Query that will update Category and Category Entries
                 var query = from cat in db.Categories
                             join prod in prodQuery
                             on cat.CategoryID equals prod.CategoryID into prodGroup
@@ -105,52 +100,28 @@ namespace WorkingWithEFCore
                             orderby cat.CategoryID ascending, subProd.ProductID ascending
                             select new {cat, subProd};
                 WriteLine($"** ToQueryString: {query.ToQueryString()}");
+                // Execute Query
                 var qResult = query.ToList();
                 foreach (var qr in qResult) {
                     // var prodName = (qr.subProd == null) ? "Nothing" : qr.subProd.ProductName;
                     var prodName = qr.subProd?.ProductName ?? "Nothing";
-                    WriteLine(qr.cat.CategoryName + "___" + prodName);
+                    var TotalProduct = qr.cat.Products.Count;
+                    WriteLine(qr.cat.CategoryName + "___" + prodName + "___" + TotalProduct);
                 }
                 var grQuery = from q in qResult
-                              group q by q.cat.CategoryName;
+                              group q by q.cat;
                 foreach (var gr in grQuery){
-                    foreach(var grVal in gr){
-                        WriteLine($"{gr.Key} has {grVal.cat.Products.Count} products with a minimum of {stock} units in stock.");
-                        foreach (var p in grVal.cat.Products){
-                                WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
-                        }
-
+                    WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Count} products with a minimum of {stock} units in stock.");
+                    WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Sum(p => p.Stock)} Stocks with a minimum of {stock} units in stock.");
+                    foreach(var prod in gr.Key.Products){
+                        WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
                     }
                 }
-                // WriteLine($"** grQuery: {grQuery.Count()}");
-                // if(grQuery.Count() > 0){
-                //     foreach (var gr in grQuery){
-                //         // WriteLine($"{gr.Key} has {gr.Count()} products with a minimum of {stock} units in stock.");
-                //         foreach (var gItem  in gr){
-                //             var prod = gItem.subProd;
-                //             WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
-                //         }
-                //     }
-                // }
-                // else {
-                //     WriteLine("No Product has stock more than {0} units", stock);
-                // }
-                // IQueryable<Category> cats = db.Categories
-                // .Include(c => c.Products.Where(p => p.Stock >= stock));
-                // WriteLine($"ToQueryString: {cats.ToQueryString()}");
-                // foreach (Category c in cats)
-                // {
-                //     WriteLine($"{c.CategoryName} has {c.Products.Count} products with a minimum of {stock} units in stock.");
-                // foreach(Product p in c.Products)
-                // {
-                //     WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
-                // }
-                // }
             }
         }
-/// <summary>
-/// InterJoin
-/// </summary>
+        /// <summary>
+        /// InterJoin using LINQ expression and Using Database Group By
+        /// </summary>
         static void FilteredIncludesQE2()
         {
             using (var db = new Northwind())
@@ -165,34 +136,76 @@ namespace WorkingWithEFCore
                             join prod in prodQuery
                             on cat.CategoryID equals prod.CategoryID
                             orderby cat.CategoryID ascending, prod.ProductID ascending
-                            select new {cat, prod};
+                            group prod by cat.CategoryName into gr
+                            select new {CategoryID = gr.Key, TotalStock = gr.Sum(p => p.Stock), AverageCost = gr.Average(p => p.Stock)};
                 WriteLine($"** ToQueryString: {query.ToQueryString()}");
-                var qResult = query.ToList();
-                foreach (var qr in qResult) {
-                    var prodName = qr.prod?.ProductName ?? "Nothing";
-                    WriteLine(qr.cat.CategoryName + "___" + prodName);
-                }
-                var grQuery = from q in qResult
-                              group q by q.cat.CategoryName;
-                if(grQuery.Count() > 0){
-                    foreach (var gr in grQuery){
-                        foreach(var grVal in gr){
-                            WriteLine($"{gr.Key} has {grVal.cat.Products.Count} products with a minimum of {stock} units in stock.");
-                            foreach (var p in grVal.cat.Products){
-                                 WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
-                            }
-                        }
-                    }
-                }
-                else {
-                    WriteLine($"No one has products with a minimum of {stock} in stock");
+
+                var queryResult = query.ToList();
+                foreach(var qr in queryResult){
+                    WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}", qr.CategoryID, qr.TotalStock, qr.AverageCost);
                 }
             }
         }
+        /// <summary>
+        /// LeftJoin using LINQ expression and Using Database Group By
+        /// </summary>
+        static void FilteredIncludesQE3()
+        {
+            using (var db = new Northwind())
+            {
+                Write("Enter a minimum for units in stock: ");
+                string unitsInStock = ReadLine();
+                int stock = int.Parse(unitsInStock);
+                var prodQuery = from prod in db.Products
+                                where prod.Stock > stock
+                                select prod;
+                var query = from cat in db.Categories
+                            join prod in prodQuery on cat.CategoryID equals prod.CategoryID into prodGroup
+                            from subProd in prodGroup.DefaultIfEmpty()
+                            orderby cat.CategoryID ascending, subProd.ProductID ascending
+                            group subProd by cat.CategoryName into gr
+                            select new {CategoryID = gr.Key, TotalProduct=gr.Count(x => x!=null), TotalStock = gr.Sum(p => p.Stock), AverageCost = gr.Average(p => p.Stock)};
+                WriteLine($"** ToQueryString: {query.ToQueryString()}");
 
-/// <summary>
-/// Left Join
-/// </summary>
+                var queryResult = query.ToList();
+                foreach(var qr in queryResult){
+                    WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}, TotalProduct:{3}", qr.CategoryID, qr.TotalStock, qr.AverageCost, qr.TotalProduct);
+                }
+                // var query2 = from cat in db.Categories
+                //             join prod in prodQuery
+                //             on cat.CategoryID equals prod.CategoryID
+                //             orderby cat.CategoryID ascending, prod.ProductID ascending
+                //             select new {Category = cat, Product = prod} into x
+                //             group x by x.Category.CategoryID into gr
+                //             select new {CategoryID = gr.Key, TotalCost = gr.Product.Stock.Sum()};
+                // WriteLine($"** ToQueryString: {query2.ToQueryString()}");
+
+                // var qResult = query.ToList();
+                // foreach (var qr in qResult) {
+                //     var prodName = qr.prod?.ProductName ?? "Nothing";
+                //     WriteLine(qr.cat.CategoryName + "___" + prodName);
+                // }
+                // var grQuery = from q in qResult
+                //               group q by q.cat.CategoryName;
+                // if(grQuery.Count() > 0){
+                //     foreach (var gr in grQuery){
+                //         foreach(var grVal in gr){
+                //             WriteLine($"{gr.Key} has {grVal.cat.Products.Count} products with a minimum of {stock} units in stock.");
+                //             foreach (var p in grVal.cat.Products){
+                //                  WriteLine($" {p.ProductName} has {p.Stock} units in stock.");
+                //             }
+                //         }
+                //     }
+                // }
+                // else {
+                //     WriteLine($"No one has products with a minimum of {stock} in stock");
+                // }
+            }
+        }
+
+        /// <summary>
+        /// Left Join using Method
+        /// </summary>
         static void FilteredIncludes()
         {
             using (var db = new Northwind())
@@ -241,12 +254,13 @@ namespace WorkingWithEFCore
         }
         static void Main(string[] args)
         {
-            // QueryingCategories();
-            tryJoin();
+            // tryJoin();
+            QueryingCategories();
             QueryingCategoriesQE();
-            FilteredIncludes();
+            // FilteredIncludes();
             FilteredIncludesQE();
             FilteredIncludesQE2();
+            FilteredIncludesQE3();
             // QueryingProducts();
         }
     }
