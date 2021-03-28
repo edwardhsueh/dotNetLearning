@@ -3,6 +3,11 @@ using static System.Console;
 using Packt.Shared;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.IO;
+
 namespace WorkingWithEFCore
 {
     class Program
@@ -28,14 +33,6 @@ namespace WorkingWithEFCore
                             from prod in db.Products
                             select new {cat, prod};
                 WriteLine("Cross Join Query String:\n"+query3.ToQueryString());
-                // foreach (var result in query){
-                //     Category cat = result.cat;
-                //     Product  prod = result.prod;
-                //     // var prodGroup = result.prodGroup;
-                //     WriteLine($"{cat.CategoryName} has {prod.ProductName}");
-                // }
-
-
             }
         }
         /// <summary>
@@ -67,10 +64,12 @@ namespace WorkingWithEFCore
         {
             using (var db = new Northwind()) // using is important
             {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 WriteLine("Categories and how many products they have:");
                 // a query to get all categories and their related products
-                IQueryable<Category> cats = db.Categories.Include(c => c.Products);
-                WriteLine(cats.ToQueryString());
+                IQueryable<Category> cats = db.Categories.TagWith("QueryingCategories").Include(c => c.Products);
+                // WriteLine(cats.ToQueryString());
                 foreach (Category c in cats)
                 {
                     WriteLine($"{c.CategoryName} has {c.Products.Count} products.");
@@ -126,6 +125,8 @@ namespace WorkingWithEFCore
         {
             using (var db = new Northwind())
             {
+               var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 Write("Enter a minimum for units in stock: ");
                 string unitsInStock = ReadLine();
                 int stock = int.Parse(unitsInStock);
@@ -140,7 +141,7 @@ namespace WorkingWithEFCore
                             select new {CategoryID = gr.Key, TotalStock = gr.Sum(p => p.Stock), AverageCost = gr.Average(p => p.Stock)};
                 WriteLine($"** ToQueryString: {query.ToQueryString()}");
 
-                var queryResult = query.ToList();
+                var queryResult = query.TagWith("FilteredIncludesQE2").ToList();
                 foreach(var qr in queryResult){
                     WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}", qr.CategoryID, qr.TotalStock, qr.AverageCost);
                 }
@@ -153,6 +154,8 @@ namespace WorkingWithEFCore
         {
             using (var db = new Northwind())
             {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 Write("Enter a minimum for units in stock: ");
                 string unitsInStock = ReadLine();
                 int stock = int.Parse(unitsInStock);
@@ -167,7 +170,7 @@ namespace WorkingWithEFCore
                             select new {CategoryID = gr.Key, TotalProduct=gr.Count(x => x!=null), TotalStock = gr.Sum(p => p.Stock), AverageCost = gr.Average(p => p.Stock)};
                 WriteLine($"** ToQueryString: {query.ToQueryString()}");
 
-                var queryResult = query.ToList();
+                var queryResult = query.TagWith("FilteredIncludesQE3").ToList();
                 foreach(var qr in queryResult){
                     WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}, TotalProduct:{3}", qr.CategoryID, qr.TotalStock, qr.AverageCost, qr.TotalProduct);
                 }
@@ -254,11 +257,16 @@ namespace WorkingWithEFCore
         }
         static void Main(string[] args)
         {
+            string file = Path.Combine(Environment.CurrentDirectory, "db.log");
+            using(var fs = File.CreateText(file)){
+                fs.WriteLine("** Created on: "+ DateTime.Now.ToString());
+            }
+
             // tryJoin();
             QueryingCategories();
-            QueryingCategoriesQE();
+            // QueryingCategoriesQE();
             // FilteredIncludes();
-            FilteredIncludesQE();
+            // FilteredIncludesQE();
             FilteredIncludesQE2();
             FilteredIncludesQE3();
             // QueryingProducts();

@@ -1,0 +1,38 @@
+** Created on: 2021/3/28 16:19:40
+**Added on:2021/3/28 16:19:41
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+-- QueryingCategories
+
+SELECT "c"."CategoryID", "c"."CategoryName", "c"."Description", "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
+FROM "Categories" AS "c"
+LEFT JOIN "Products" AS "p" ON "c"."CategoryID" = "p"."CategoryID"
+ORDER BY "c"."CategoryID", "p"."ProductID"
+**Added on:2021/3/28 16:19:43
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
+-- FilteredIncludesQE2
+
+SELECT "c"."CategoryName" AS "CategoryID", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
+FROM "Categories" AS "c"
+INNER JOIN (
+    SELECT "p"."CategoryID", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."UnitsInStock" > @__stock_0
+) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
+GROUP BY "c"."CategoryName"
+**Added on:2021/3/28 16:19:44
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
+-- FilteredIncludesQE3
+
+SELECT "c"."CategoryName" AS "CategoryID", COUNT(CASE
+    WHEN "t"."ProductID" IS NOT NULL THEN 1
+END) AS "TotalProduct", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
+FROM "Categories" AS "c"
+LEFT JOIN (
+    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."UnitsInStock" > @__stock_0
+) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
+GROUP BY "c"."CategoryName"
