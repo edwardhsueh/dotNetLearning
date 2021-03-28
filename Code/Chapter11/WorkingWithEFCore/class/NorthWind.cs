@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.IO;
 namespace Packt.Shared
 {
   // this manages the connection to the database
@@ -11,9 +9,8 @@ namespace Packt.Shared
     public DbSet<Product> Products { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      string path = Path.Combine(Environment.CurrentDirectory, "Northwind.db");
+      string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "Northwind.db");
       optionsBuilder.UseSqlite($"Filename={path}");
-
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
