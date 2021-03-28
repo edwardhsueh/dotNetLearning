@@ -217,6 +217,36 @@ namespace WorkingWithEFCore
         }
 
         /// <summary>
+        /// LeftJoin using LINQ expression and Using Database Group By
+        /// </summary>
+        static void FilteredIncludesQE5()
+        {
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                Write("Enter a minimum for units in stock: ");
+                string unitsInStock = ReadLine();
+                int stock = int.Parse(unitsInStock);
+                var prodQuery = from prod in db.Products
+                                where prod.Stock > stock
+                                select prod;
+                var query = from cat in db.Categories
+                            join prod in prodQuery on cat.CategoryID equals prod.CategoryID into prodGroup
+                            from subProd in prodGroup.DefaultIfEmpty()
+                            orderby cat.CategoryID ascending, subProd.ProductID ascending
+                            group new {Cat = cat, Prod = subProd} by cat.CategoryName into gr
+                            select new {CategoryID = gr.Key, TotalProduct=gr.Count(x => x.Prod !=null), TotalStock = gr.Sum(gr => gr.Prod.Stock), AverageCost = gr.Average(gr => gr.Prod.Stock)};
+                WriteLine($"** ToQueryString: {query.ToQueryString()}");
+
+                var queryResult = query.TagWith("FilteredIncludesQE3").ToList();
+                foreach(var qr in queryResult){
+                    WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}, TotalProduct:{3}", qr.CategoryID, qr.TotalStock, qr.AverageCost, qr.TotalProduct);
+                }
+            }
+        }
+
+        /// <summary>
         /// Left Join using Method
         /// </summary>
         static void FilteredIncludes()
@@ -278,9 +308,10 @@ namespace WorkingWithEFCore
             // QueryingCategories();
             // QueryingCategoriesQE();
             // FilteredIncludes();
-            FilteredIncludesQE();
+            // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
+            FilteredIncludesQE5();
             // QueryingProducts();
         }
     }

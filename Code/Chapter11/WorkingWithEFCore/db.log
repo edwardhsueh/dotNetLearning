@@ -1,14 +1,16 @@
-** Created on: 3/28/2021 5:39:21 PM
-**Added on:3/28/2021 5:39:24 PM
+** Created on: 3/28/2021 8:18:24 PM
+**Added on:3/28/2021 8:18:32 PM
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
--- FilteredIncludesQE
+-- FilteredIncludesQE3
 
-SELECT "c"."CategoryID", "c"."CategoryName", "c"."Description", "t"."ProductID", "t"."CategoryID", "t"."UnitPrice", "t"."Discontinued", "t"."ProductName", "t"."UnitsInStock"
+SELECT "c"."CategoryName" AS "CategoryID", COUNT(CASE
+    WHEN "t"."ProductID" IS NOT NULL THEN 1
+END) AS "TotalProduct", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
 FROM "Categories" AS "c"
 LEFT JOIN (
-    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
+    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitsInStock"
     FROM "Products" AS "p"
     WHERE "p"."UnitsInStock" > @__stock_0
 ) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
-ORDER BY "c"."CategoryID", "t"."ProductID"
+GROUP BY "c"."CategoryName"
