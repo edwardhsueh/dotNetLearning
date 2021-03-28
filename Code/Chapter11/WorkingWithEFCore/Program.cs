@@ -99,25 +99,33 @@ namespace WorkingWithEFCore
                             on cat.CategoryID equals prod.CategoryID into prodGroup
                             from subProd in prodGroup.DefaultIfEmpty()
                             orderby cat.CategoryID ascending, subProd.ProductID ascending
-                            select new {cat, subProd};
+                            select new {Cat = cat, Prod = subProd};
                 // WriteLine($"** ToQueryString: {query.ToQueryString()}");
                 // Execute Query
                 var qResult = query.TagWith("FilteredIncludesQE").ToList();
                 foreach (var qr in qResult) {
                     // var prodName = (qr.subProd == null) ? "Nothing" : qr.subProd.ProductName;
-                    var prodName = qr.subProd?.ProductName ?? "Nothing";
-                    var TotalProduct = qr.cat.Products.Count;
-                    WriteLine(qr.cat.CategoryName + "___" + prodName + "___" + TotalProduct);
+                    var prodName = qr.Prod?.ProductName ?? "Nothing";
+                    var TotalProduct = qr.Cat.Products.Count;
+                    WriteLine(qr.Cat.CategoryName + "___" + prodName + "___" + TotalProduct);
                 }
                 var grQuery = from q in qResult
-                              group q by q.cat;
+                              group q by q.Cat;
                 foreach (var gr in grQuery){
                     WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Count} products with a minimum of {stock} units in stock.");
-                    WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Sum(p => p.Stock)} Stocks with a minimum of {stock} units in stock.");
+                    WriteLine($"{gr.Key.CategoryName} Total Stock is {gr.Sum(x => x.Prod?.Stock ?? 0)}");
+                    WriteLine($"{gr.Key.CategoryName} Average Cost is {gr.Average(x => x.Prod?.Cost ?? 0)}");
                     foreach(var prod in gr.Key.Products){
-                        WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
+                        WriteLine($" {prod.ProductName} has {prod.Stock} units in stock and cost {prod.Cost}");
                     }
                 }
+                // foreach (var gr in grQuery){
+                //     WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Count} products with a minimum of {stock} units in stock.");
+                //     WriteLine($"{gr.Key.CategoryName} has {gr.Key.Products.Sum(p => p.Stock)} Stocks with a minimum of {stock} units in stock.");
+                //     foreach(var prod in gr.Key.Products){
+                //         WriteLine($" {prod.ProductName} has {prod.Stock} units in stock.");
+                //     }
+                // }
             }
         }
         /// <summary>
@@ -267,12 +275,12 @@ namespace WorkingWithEFCore
             }
 
             // tryJoin();
-            QueryingCategories();
+            // QueryingCategories();
             // QueryingCategoriesQE();
-            FilteredIncludes();
+            // FilteredIncludes();
             FilteredIncludesQE();
-            FilteredIncludesQE2();
-            FilteredIncludesQE3();
+            // FilteredIncludesQE2();
+            // FilteredIncludesQE3();
             // QueryingProducts();
         }
     }
