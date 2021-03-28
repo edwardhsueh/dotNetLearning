@@ -85,6 +85,8 @@ namespace WorkingWithEFCore
         {
             using (var db = new Northwind())
             {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 Write("Enter a minimum for units in stock: ");
                 string unitsInStock = ReadLine();
                 int stock = int.Parse(unitsInStock);
@@ -98,9 +100,9 @@ namespace WorkingWithEFCore
                             from subProd in prodGroup.DefaultIfEmpty()
                             orderby cat.CategoryID ascending, subProd.ProductID ascending
                             select new {cat, subProd};
-                WriteLine($"** ToQueryString: {query.ToQueryString()}");
+                // WriteLine($"** ToQueryString: {query.ToQueryString()}");
                 // Execute Query
-                var qResult = query.ToList();
+                var qResult = query.TagWith("FilteredIncludesQE").ToList();
                 foreach (var qr in qResult) {
                     // var prodName = (qr.subProd == null) ? "Nothing" : qr.subProd.ProductName;
                     var prodName = qr.subProd?.ProductName ?? "Nothing";
@@ -213,12 +215,14 @@ namespace WorkingWithEFCore
         {
             using (var db = new Northwind())
             {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 Write("Enter a minimum for units in stock: ");
                 string unitsInStock = ReadLine();
                 int stock = int.Parse(unitsInStock);
-                IQueryable<Category> cats = db.Categories
+                IQueryable<Category> cats = db.Categories.TagWith("FilteredIncludes")
                 .Include(c => c.Products.Where(p => p.Stock >= stock));
-                WriteLine($"ToQueryString: {cats.ToQueryString()}");
+                // WriteLine($"ToQueryString: {cats.ToQueryString()}");
                 foreach (Category c in cats)
                 {
                     WriteLine($"{c.CategoryName} has {c.Products.Count} products with a minimum of {stock} units in stock.");
@@ -265,8 +269,8 @@ namespace WorkingWithEFCore
             // tryJoin();
             QueryingCategories();
             // QueryingCategoriesQE();
-            // FilteredIncludes();
-            // FilteredIncludesQE();
+            FilteredIncludes();
+            FilteredIncludesQE();
             FilteredIncludesQE2();
             FilteredIncludesQE3();
             // QueryingProducts();
