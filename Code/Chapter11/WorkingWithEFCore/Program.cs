@@ -218,6 +218,7 @@ namespace WorkingWithEFCore
 
         /// <summary>
         /// LeftJoin using LINQ expression and Using Database Group By
+        /// Database Group by must result in a literal value
         /// </summary>
         static void FilteredIncludesQE5()
         {
@@ -239,7 +240,7 @@ namespace WorkingWithEFCore
                             select new {CategoryID = gr.Key, TotalProduct=gr.Count(x => x.Prod !=null), TotalStock = gr.Sum(gr => gr.Prod.Stock), AverageCost = gr.Average(gr => gr.Prod.Stock)};
                 WriteLine($"** ToQueryString: {query.ToQueryString()}");
 
-                var queryResult = query.TagWith("FilteredIncludesQE3").ToList();
+                var queryResult = query.TagWith("FilteredIncludesQE5").ToList();
                 foreach(var qr in queryResult){
                     WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}, TotalProduct:{3}", qr.CategoryID, qr.TotalStock, qr.AverageCost, qr.TotalProduct);
                 }
@@ -297,6 +298,109 @@ namespace WorkingWithEFCore
                 }
             }
         }
+        static void QueryingWithLike()
+        {
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                Write("Enter part of a product name: ");
+                string input = ReadLine();
+                // SQL Like: The percent sign (%) represents zero, one, or multiple characters
+                IQueryable<Product> prods = db.Products.TagWith("QueryingWithLike")
+                .Where(p => EF.Functions.Like(p.ProductName, $"%{input}%"));
+                WriteLine("Command:"+prods.ToQueryString());
+                foreach (Product item in prods)
+                {
+                    WriteLine("{0} has {1} units in stock. Discontinued? {2}",
+                    item.ProductName, item.Stock, item.Discontinued);
+                }
+            }
+        }
+        static void QueryingWithLikeLINQ()
+        {
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                // var prodsAllQuery = from p in db.Products
+                //                     select p;
+                // foreach (Product item in prodsAllQuery)
+                // {
+                //     WriteLine("{0} has {1} units in stock. Discontinued? {2}",
+                //     item.ProductName, item.Stock, item.Discontinued);
+                // }
+                Write("Enter part of a product name: ");
+                string input = ReadLine();
+                // Using Contains, not SQL Like
+                var prodsQuery = from p in db.Products
+                            where p.ProductName.ToUpper().Contains($"{input.ToUpper()}")
+                            select p;
+                var prods = prodsQuery.TagWith("QueryingWithLikeLINQ");
+                WriteLine("Command:"+prodsQuery.ToQueryString());
+                foreach (Product item in prodsQuery)
+                {
+                    WriteLine("{0} has {1} units in stock. Discontinued? {2}",
+                    item.ProductName, item.Stock, item.Discontinued);
+                }
+            }
+        }
+
+        static void ListProducts(){
+
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                var query = from p in db.Products
+                            orderby p.Cost descending
+                            select p;
+                foreach(var item in query){
+                    WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
+                    item.ProductID, item.ProductName, item.Cost,
+                    item.Stock, item.Discontinued);
+                }
+            }
+        }
+        static bool AddPrice(decimal priceLowerLimit, decimal priceIncr)
+        {
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                var query = from p in db.Products
+                            where p.Cost > priceLowerLimit
+                            select p;
+                int num = 0;
+                foreach(var p in query){
+                    num++;
+                    p.Cost += priceIncr;
+                }
+                // save tracked change to database
+                int affected = db.SaveChanges();
+                return (affected == num);
+            }
+        }
+        static bool AddProduct(
+        int categoryID, string productName, decimal? price)
+        {
+            using (var db = new Northwind())
+            {
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                var newProduct = new Product
+                {
+                    CategoryID = categoryID,
+                    ProductName = productName,
+                    Cost = price
+                };
+                // mark product as added in change tracking
+                db.Products.Add(newProduct);
+                // save tracked change to database
+                int affected = db.SaveChanges();
+                return (affected == 1);
+            }
+        }
         static void Main(string[] args)
         {
             string file = Path.Combine(Environment.CurrentDirectory, "db.log");
@@ -311,8 +415,18 @@ namespace WorkingWithEFCore
             // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
-            FilteredIncludesQE5();
+            // FilteredIncludesQE5();
             // QueryingProducts();
+            // QueryingWithLike();
+            // QueryingWithLikeLINQ();
+            // if (AddProduct(6, "Bob's Burgers", 1000M))
+            // {
+            //     WriteLine ("Add product successful.");
+            // }
+            if(AddPrice(499, 10)){
+                WriteLine("Updated successfully");
+            }
+            ListProducts();
         }
     }
 }
