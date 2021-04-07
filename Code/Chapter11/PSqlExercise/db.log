@@ -1,5 +1,5 @@
-** Created on: 2021/3/28 16:33:43
-**Added on:2021/3/28 16:33:46
+** Created on: 4/7/2021 9:30:39 PM
+**Added on:4/7/2021 9:30:42 PM
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 -- QueryPost
@@ -7,7 +7,24 @@ Level: Debug, Event ID: 20100
 SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
 FROM "Blogs" AS b
 WHERE b."BlogId" = 1
-**Added on:2021/3/28 16:33:46
+
+**Added on:4/7/2021 9:30:42 PM
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+-- QueryPost
+
+SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
+FROM "Blogs" AS b
+WHERE b."BlogId" = 1
+
+**Added on:4/7/2021 9:30:42 PM
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p1='?' (DbType = Int32), @p0='?', @p2='?' (DbType = Object)], CommandType='Text', CommandTimeout='30']
+UPDATE "Blogs" SET "Url" = @p0
+WHERE "BlogId" = @p1 AND xmin = @p2
+RETURNING xmin;
+
+**Added on:4/7/2021 9:30:43 PM
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 -- Inner Join
@@ -15,3 +32,17 @@ Level: Debug, Event ID: 20100
 SELECT b."BlogId" AS id, p."PostId" AS id2
 FROM "Blogs" AS b
 INNER JOIN "Posts" AS p ON b."BlogId" = p."MainBlogId"
+
+**Added on:4/7/2021 9:30:43 PM
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
+VALUES (@p0, @p1, @p2)
+RETURNING xmin;
+
+**Added on:4/7/2021 9:30:43 PM
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
+FROM "Blogs" AS b
+

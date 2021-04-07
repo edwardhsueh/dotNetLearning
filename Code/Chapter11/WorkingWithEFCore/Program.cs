@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace WorkingWithEFCore
 {
@@ -355,11 +356,15 @@ namespace WorkingWithEFCore
                 var query = from p in db.Products
                             orderby p.Cost descending
                             select p;
+                WriteLine("===========================================");
+                WriteLine("List Products");
+                WriteLine("===========================================");
                 foreach(var item in query){
-                    WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
+                    WriteLine("  {0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
                     item.ProductID, item.ProductName, item.Cost,
                     item.Stock, item.Discontinued);
                 }
+                WriteLine();
             }
         }
         static bool AddPrice(decimal priceLowerLimit, decimal priceIncr)
@@ -368,37 +373,86 @@ namespace WorkingWithEFCore
             {
                 var loggerFactory = db.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(new ConsoleLoggerProvider());
-                var query = from p in db.Products
-                            where p.Cost > priceLowerLimit
-                            select p;
-                int num = 0;
-                foreach(var p in query){
-                    num++;
-                    p.Cost += priceIncr;
+                using (IDbContextTransaction t = db.Database.BeginTransaction())
+                {
+                    WriteLine("===========================================");
+                    WriteLine("AddPrice");
+                    WriteLine("===========================================");
+                    WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
+
+                    var query = from p in db.Products
+                                where p.Cost > priceLowerLimit
+                                select p;
+                    int num = 0;
+                    foreach(var p in query){
+                        num++;
+                        p.Cost += priceIncr;
+                    }
+                    // save tracked change to database
+                    int affected = db.SaveChanges();
+                    t.Commit();
+                    return (affected == num);
                 }
-                // save tracked change to database
-                int affected = db.SaveChanges();
-                return (affected == num);
             }
         }
-        static bool AddProduct(
-        int categoryID, string productName, decimal? price)
+        static bool AddProduct(int categoryID, string productName, decimal? price)
         {
             using (var db = new Northwind())
             {
+
                 var loggerFactory = db.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(new ConsoleLoggerProvider());
-                var newProduct = new Product
+                using (IDbContextTransaction t = db.Database.BeginTransaction())
                 {
-                    CategoryID = categoryID,
-                    ProductName = productName,
-                    Cost = price
-                };
-                // mark product as added in change tracking
-                db.Products.Add(newProduct);
-                // save tracked change to database
-                int affected = db.SaveChanges();
-                return (affected == 1);
+                    WriteLine("===========================================");
+                    WriteLine("AddProduct");
+                    WriteLine("===========================================");
+                    WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
+
+                    var newProduct = new Product
+                    {
+                        CategoryID = categoryID,
+                        ProductName = productName,
+                        Cost = price
+                    };
+                    // mark product as added in change tracking
+                    db.Products.Add(newProduct);
+                    // save tracked change to database
+                    int affected = db.SaveChanges();
+                    t.Commit();
+                    return (affected == 1);
+                }
+            }
+        }
+
+        static int DeleteProducts(string name)
+        {
+            using (var db = new Northwind())
+            {
+                // IEnumerable<Product> products = db.Products.Where(
+                // p => p.ProductName.StartsWith(name));
+                var loggerFactory = db.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(new ConsoleLoggerProvider());
+                using (IDbContextTransaction t = db.Database.BeginTransaction())
+                {
+                    var products = from p in db.Products
+                                where p.ProductName.StartsWith(name)
+                                select p;
+                    WriteLine("===========================================");
+                    WriteLine("Products to be Deleted");
+                    WriteLine("===========================================");
+                    WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
+
+                    foreach(var item in products){
+                        WriteLine("{0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
+                        item.ProductID, item.ProductName, item.Cost,
+                        item.Stock, item.Discontinued);
+                    }
+                    db.Products.RemoveRange(products);
+                    int affected = db.SaveChanges();
+                    t.Commit();
+                    return affected;
+                }
             }
         }
         static void Main(string[] args)
@@ -419,14 +473,21 @@ namespace WorkingWithEFCore
             // QueryingProducts();
             // QueryingWithLike();
             // QueryingWithLikeLINQ();
-            // if (AddProduct(6, "Bob's Burgers", 1000M))
-            // {
-            //     WriteLine ("Add product successful.");
-            // }
+            if (AddProduct(6, "Bob's Burgers", 1000M))
+            {
+                WriteLine ("Add product successful.");
+            }
+            if (AddProduct(6, "Bob's Meat", 5000M))
+            {
+                WriteLine ("Add product successful.");
+            }
             if(AddPrice(499, 10)){
                 WriteLine("Updated successfully");
             }
             ListProducts();
+            int deletedNum = DeleteProducts("Bob");
+            WriteLine("Remove {0} product(s)", deletedNum);
+
         }
     }
 }

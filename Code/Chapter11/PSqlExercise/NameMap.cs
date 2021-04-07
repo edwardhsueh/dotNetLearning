@@ -21,7 +21,10 @@ namespace Edward.Shared{
             .HasData(
                 new NameMap{NameMapId=1, Name="中視"},
                 new NameMap{NameMapId=2, Name="台視"},
-                new NameMap{NameMapId=3, Name="華視"}
+                new NameMap{NameMapId=3, Name="華視"},
+                new NameMap{NameMapId=4, Name="華視4"},
+                new NameMap{NameMapId=5, Name="華視5"},
+                new NameMap{NameMapId=6, Name="華視6"}
             );
       }
   }

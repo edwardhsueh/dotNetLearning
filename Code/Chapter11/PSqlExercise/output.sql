@@ -74,6 +74,12 @@ INSERT INTO "NameMaps" ("NameMapId", "Name")
 VALUES (2, '台視');
 INSERT INTO "NameMaps" ("NameMapId", "Name")
 VALUES (3, '華視');
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (4, '華視4');
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (5, '華視5');
+INSERT INTO "NameMaps" ("NameMapId", "Name")
+VALUES (6, '華視6');
 
 
 INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
@@ -85,9 +91,9 @@ VALUES (3, 3, 'http://3.com');
 
 
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (1, '第一篇內容', TIMESTAMP '2021-03-28 16:33:44.181746', 1, 1, 0.0, 2, '第一篇');
+VALUES (1, '第一篇內容', TIMESTAMP '2021-04-07 21:30:39.928436', 1, 1, 0.0, 2, '第一篇');
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (2, '第二篇內容', TIMESTAMP '2021-03-28 16:33:44.181806', 1, 2, 0.0, 3, '第二篇');
+VALUES (2, '第二篇內容', TIMESTAMP '2021-04-07 21:30:39.928539', 1, 2, 0.0, 3, '第二篇');
 
 
 CREATE UNIQUE INDEX "IX_Blogs_NameMapId" ON "Blogs" ("NameMapId");

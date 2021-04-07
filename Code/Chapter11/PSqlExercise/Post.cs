@@ -42,6 +42,7 @@ namespace Edward.Shared{
       // for 1 to Many ratlion to PostTag
       public ICollection<PostTag> PostTags { get; set; }
 
+
   }
   public class PostEntityTypeConfiguration : IEntityTypeConfiguration<Post>
   {

@@ -5,7 +5,7 @@ using static System.Console;
 
 namespace Edward.Shared
 {
-    public class ConsoleLoggerProvider : ILoggerProvider
+   public class ConsoleLoggerProvider : ILoggerProvider
     {
         public ILogger CreateLogger(string categoryName)
         {
@@ -59,18 +59,19 @@ namespace Edward.Shared
                     {
                         fs.WriteLine($", Exception: {exception.Message}");
                     }
+                    fs.WriteLine();
                 }
-                Write($"Level: {logLevel}, Event ID: {eventId.Id}");
-                // only output the state or exception if it exists
-                if (state != null)
-                {
-                    Write($", State: {state}");
-                }
-                if (exception != null)
-                {
-                    Write($", Exception: {exception.Message}");
-                }
-                WriteLine();
+                // Write($"Level: {logLevel}, Event ID: {eventId.Id}");
+                // // only output the state or exception if it exists
+                // if (state != null)
+                // {
+                //     Write($", State: {state}");
+                // }
+                // if (exception != null)
+                // {
+                //     Write($", Exception: {exception.Message}");
+                // }
+                // WriteLine();
             }
 
         }
