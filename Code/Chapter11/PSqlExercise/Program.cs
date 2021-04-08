@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace Exercise
 {
     class Program
@@ -61,8 +63,12 @@ namespace Exercise
                         id = blog.BlogId,
                         id2 = post.PostId,
                     };
-                // Console.WriteLine("query:{0}", query.ToQueryString());
+                // Execute Command
                 var exeq = query.TagWith("Inner Join").ToList();
+                // Json Serializer
+                var jsonString =  JsonSerializer.Serialize(exeq);
+                File.WriteAllText("InnerJoin.json", jsonString);
+
                 foreach (var q in exeq){
                     Console.WriteLine(q.ToString());
                 }

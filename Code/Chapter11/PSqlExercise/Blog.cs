@@ -30,6 +30,8 @@ namespace Edward.Shared{
           // Define Table Description
           builder
             .HasComment("Blogs by Edward");
+          builder
+            .HasIndex(b => b.Url);
           // Define Foreign Key reference
           builder
             .HasOne(b => b.NameMap)
