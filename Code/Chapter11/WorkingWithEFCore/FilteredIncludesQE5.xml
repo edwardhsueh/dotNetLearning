@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfQE5Result xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QE5Result>
+    <CategoryID>Beverages</CategoryID>
+    <TotalProduct>3</TotalProduct>
+    <TotalStock>305</TotalStock>
+    <AverageCost>101.66666666666667</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Condiments</CategoryID>
+    <TotalProduct>3</TotalProduct>
+    <TotalStock>309</TotalStock>
+    <AverageCost>103</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Confections</CategoryID>
+    <TotalProduct>2</TotalProduct>
+    <TotalStock>141</TotalStock>
+    <AverageCost>70.5</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Dairy Products</CategoryID>
+    <TotalProduct>3</TotalProduct>
+    <TotalStock>277</TotalStock>
+    <AverageCost>92.33333333333333</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Grains/Cereals</CategoryID>
+    <TotalProduct>2</TotalProduct>
+    <TotalStock>165</TotalStock>
+    <AverageCost>82.5</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Meat/Poultry</CategoryID>
+    <TotalProduct>1</TotalProduct>
+    <TotalStock>115</TotalStock>
+    <AverageCost>115</AverageCost>
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Produce</CategoryID>
+    <TotalProduct>0</TotalProduct>
+    <TotalStock>0</TotalStock>
+    <AverageCost xsi:nil="true" />
+  </QE5Result>
+  <QE5Result>
+    <CategoryID>Seafood</CategoryID>
+    <TotalProduct>6</TotalProduct>
+    <TotalStock>578</TotalStock>
+    <AverageCost>96.33333333333333</AverageCost>
+  </QE5Result>
+</ArrayOfQE5Result>

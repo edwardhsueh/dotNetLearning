@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 namespace Packt.Shared
 {
   public class Product
@@ -19,6 +22,8 @@ namespace Packt.Shared
     // these two define the foreign key relationship
     // to the Categories table
     public int CategoryID { get; set; }
+    [JsonIgnore]
+    [XmlIgnore]
     public virtual Category Category { get; set; }
   }
 }

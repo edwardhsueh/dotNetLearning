@@ -1,75 +1,45 @@
-** Created on: 4/7/2021 8:45:11 PM
-**Added on:4/7/2021 8:45:12 PM
+** Created on: 2021/4/8 15:46:40
+**Added on:2021/4/8 15:46:45
 Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (Size = 13), @p4='?'], CommandType='Text', CommandTimeout='30']
-INSERT INTO "Products" ("CategoryID", "UnitPrice", "Discontinued", "ProductName", "UnitsInStock")
-VALUES (@p0, @p1, @p2, @p3, @p4);
-SELECT "ProductID"
-FROM "Products"
-WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+, State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CategoryName" AS "CategoryID", COUNT(CASE
+    WHEN "t"."ProductID" IS NOT NULL THEN 1
+END) AS "TotalProduct", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
+FROM "Categories" AS "c"
+LEFT JOIN (
+    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."UnitsInStock" > @__stock_0
+) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
+GROUP BY "c"."CategoryName"
 
-**Added on:4/7/2021 8:45:12 PM
+**Added on:2021/4/8 15:46:45
 Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (Size = 10), @p4='?'], CommandType='Text', CommandTimeout='30']
-INSERT INTO "Products" ("CategoryID", "UnitPrice", "Discontinued", "ProductName", "UnitsInStock")
-VALUES (@p0, @p1, @p2, @p3, @p4);
-SELECT "ProductID"
-FROM "Products"
-WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+, State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
+-- FilteredIncludesQE5
 
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@__priceLowerLimit_0='?'], CommandType='Text', CommandTimeout='30']
-SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
-FROM "Products" AS "p"
-WHERE "p"."UnitPrice" > @__priceLowerLimit_0
+SELECT "c"."CategoryName" AS "CategoryID", COUNT(CASE
+    WHEN "t"."ProductID" IS NOT NULL THEN 1
+END) AS "TotalProduct", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
+FROM "Categories" AS "c"
+LEFT JOIN (
+    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."UnitsInStock" > @__stock_0
+) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
+GROUP BY "c"."CategoryName"
 
-**Added on:4/7/2021 8:45:13 PM
+**Added on:2021/4/8 15:46:45
 Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p1='?', @p0='?'], CommandType='Text', CommandTimeout='30']
-UPDATE "Products" SET "UnitPrice" = @p0
-WHERE "ProductID" = @p1;
-SELECT changes();
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p1='?', @p0='?'], CommandType='Text', CommandTimeout='30']
-UPDATE "Products" SET "UnitPrice" = @p0
-WHERE "ProductID" = @p1;
-SELECT changes();
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
-FROM "Products" AS "p"
-ORDER BY "p"."UnitPrice" DESC
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@__name_0='?' (Size = 3)], CommandType='Text', CommandTimeout='30']
-SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
-FROM "Products" AS "p"
-WHERE (@__name_0 = '') OR ((("p"."ProductName" LIKE @__name_0 || '%') AND (substr("p"."ProductName", 1, length(@__name_0)) = @__name_0)) OR (@__name_0 = ''))
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@__name_0='?' (Size = 3)], CommandType='Text', CommandTimeout='30']
-SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitPrice", "p"."Discontinued", "p"."ProductName", "p"."UnitsInStock"
-FROM "Products" AS "p"
-WHERE (@__name_0 = '') OR ((("p"."ProductName" LIKE @__name_0 || '%') AND (substr("p"."ProductName", 1, length(@__name_0)) = @__name_0)) OR (@__name_0 = ''))
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
-DELETE FROM "Products"
-WHERE "ProductID" = @p0;
-SELECT changes();
-
-**Added on:4/7/2021 8:45:13 PM
-Level: Debug, Event ID: 20100
-, State: Executing DbCommand [Parameters=[@p0='?'], CommandType='Text', CommandTimeout='30']
-DELETE FROM "Products"
-WHERE "ProductID" = @p0;
-SELECT changes();
+, State: Executing DbCommand [Parameters=[@__stock_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CategoryName" AS "CategoryID", COUNT(CASE
+    WHEN "t"."ProductID" IS NOT NULL THEN 1
+END) AS "TotalProduct", COALESCE(SUM(CAST("t"."UnitsInStock" AS INTEGER)), 0) AS "TotalStock", AVG(CAST(CAST("t"."UnitsInStock" AS INTEGER) AS REAL)) AS "AverageCost"
+FROM "Categories" AS "c"
+LEFT JOIN (
+    SELECT "p"."ProductID", "p"."CategoryID", "p"."UnitsInStock"
+    FROM "Products" AS "p"
+    WHERE "p"."UnitsInStock" > @__stock_0
+) AS "t" ON "c"."CategoryID" = "t"."CategoryID"
+GROUP BY "c"."CategoryName"
 

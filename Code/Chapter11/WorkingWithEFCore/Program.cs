@@ -8,7 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Microsoft.EntityFrameworkCore.Storage;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization; // XmlSerializer
+using System.Collections.Generic;
 namespace WorkingWithEFCore
 {
     class Program
@@ -238,10 +241,18 @@ namespace WorkingWithEFCore
                             from subProd in prodGroup.DefaultIfEmpty()
                             orderby cat.CategoryID ascending, subProd.ProductID ascending
                             group new {Cat = cat, Prod = subProd} by cat.CategoryName into gr
-                            select new {CategoryID = gr.Key, TotalProduct=gr.Count(x => x.Prod !=null), TotalStock = gr.Sum(gr => gr.Prod.Stock), AverageCost = gr.Average(gr => gr.Prod.Stock)};
-                WriteLine($"** ToQueryString: {query.ToQueryString()}");
+                            select new QE5Result {CategoryID = gr.Key, TotalProduct=gr.Count(x => x.Prod !=null), TotalStock = gr.Sum(gr => gr.Prod.Stock), AverageCost = gr.Average(gr => gr.Prod.Stock)};
+                // JSON serialization
+                var jsonString =  JsonSerializer.Serialize(query);
+                File.WriteAllText("FilteredIncludesQE5.json", jsonString);
 
                 var queryResult = query.TagWith("FilteredIncludesQE5").ToList();
+                var xs = new XmlSerializer(typeof(List<QE5Result>));
+                TextWriter writer = new StreamWriter("FilteredIncludesQE5.xml");
+                xs.Serialize(writer, query.ToList());
+                WriteLine($"** ToQueryString: {queryResult}");
+
+
                 foreach(var qr in queryResult){
                     WriteLine("Name:{0}, SumStock:{1}, AvgCost:{2}, TotalProduct:{3}", qr.CategoryID, qr.TotalStock, qr.AverageCost, qr.TotalProduct);
                 }
@@ -356,6 +367,13 @@ namespace WorkingWithEFCore
                 var query = from p in db.Products
                             orderby p.Cost descending
                             select p;
+                // JSON serialization
+                var jsonString =  JsonSerializer.Serialize(query);
+                File.WriteAllText("ProductList.json", jsonString);
+                var xs = new XmlSerializer(typeof(List<Product>));
+                TextWriter writer = new StreamWriter("ProductList.xml");
+                xs.Serialize(writer, query.ToList());
+                // xml serialization
                 WriteLine("===========================================");
                 WriteLine("List Products");
                 WriteLine("===========================================");
@@ -469,24 +487,27 @@ namespace WorkingWithEFCore
             // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
-            // FilteredIncludesQE5();
+             FilteredIncludesQE5();
             // QueryingProducts();
             // QueryingWithLike();
             // QueryingWithLikeLINQ();
-            if (AddProduct(6, "Bob's Burgers", 1000M))
-            {
-                WriteLine ("Add product successful.");
-            }
-            if (AddProduct(6, "Bob's Meat", 5000M))
-            {
-                WriteLine ("Add product successful.");
-            }
-            if(AddPrice(499, 10)){
-                WriteLine("Updated successfully");
-            }
-            ListProducts();
-            int deletedNum = DeleteProducts("Bob");
-            WriteLine("Remove {0} product(s)", deletedNum);
+            // -----------------------------------------------
+            // Test SaveChange
+            // -----------------------------------------------
+            // if (AddProduct(6, "Bob's Burgers", 1000M))
+            // {
+            //     WriteLine ("Add product successful.");
+            // }
+            // if (AddProduct(6, "Bob's Meat", 5000M))
+            // {
+            //     WriteLine ("Add product successful.");
+            // }
+            // if(AddPrice(499, 10)){
+            //     WriteLine("Updated successfully");
+            // }
+            // ListProducts();
+            // int deletedNum = DeleteProducts("Bob");
+            // WriteLine("Remove {0} product(s)", deletedNum);
 
         }
     }
