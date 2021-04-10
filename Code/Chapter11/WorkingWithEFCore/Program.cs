@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization; // XmlSerializer
 using System.Collections.Generic;
+using System.Xml.Linq;
 namespace WorkingWithEFCore
 {
     class Program
@@ -242,15 +243,30 @@ namespace WorkingWithEFCore
                             orderby cat.CategoryID ascending, subProd.ProductID ascending
                             group new {Cat = cat, Prod = subProd} by cat.CategoryName into gr
                             select new QE5Result {CategoryID = gr.Key, TotalProduct=gr.Count(x => x.Prod !=null), TotalStock = gr.Sum(gr => gr.Prod.Stock), AverageCost = gr.Average(gr => gr.Prod.Stock)};
-                // JSON serialization
-                var jsonString =  JsonSerializer.Serialize(query);
-                File.WriteAllText("FilteredIncludesQE5.json", jsonString);
+                WriteLine($"** ToQueryString: {query.ToQueryString()}");
 
                 var queryResult = query.TagWith("FilteredIncludesQE5").ToList();
+                // JSON serialization
+                var jsonString =  JsonSerializer.Serialize(queryResult);
+                File.WriteAllText("FilteredIncludesQE5.json", jsonString);
+
                 var xs = new XmlSerializer(typeof(List<QE5Result>));
                 TextWriter writer = new StreamWriter("FilteredIncludesQE5.xml");
-                xs.Serialize(writer, query.ToList());
-                WriteLine($"** ToQueryString: {queryResult}");
+                xs.Serialize(writer, queryResult);
+
+                var xml = new XElement("products",
+                    from p in queryResult
+                    select new XElement("product",
+                        new XAttribute("id", p.CategoryID),
+                        new XElement("TotalProduct", p.TotalProduct),
+                        new XElement("AvrageCost", p.AverageCost)
+                    )
+                );
+                // WriteLine(xml.ToString());
+                File.WriteAllText("FilteredIncludesQE5_LINQ.xml", xml.ToString());
+
+
+
 
 
                 foreach(var qr in queryResult){
@@ -376,7 +392,18 @@ namespace WorkingWithEFCore
 
                 var xs = new XmlSerializer(typeof(List<Product>));
                 TextWriter writer = new StreamWriter("ProductList.xml");
-                xs.Serialize(writer, query.ToList());
+                xs.Serialize(writer, query);
+
+                var xml = new XElement("products",
+                    from p in query
+                    select new XElement("product",
+                        new XAttribute("id", p.ProductID),
+                        new XElement("name", p.ProductName),
+                        new XElement("cost", p.Cost)
+                    )
+                );
+                File.WriteAllText("ProductList_LINQ.xml", xml.ToString());
+
                 // xml serialization
                 WriteLine("===========================================");
                 WriteLine("List Products");
@@ -500,7 +527,7 @@ namespace WorkingWithEFCore
             // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
-            // FilteredIncludesQE5();
+            FilteredIncludesQE5();
             // QueryingProducts();
             // QueryingWithLike();
             // QueryingWithLikeLINQ();

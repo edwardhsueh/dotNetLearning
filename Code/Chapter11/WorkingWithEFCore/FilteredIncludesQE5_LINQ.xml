@@ -1,0 +1,34 @@
+<products>
+  <product id="Beverages">
+    <TotalProduct>5</TotalProduct>
+    <AvrageCost>82.8</AvrageCost>
+  </product>
+  <product id="Condiments">
+    <TotalProduct>4</TotalProduct>
+    <AvrageCost>90.5</AvrageCost>
+  </product>
+  <product id="Confections">
+    <TotalProduct>2</TotalProduct>
+    <AvrageCost>70.5</AvrageCost>
+  </product>
+  <product id="Dairy Products">
+    <TotalProduct>3</TotalProduct>
+    <AvrageCost>92.33333333333333</AvrageCost>
+  </product>
+  <product id="Grains/Cereals">
+    <TotalProduct>2</TotalProduct>
+    <AvrageCost>82.5</AvrageCost>
+  </product>
+  <product id="Meat/Poultry">
+    <TotalProduct>1</TotalProduct>
+    <AvrageCost>115</AvrageCost>
+  </product>
+  <product id="Produce">
+    <TotalProduct>0</TotalProduct>
+    <AvrageCost />
+  </product>
+  <product id="Seafood">
+    <TotalProduct>6</TotalProduct>
+    <AvrageCost>96.33333333333333</AvrageCost>
+  </product>
+</products>

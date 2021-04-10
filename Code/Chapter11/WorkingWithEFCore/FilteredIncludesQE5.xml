@@ -2,15 +2,15 @@
 <ArrayOfQE5Result xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <QE5Result>
     <CategoryID>Beverages</CategoryID>
-    <TotalProduct>3</TotalProduct>
-    <TotalStock>305</TotalStock>
-    <AverageCost>101.66666666666667</AverageCost>
+    <TotalProduct>5</TotalProduct>
+    <TotalStock>414</TotalStock>
+    <AverageCost>82.8</AverageCost>
   </QE5Result>
   <QE5Result>
     <CategoryID>Condiments</CategoryID>
-    <TotalProduct>3</TotalProduct>
-    <TotalStock>309</TotalStock>
-    <AverageCost>103</AverageCost>
+    <TotalProduct>4</TotalProduct>
+    <TotalStock>362</TotalStock>
+    <AverageCost>90.5</AverageCost>
   </QE5Result>
   <QE5Result>
     <CategoryID>Confections</CategoryID>
