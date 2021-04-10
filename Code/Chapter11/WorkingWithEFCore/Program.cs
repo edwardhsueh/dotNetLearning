@@ -364,12 +364,16 @@ namespace WorkingWithEFCore
             {
                 var loggerFactory = db.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(new ConsoleLoggerProvider());
-                var query = from p in db.Products
+                var query = (from p in db.Products
                             orderby p.Cost descending
-                            select p;
+                            select p).ToList();
                 // JSON serialization
                 var jsonString =  JsonSerializer.Serialize(query);
-                File.WriteAllText("ProductList.json", jsonString);
+                string fileName = "ProductList.json";
+                File.WriteAllText(fileName, jsonString);
+                var jsonStringRead = File.ReadAllText(fileName);
+                var productListFromJson = JsonSerializer.Deserialize<List<Product>>(jsonStringRead);
+
                 var xs = new XmlSerializer(typeof(List<Product>));
                 TextWriter writer = new StreamWriter("ProductList.xml");
                 xs.Serialize(writer, query.ToList());
@@ -378,6 +382,15 @@ namespace WorkingWithEFCore
                 WriteLine("List Products");
                 WriteLine("===========================================");
                 foreach(var item in query){
+                    WriteLine("  {0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
+                    item.ProductID, item.ProductName, item.Cost,
+                    item.Stock, item.Discontinued);
+                }
+                WriteLine();
+                WriteLine("===========================================");
+                WriteLine("List Products(Json)");
+                WriteLine("===========================================");
+                foreach(var item in productListFromJson){
                     WriteLine("  {0:000} {1,-35} {2,8:$#,##0.00} {3,5} {4}",
                     item.ProductID, item.ProductName, item.Cost,
                     item.Stock, item.Discontinued);
@@ -487,7 +500,7 @@ namespace WorkingWithEFCore
             // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
-             FilteredIncludesQE5();
+            // FilteredIncludesQE5();
             // QueryingProducts();
             // QueryingWithLike();
             // QueryingWithLikeLINQ();
@@ -505,7 +518,7 @@ namespace WorkingWithEFCore
             // if(AddPrice(499, 10)){
             //     WriteLine("Updated successfully");
             // }
-            // ListProducts();
+            ListProducts();
             // int deletedNum = DeleteProducts("Bob");
             // WriteLine("Remove {0} product(s)", deletedNum);
 

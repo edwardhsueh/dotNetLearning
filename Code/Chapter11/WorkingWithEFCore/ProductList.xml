@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Product>
-    <ProductID>79</ProductID>
-    <ProductName>Bob's Meat</ProductName>
-    <Cost>5010</Cost>
-    <Stock xsi:nil="true" />
-    <Discontinued>false</Discontinued>
-    <CategoryID>6</CategoryID>
-  </Product>
-  <Product>
-    <ProductID>78</ProductID>
-    <ProductName>Bob's Burgers</ProductName>
-    <Cost>1010</Cost>
-    <Stock xsi:nil="true" />
-    <Discontinued>false</Discontinued>
-    <CategoryID>6</CategoryID>
-  </Product>
-  <Product>
     <ProductID>38</ProductID>
     <ProductName>Côte de Blaye</ProductName>
     <Cost>263.5</Cost>

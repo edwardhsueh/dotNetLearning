@@ -14,8 +14,9 @@ namespace LinqInParallel
             ReadLine();
             watch.Start();
             IEnumerable<int> numbers = Enumerable.Range(1, 2_000_000_000);
-            var squares = (from number in numbers.AsParallel()
-                          select number*number).ToList();
+            var squares = from number in numbers
+                          where number % 2 == 1
+                          select number;
             // var squares = numbers.Select(number => number * number).ToArray();
             watch.Stop();
             WriteLine("{0:#,##0} elapsed milliseconds.",
