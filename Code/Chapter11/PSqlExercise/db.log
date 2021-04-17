@@ -1,5 +1,5 @@
-** Created on: 2021/4/17 下午 04:49:54
-**Added on:2021/4/17 下午 04:49:56
+** Created on: 2021/4/17 下午 05:21:50
+**Added on:2021/4/17 下午 05:21:51
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 -- QueryPost
@@ -8,7 +8,7 @@ SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
 FROM "Blogs" AS b
 WHERE b."BlogId" = 1
 
-**Added on:2021/4/17 下午 04:49:56
+**Added on:2021/4/17 下午 05:21:51
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 -- QueryPost
@@ -17,14 +17,14 @@ SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
 FROM "Blogs" AS b
 WHERE b."BlogId" = 1
 
-**Added on:2021/4/17 下午 04:49:56
+**Added on:2021/4/17 下午 05:21:51
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[@p1='?' (DbType = Int32), @p0='?', @p2='?' (DbType = Object)], CommandType='Text', CommandTimeout='30']
 UPDATE "Blogs" SET "Url" = @p0
 WHERE "BlogId" = @p1 AND xmin = @p2
 RETURNING xmin;
 
-**Added on:2021/4/17 下午 04:49:56
+**Added on:2021/4/17 下午 05:21:51
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 -- Inner Join
@@ -33,50 +33,16 @@ SELECT b."BlogId" AS id, p."PostId" AS id2
 FROM "Blogs" AS b
 INNER JOIN "Posts" AS p ON b."BlogId" = p."MainBlogId"
 
-**Added on:2021/4/17 下午 04:49:56
+**Added on:2021/4/17 下午 05:21:51
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?'], CommandType='Text', CommandTimeout='30']
 INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
 VALUES (@p0, @p1, @p2)
 RETURNING xmin;
 
-**Added on:2021/4/17 下午 04:49:56
-Level: Error, Event ID: 20102
-, State: Failed executing DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?'], CommandType='Text', CommandTimeout='30']
-INSERT INTO "Blogs" ("BlogId", "NameMapId", "Url")
-VALUES (@p0, @p1, @p2)
-RETURNING xmin;
-
-**Added on:2021/4/17 下午 04:49:56
-Level: Error, Event ID: 10000
-, State: An exception occurred in the database while saving changes for context type 'Edward.Shared.EdwardDb'.
-Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
- ---> Npgsql.PostgresException (0x80004005): 22001: value too long for type character varying(20)
-   at Npgsql.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|194_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
-   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlDataReader.NextResult()
-   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
-   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
-   at Npgsql.NpgsqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   at System.Data.Common.DbCommand.ExecuteReader()
-   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
-  Exception data:
-    Severity: ERROR
-    SqlState: 22001
-    MessageText: value too long for type character varying(20)
-    File: d:\pginstaller_13.auto\postgres.windows-x64\src\backend\utils\adt\varchar.c
-    Line: 635
-    Routine: varchar
-   --- End of inner exception stack trace ---
-   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
-   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
-   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChanges(IList`1 entries)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(DbContext _, Boolean acceptAllChangesOnSuccess)
-   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
-   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
-   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
-, Exception: An error occurred while updating the entries. See the inner exception for details.
+**Added on:2021/4/17 下午 05:21:51
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT b."BlogId", b."NameMapId", b."Url", b.xmin
+FROM "Blogs" AS b
 
