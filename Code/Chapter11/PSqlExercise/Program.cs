@@ -82,16 +82,22 @@ namespace Exercise
                 var loggerFactory = dbContext.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(new ConsoleLoggerProvider());
                 using (IDbContextTransaction t = dbContext.Database.BeginTransaction()){
-                    Console.WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
-                    var newBlog = new Blog { BlogId = 10, Url = "http://10.com" , NameMapId=4};
-                    dbContext.Blogs.Add(newBlog);
-                    int affected = dbContext.SaveChanges();
-                    t.Commit();
-                    Console.WriteLine("{0} line(s) affected", affected);
-                    var query = from b in dbContext.Blogs
-                                select b;
-                    foreach(var b in query){
-                        Console.WriteLine("blog {0}/{1}", b.BlogId, b.Url, b.NameMapId);
+                    try{
+                        Console.WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
+                        var newBlog = new Blog { BlogId = 10, Url = "http://100000000000000000000000000000.com" , NameMapId=4};
+                        dbContext.Blogs.Add(newBlog);
+                        int affected = dbContext.SaveChanges();
+                        t.Commit();
+                        Console.WriteLine("{0} line(s) affected", affected);
+                        var query = from b in dbContext.Blogs
+                                    select b;
+                        foreach(var b in query){
+                            Console.WriteLine("blog {0}/{1}", b.BlogId, b.Url, b.NameMapId);
+                        }
+                    }
+                    catch(Exception ex){
+                        Console.WriteLine($"{ex.GetType()} says {ex.Message}");
+
                     }
                 }
             }

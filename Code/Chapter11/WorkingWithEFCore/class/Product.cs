@@ -9,7 +9,7 @@ namespace Packt.Shared
   {
     public int ProductID { get; set; }
     [Required]
-    [StringLength(40)]
+    [MaxLength(40)]
     public string ProductName { get; set; }
 
     [Column("UnitPrice", TypeName = "money")]

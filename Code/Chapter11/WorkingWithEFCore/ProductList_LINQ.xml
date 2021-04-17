@@ -1,4 +1,16 @@
 <products>
+  <product id="78">
+    <name>Bob's Burgers</name>
+    <cost>1000</cost>
+  </product>
+  <product id="79">
+    <name>Bob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's Burgers</name>
+    <cost>1000</cost>
+  </product>
+  <product id="80">
+    <name>Bob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's Burgers</name>
+    <cost>1000</cost>
+  </product>
   <product id="38">
     <name>Côte de Blaye</name>
     <cost>263.5</cost>

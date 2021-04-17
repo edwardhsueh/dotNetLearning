@@ -527,14 +527,14 @@ namespace WorkingWithEFCore
             // FilteredIncludesQE();
             // FilteredIncludesQE2();
             // FilteredIncludesQE3();
-            FilteredIncludesQE5();
+            // FilteredIncludesQE5();
             // QueryingProducts();
             // QueryingWithLike();
             // QueryingWithLikeLINQ();
             // -----------------------------------------------
             // Test SaveChange
             // -----------------------------------------------
-            // if (AddProduct(6, "Bob's Burgers", 1000M))
+            // if (AddProduct(6, "Bob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's BurgersBob's Burgers", 1000M))
             // {
             //     WriteLine ("Add product successful.");
             // }

@@ -45,9 +45,25 @@ namespace Edward.Shared
         EventId eventId, TState state, Exception exception,
         Func<TState, Exception, string> formatter)
         {
+            string file = Path.Combine(Environment.CurrentDirectory, "db.log");
+            if(logLevel == LogLevel.Error){
+                using (StreamWriter fs = File.AppendText(file)){
+                    fs.WriteLine("**Added on:" + DateTime.Now.ToString());
+                    fs.WriteLine($"Level: {logLevel}, Event ID: {eventId.Id}");
+                    if (state != null)
+                    {
+                        fs.WriteLine($", State: {state}");
+                    }
+                    if (exception != null)
+                    {
+                        fs.WriteLine($", Exception: {exception.Message}");
+                    }
+                    fs.WriteLine();
+                }
+
+            }
             // log the level and event identifier
-            if(eventId.Id == 20100){
-                string file = Path.Combine(Environment.CurrentDirectory, "db.log");
+            else if(eventId.Id == 20100){
                 using (StreamWriter fs = File.AppendText(file)){
                     fs.WriteLine("**Added on:" + DateTime.Now.ToString());
                     fs.WriteLine($"Level: {logLevel}, Event ID: {eventId.Id}");
