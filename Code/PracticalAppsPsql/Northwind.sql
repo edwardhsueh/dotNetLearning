@@ -1,202 +1,3 @@
-/*
-** Copyright Microsoft, Inc. 1994 - 2000
-** All Rights Reserved.
-*/
-
-DROP TABLE IF EXISTS "Employees";
-DROP TABLE IF EXISTS "Customers";
-DROP TABLE IF EXISTS "Categories";
-DROP TABLE IF EXISTS "Products";
-DROP TABLE IF EXISTS "Suppliers";
-DROP TABLE IF EXISTS "Orders";
-DROP TABLE IF EXISTS "Order Details";
-DROP TABLE IF EXISTS "Shippers";
-
-CREATE TABLE "Employees" (
-	"EmployeeID" INTEGER PRIMARY KEY,
-	"LastName" nvarchar (20) NOT NULL ,
-	"FirstName" nvarchar (10) NOT NULL ,
-	"Title" nvarchar (30) NULL ,
-	"TitleOfCourtesy" nvarchar (25) NULL ,
-	"BirthDate" "datetime" NULL ,
-	"HireDate" "datetime" NULL ,
-	"Address" nvarchar (60) NULL ,
-	"City" nvarchar (15) NULL ,
-	"Region" nvarchar (15) NULL ,
-	"PostalCode" nvarchar (10) NULL ,
-	"Country" nvarchar (15) NULL ,
-	"HomePhone" nvarchar (24) NULL ,
-	"Extension" nvarchar (4) NULL ,
-	"Photo" "image" NULL ,
-	"Notes" "ntext" NULL ,
-	"ReportsTo" "int" NULL ,
-	"PhotoPath" nvarchar (255) NULL 
-);
-CREATE INDEX "LastName" ON "Employees"("LastName");
-CREATE INDEX "PostalCodeEmployees" ON "Employees"("PostalCode");
-
-CREATE TABLE "Categories" (
-	"CategoryID" INTEGER PRIMARY KEY,
-	"CategoryName" nvarchar (15) NOT NULL ,
-	"Description" "ntext" NULL ,
-	"Picture" "image" NULL
-);
-CREATE INDEX "CategoryName" ON "Categories"("CategoryName");
-
-CREATE TABLE "Customers" (
-	"CustomerID" nchar (5) NOT NULL ,
-	"CompanyName" nvarchar (40) NOT NULL ,
-	"ContactName" nvarchar (30) NULL ,
-	"ContactTitle" nvarchar (30) NULL ,
-	"Address" nvarchar (60) NULL ,
-	"City" nvarchar (15) NULL ,
-	"Region" nvarchar (15) NULL ,
-	"PostalCode" nvarchar (10) NULL ,
-	"Country" nvarchar (15) NULL ,
-	"Phone" nvarchar (24) NULL ,
-	"Fax" nvarchar (24) NULL ,
-	CONSTRAINT "PK_Customers" PRIMARY KEY  
-	(
-		"CustomerID"
-	)
-);
-CREATE INDEX "City" ON "Customers"("City");
-CREATE INDEX "CompanyNameCustomers" ON "Customers"("CompanyName");
-CREATE INDEX "PostalCodeCustomers" ON "Customers"("PostalCode");
-CREATE INDEX "Region" ON "Customers"("Region");
-
-CREATE TABLE "Shippers" (
-	"ShipperID" INTEGER PRIMARY KEY,
-	"CompanyName" nvarchar (40) NOT NULL ,
-	"Phone" nvarchar (24) NULL
-);
-
-CREATE TABLE "Suppliers" (
-	"SupplierID" INTEGER PRIMARY KEY,
-	"CompanyName" nvarchar (40) NOT NULL ,
-	"ContactName" nvarchar (30) NULL ,
-	"ContactTitle" nvarchar (30) NULL ,
-	"Address" nvarchar (60) NULL ,
-	"City" nvarchar (15) NULL ,
-	"Region" nvarchar (15) NULL ,
-	"PostalCode" nvarchar (10) NULL ,
-	"Country" nvarchar (15) NULL ,
-	"Phone" nvarchar (24) NULL ,
-	"Fax" nvarchar (24) NULL ,
-	"HomePage" "ntext" NULL
-);
-CREATE INDEX "CompanyNameSuppliers" ON "Suppliers"("CompanyName");
-CREATE INDEX "PostalCodeSuppliers" ON "Suppliers"("PostalCode");
-
-CREATE TABLE "Orders" (
-	"OrderID" INTEGER PRIMARY KEY,
-	"CustomerID" nchar (5) NULL ,
-	"EmployeeID" "int" NULL ,
-	"OrderDate" "datetime" NULL ,
-	"RequiredDate" "datetime" NULL ,
-	"ShippedDate" "datetime" NULL ,
-	"ShipVia" "int" NULL ,
-	"Freight" "money" NULL CONSTRAINT "DF_Orders_Freight" DEFAULT (0),
-	"ShipName" nvarchar (40) NULL ,
-	"ShipAddress" nvarchar (60) NULL ,
-	"ShipCity" nvarchar (15) NULL ,
-	"ShipRegion" nvarchar (15) NULL ,
-	"ShipPostalCode" nvarchar (10) NULL ,
-	"ShipCountry" nvarchar (15) NULL ,
-	CONSTRAINT "FK_Orders_Customers" FOREIGN KEY 
-	(
-		"CustomerID"
-	) REFERENCES "Customers" (
-		"CustomerID"
-	),
-	CONSTRAINT "FK_Orders_Employees" FOREIGN KEY 
-	(
-		"EmployeeID"
-	) REFERENCES "Employees" (
-		"EmployeeID"
-	),
-	CONSTRAINT "FK_Orders_Shippers" FOREIGN KEY 
-	(
-		"ShipVia"
-	) REFERENCES "Shippers" (
-		"ShipperID"
-	)
-);
-CREATE INDEX "CustomerID" ON "Orders"("CustomerID");
-CREATE INDEX "CustomersOrders" ON "Orders"("CustomerID");
-CREATE INDEX "EmployeeID" ON "Orders"("EmployeeID");
-CREATE INDEX "EmployeesOrders" ON "Orders"("EmployeeID");
-CREATE INDEX "OrderDate" ON "Orders"("OrderDate");
-CREATE INDEX "ShippedDate" ON "Orders"("ShippedDate");
-CREATE INDEX "ShippersOrders" ON "Orders"("ShipVia");
-CREATE INDEX "ShipPostalCode" ON "Orders"("ShipPostalCode");
-
-CREATE TABLE "Products" (
-	"ProductID" INTEGER PRIMARY KEY,
-	"ProductName" nvarchar (40) NOT NULL ,
-	"SupplierID" "int" NULL ,
-	"CategoryID" "int" NULL ,
-	"QuantityPerUnit" nvarchar (20) NULL ,
-	"UnitPrice" "money" NULL CONSTRAINT "DF_Products_UnitPrice" DEFAULT (0),
-	"UnitsInStock" "smallint" NULL CONSTRAINT "DF_Products_UnitsInStock" DEFAULT (0),
-	"UnitsOnOrder" "smallint" NULL CONSTRAINT "DF_Products_UnitsOnOrder" DEFAULT (0),
-	"ReorderLevel" "smallint" NULL CONSTRAINT "DF_Products_ReorderLevel" DEFAULT (0),
-	"Discontinued" "bit" NOT NULL CONSTRAINT "DF_Products_Discontinued" DEFAULT (0),
-	CONSTRAINT "FK_Products_Categories" FOREIGN KEY 
-	(
-		"CategoryID"
-	) REFERENCES "Categories" (
-		"CategoryID"
-	),
-	CONSTRAINT "FK_Products_Suppliers" FOREIGN KEY 
-	(
-		"SupplierID"
-	) REFERENCES "Suppliers" (
-		"SupplierID"
-	),
-	CONSTRAINT "CK_Products_UnitPrice" CHECK (UnitPrice >= 0),
-	CONSTRAINT "CK_ReorderLevel" CHECK (ReorderLevel >= 0),
-	CONSTRAINT "CK_UnitsInStock" CHECK (UnitsInStock >= 0),
-	CONSTRAINT "CK_UnitsOnOrder" CHECK (UnitsOnOrder >= 0)
-);
-CREATE INDEX "CategoriesProducts" ON "Products"("CategoryID");
-CREATE INDEX "CategoryID" ON "Products"("CategoryID");
-CREATE INDEX "ProductName" ON "Products"("ProductName");
-CREATE INDEX "SupplierID" ON "Products"("SupplierID");
-CREATE INDEX "SuppliersProducts" ON "Products"("SupplierID");
-
-CREATE TABLE "Order Details" (
-	"OrderID" "int" NOT NULL ,
-	"ProductID" "int" NOT NULL ,
-	"UnitPrice" "money" NOT NULL CONSTRAINT "DF_Order_Details_UnitPrice" DEFAULT (0),
-	"Quantity" "smallint" NOT NULL CONSTRAINT "DF_Order_Details_Quantity" DEFAULT (1),
-	"Discount" "real" NOT NULL CONSTRAINT "DF_Order_Details_Discount" DEFAULT (0),
-	CONSTRAINT "PK_Order_Details" PRIMARY KEY  
-	(
-		"OrderID",
-		"ProductID"
-	),
-	CONSTRAINT "FK_Order_Details_Orders" FOREIGN KEY 
-	(
-		"OrderID"
-	) REFERENCES "Orders" (
-		"OrderID"
-	),
-	CONSTRAINT "FK_Order_Details_Products" FOREIGN KEY 
-	(
-		"ProductID"
-	) REFERENCES "Products" (
-		"ProductID"
-	),
-	CONSTRAINT "CK_Discount" CHECK (Discount >= 0 and (Discount <= 1)),
-	CONSTRAINT "CK_Quantity" CHECK (Quantity > 0),
-	CONSTRAINT "CK_UnitPrice" CHECK (UnitPrice >= 0)
-);
-CREATE  INDEX "OrderID" ON "Order Details"("OrderID");
-CREATE  INDEX "OrdersOrder_Details" ON "Order Details"("OrderID");
-CREATE  INDEX "ProductID" ON "Order Details"("ProductID");
-CREATE  INDEX "ProductsOrder_Details" ON "Order Details"("ProductID");
-
 INSERT INTO "Categories"("CategoryID","CategoryName","Description","Picture") 
 VALUES(1,'Beverages','Soft drinks, coffees, teas, beers, and ales',null),
 (2,'Condiments','Sweet and savory sauces, relishes, spreads, and seasonings',null),
@@ -8528,195 +8329,184 @@ INSERT INTO "Suppliers"("SupplierID","CompanyName","ContactName","ContactTitle",
 INSERT INTO "Suppliers"("SupplierID","CompanyName","ContactName","ContactTitle","Address","City","Region","PostalCode","Country","Phone","Fax","HomePage") VALUES(27,'Escargots Nouveaux','Marie Delamare','Sales Manager','22, rue H. Voiron','Montceau',NULL,'71300','France','85.57.00.07',NULL,NULL);
 INSERT INTO "Suppliers"("SupplierID","CompanyName","ContactName","ContactTitle","Address","City","Region","PostalCode","Country","Phone","Fax","HomePage") VALUES(28,'Gai pâturage','Eliane Noz','Sales Representative','Bat. B 3, rue des Alpes','Annecy',NULL,'74000','France','38.76.98.06','38.76.98.58',NULL);
 INSERT INTO "Suppliers"("SupplierID","CompanyName","ContactName","ContactTitle","Address","City","Region","PostalCode","Country","Phone","Fax","HomePage") VALUES(29,'Forêts d''érables','Chantal Goulet','Accounting Manager','148 rue Chasseur','Ste-Hyacinthe','Québec','J2S 7S8','Canada','(514) 555-2955','(514) 555-2921',NULL);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(1,'Chai',1,1,'10 boxes x 20 bags',18,39,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(2,'Chang',1,1,'24 - 12 oz bottles',19,17,40,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(3,'Aniseed Syrup',1,2,'12 - 550 ml bottles',10,13,70,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(4,'Chef Anton''s Cajun Seasoning',2,2,'48 - 6 oz jars',22,53,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(5,'Chef Anton''s Gumbo Mix',2,2,'36 boxes',21.35,0,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(6,'Grandma''s Boysenberry Spread',3,2,'12 - 8 oz jars',25,120,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(7,'Uncle Bob''s Organic Dried Pears',3,7,'12 - 1 lb pkgs.',30,15,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(8,'Northwoods Cranberry Sauce',3,2,'12 - 12 oz jars',40,6,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(9,'Mishi Kobe Niku',4,6,'18 - 500 g pkgs.',97,29,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(10,'Ikura',4,8,'12 - 200 ml jars',31,31,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(11,'Queso Cabrales',5,4,'1 kg pkg.',21,22,30,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(12,'Queso Manchego La Pastora',5,4,'10 - 500 g pkgs.',38,86,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(13,'Konbu',6,8,'2 kg box',6,24,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(14,'Tofu',6,7,'40 - 100 g pkgs.',23.25,35,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(15,'Genen Shouyu',6,2,'24 - 250 ml bottles',15.5,39,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(16,'Pavlova',7,3,'32 - 500 g boxes',17.45,29,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(17,'Alice Mutton',7,6,'20 - 1 kg tins',39,0,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(18,'Carnarvon Tigers',7,8,'16 kg pkg.',62.5,42,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(19,'Teatime Chocolate Biscuits',8,3,'10 boxes x 12 pieces',9.2,25,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(20,'Sir Rodney''s Marmalade',8,3,'30 gift boxes',81,40,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(21,'Sir Rodney''s Scones',8,3,'24 pkgs. x 4 pieces',10,3,40,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(22,'Gustaf''s Knäckebröd',9,5,'24 - 500 g pkgs.',21,104,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(23,'Tunnbröd',9,5,'12 - 250 g pkgs.',9,61,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(24,'Guaraná Fantástica',10,1,'12 - 355 ml cans',4.5,20,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(25,'NuNuCa Nuß-Nougat-Creme',11,3,'20 - 450 g glasses',14,76,0,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(26,'Gumbär Gummibärchen',11,3,'100 - 250 g bags',31.23,15,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(27,'Schoggi Schokolade',11,3,'100 - 100 g pieces',43.9,49,0,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(28,'Rössle Sauerkraut',12,7,'25 - 825 g cans',45.6,26,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(29,'Thüringer Rostbratwurst',12,6,'50 bags x 30 sausgs.',123.79,0,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(30,'Nord-Ost Matjeshering',13,8,'10 - 200 g glasses',25.89,10,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(31,'Gorgonzola Telino',14,4,'12 - 100 g pkgs',12.5,0,70,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(32,'Mascarpone Fabioli',14,4,'24 - 200 g pkgs.',32,9,40,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(33,'Geitost',15,4,'500 g',2.5,112,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(34,'Sasquatch Ale',16,1,'24 - 12 oz bottles',14,111,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(35,'Steeleye Stout',16,1,'24 - 12 oz bottles',18,20,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(36,'Inlagd Sill',17,8,'24 - 250 g  jars',19,112,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(37,'Gravad lax',17,8,'12 - 500 g pkgs.',26,11,50,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(38,'Côte de Blaye',18,1,'12 - 75 cl bottles',263.5,17,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(39,'Chartreuse verte',18,1,'750 cc per bottle',18,69,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(40,'Boston Crab Meat',19,8,'24 - 4 oz tins',18.4,123,0,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(41,'Jack''s New England Clam Chowder',19,8,'12 - 12 oz cans',9.65,85,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(42,'Singaporean Hokkien Fried Mee',20,5,'32 - 1 kg pkgs.',14,26,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(43,'Ipoh Coffee',20,1,'16 - 500 g tins',46,17,10,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(44,'Gula Malacca',20,2,'20 - 2 kg bags',19.45,27,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(45,'Rogede sild',21,8,'1k pkg.',9.5,5,70,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(46,'Spegesild',21,8,'4 - 450 g glasses',12,95,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(47,'Zaanse koeken',22,3,'10 - 4 oz boxes',9.5,36,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(48,'Chocolade',22,3,'10 pkgs.',12.75,15,70,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(49,'Maxilaku',23,3,'24 - 50 g pkgs.',20,10,60,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(50,'Valkoinen suklaa',23,3,'12 - 100 g bars',16.25,65,0,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(51,'Manjimup Dried Apples',24,7,'50 - 300 g pkgs.',53,20,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(52,'Filo Mix',24,5,'16 - 2 kg boxes',7,38,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(53,'Perth Pasties',24,6,'48 pieces',32.8,0,0,0,1);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(54,'Tourtière',25,6,'16 pies',7.45,21,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(55,'Pâté chinois',25,6,'24 boxes x 2 pies',24,115,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(56,'Gnocchi di nonna Alice',26,5,'24 - 250 g pkgs.',38,21,10,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(57,'Ravioli Angelo',26,5,'24 - 250 g pkgs.',19.5,36,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(58,'Escargots de Bourgogne',27,8,'24 pieces',13.25,62,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(59,'Raclette Courdavault',28,4,'5 kg pkg.',55,79,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(60,'Camembert Pierrot',28,4,'15 - 300 g rounds',34,19,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(61,'Sirop d''érable',29,2,'24 - 500 ml bottles',28.5,113,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(62,'Tarte au sucre',29,3,'48 pies',49.3,17,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(63,'Vegie-spread',7,2,'15 - 625 g jars',43.9,24,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(64,'Wimmers gute Semmelknödel',12,5,'20 bags x 4 pieces',33.25,22,80,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(65,'Louisiana Fiery Hot Pepper Sauce',2,2,'32 - 8 oz bottles',21.05,76,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(66,'Louisiana Hot Spiced Okra',2,2,'24 - 8 oz jars',17,4,100,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(67,'Laughing Lumberjack Lager',16,1,'24 - 12 oz bottles',14,52,0,10,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(68,'Scottish Longbreads',8,3,'10 boxes x 8 pieces',12.5,6,10,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(69,'Gudbrandsdalsost',15,4,'10 kg pkg.',36,26,0,15,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(70,'Outback Lager',7,1,'24 - 355 ml bottles',15,15,10,30,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(71,'Flotemysost',15,4,'10 - 500 g pkgs.',21.5,26,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(72,'Mozzarella di Giovanni',14,4,'24 - 200 g pkgs.',34.8,14,0,0,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(73,'Röd Kaviar',17,8,'24 - 150 g jars',15,101,0,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(74,'Longlife Tofu',4,7,'5 kg pkg.',10,4,20,5,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(75,'Rhönbräu Klosterbier',12,1,'24 - 0.5 l bottles',7.75,125,0,25,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(76,'Lakkalikööri',23,1,'500 ml',18,57,0,20,0);
-INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(77,'Original Frankfurter grüne Soße',12,2,'12 boxes',13,32,0,15,0);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(1,'Chai',1,1,'10 boxes x 20 bags',18,39,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(2,'Chang',1,1,'24 - 12 oz bottles',19,17,40,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(3,'Aniseed Syrup',1,2,'12 - 550 ml bottles',10,13,70,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(4,'Chef Anton''s Cajun Seasoning',2,2,'48 - 6 oz jars',22,53,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(5,'Chef Anton''s Gumbo Mix',2,2,'36 boxes',21.35,0,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(6,'Grandma''s Boysenberry Spread',3,2,'12 - 8 oz jars',25,120,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(7,'Uncle Bob''s Organic Dried Pears',3,7,'12 - 1 lb pkgs.',30,15,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(8,'Northwoods Cranberry Sauce',3,2,'12 - 12 oz jars',40,6,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(9,'Mishi Kobe Niku',4,6,'18 - 500 g pkgs.',97,29,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(10,'Ikura',4,8,'12 - 200 ml jars',31,31,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(11,'Queso Cabrales',5,4,'1 kg pkg.',21,22,30,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(12,'Queso Manchego La Pastora',5,4,'10 - 500 g pkgs.',38,86,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(13,'Konbu',6,8,'2 kg box',6,24,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(14,'Tofu',6,7,'40 - 100 g pkgs.',23.25,35,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(15,'Genen Shouyu',6,2,'24 - 250 ml bottles',15.5,39,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(16,'Pavlova',7,3,'32 - 500 g boxes',17.45,29,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(17,'Alice Mutton',7,6,'20 - 1 kg tins',39,0,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(18,'Carnarvon Tigers',7,8,'16 kg pkg.',62.5,42,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(19,'Teatime Chocolate Biscuits',8,3,'10 boxes x 12 pieces',9.2,25,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(20,'Sir Rodney''s Marmalade',8,3,'30 gift boxes',81,40,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(21,'Sir Rodney''s Scones',8,3,'24 pkgs. x 4 pieces',10,3,40,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(22,'Gustaf''s Knäckebröd',9,5,'24 - 500 g pkgs.',21,104,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(23,'Tunnbröd',9,5,'12 - 250 g pkgs.',9,61,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(24,'Guaraná Fantástica',10,1,'12 - 355 ml cans',4.5,20,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(25,'NuNuCa Nuß-Nougat-Creme',11,3,'20 - 450 g glasses',14,76,0,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(26,'Gumbär Gummibärchen',11,3,'100 - 250 g bags',31.23,15,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(27,'Schoggi Schokolade',11,3,'100 - 100 g pieces',43.9,49,0,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(28,'Rössle Sauerkraut',12,7,'25 - 825 g cans',45.6,26,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(29,'Thüringer Rostbratwurst',12,6,'50 bags x 30 sausgs.',123.79,0,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(30,'Nord-Ost Matjeshering',13,8,'10 - 200 g glasses',25.89,10,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(31,'Gorgonzola Telino',14,4,'12 - 100 g pkgs',12.5,0,70,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(32,'Mascarpone Fabioli',14,4,'24 - 200 g pkgs.',32,9,40,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(33,'Geitost',15,4,'500 g',2.5,112,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(34,'Sasquatch Ale',16,1,'24 - 12 oz bottles',14,111,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(35,'Steeleye Stout',16,1,'24 - 12 oz bottles',18,20,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(36,'Inlagd Sill',17,8,'24 - 250 g  jars',19,112,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(37,'Gravad lax',17,8,'12 - 500 g pkgs.',26,11,50,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(38,'Côte de Blaye',18,1,'12 - 75 cl bottles',263.5,17,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(39,'Chartreuse verte',18,1,'750 cc per bottle',18,69,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(40,'Boston Crab Meat',19,8,'24 - 4 oz tins',18.4,123,0,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(41,'Jack''s New England Clam Chowder',19,8,'12 - 12 oz cans',9.65,85,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(42,'Singaporean Hokkien Fried Mee',20,5,'32 - 1 kg pkgs.',14,26,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(43,'Ipoh Coffee',20,1,'16 - 500 g tins',46,17,10,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(44,'Gula Malacca',20,2,'20 - 2 kg bags',19.45,27,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(45,'Rogede sild',21,8,'1k pkg.',9.5,5,70,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(46,'Spegesild',21,8,'4 - 450 g glasses',12,95,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(47,'Zaanse koeken',22,3,'10 - 4 oz boxes',9.5,36,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(48,'Chocolade',22,3,'10 pkgs.',12.75,15,70,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(49,'Maxilaku',23,3,'24 - 50 g pkgs.',20,10,60,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(50,'Valkoinen suklaa',23,3,'12 - 100 g bars',16.25,65,0,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(51,'Manjimup Dried Apples',24,7,'50 - 300 g pkgs.',53,20,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(52,'Filo Mix',24,5,'16 - 2 kg boxes',7,38,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(53,'Perth Pasties',24,6,'48 pieces',32.8,0,0,0,true);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(54,'Tourtière',25,6,'16 pies',7.45,21,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(55,'Pâté chinois',25,6,'24 boxes x 2 pies',24,115,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(56,'Gnocchi di nonna Alice',26,5,'24 - 250 g pkgs.',38,21,10,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(57,'Ravioli Angelo',26,5,'24 - 250 g pkgs.',19.5,36,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(58,'Escargots de Bourgogne',27,8,'24 pieces',13.25,62,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(59,'Raclette Courdavault',28,4,'5 kg pkg.',55,79,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(60,'Camembert Pierrot',28,4,'15 - 300 g rounds',34,19,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(61,'Sirop d''érable',29,2,'24 - 500 ml bottles',28.5,113,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(62,'Tarte au sucre',29,3,'48 pies',49.3,17,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(63,'Vegie-spread',7,2,'15 - 625 g jars',43.9,24,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(64,'Wimmers gute Semmelknödel',12,5,'20 bags x 4 pieces',33.25,22,80,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(65,'Louisiana Fiery Hot Pepper Sauce',2,2,'32 - 8 oz bottles',21.05,76,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(66,'Louisiana Hot Spiced Okra',2,2,'24 - 8 oz jars',17,4,100,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(67,'Laughing Lumberjack Lager',16,1,'24 - 12 oz bottles',14,52,0,10,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(68,'Scottish Longbreads',8,3,'10 boxes x 8 pieces',12.5,6,10,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(69,'Gudbrandsdalsost',15,4,'10 kg pkg.',36,26,0,15,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(70,'Outback Lager',7,1,'24 - 355 ml bottles',15,15,10,30,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(71,'Flotemysost',15,4,'10 - 500 g pkgs.',21.5,26,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(72,'Mozzarella di Giovanni',14,4,'24 - 200 g pkgs.',34.8,14,0,0,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(73,'Röd Kaviar',17,8,'24 - 150 g jars',15,101,0,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(74,'Longlife Tofu',4,7,'5 kg pkg.',10,4,20,5,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(75,'Rhönbräu Klosterbier',12,1,'24 - 0.5 l bottles',7.75,125,0,25,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(76,'Lakkalikööri',23,1,'500 ml',18,57,0,20,false);
+INSERT INTO "Products"("ProductID","ProductName","SupplierID","CategoryID","QuantityPerUnit","UnitPrice","UnitsInStock","UnitsOnOrder","ReorderLevel","Discontinued") VALUES(77,'Original Frankfurter grüne Soße',12,2,'12 boxes',13,32,0,15,false);
 
-CREATE TABLE [Territories] 
-	([TerritoryID] [nvarchar] (20) NOT NULL ,
-	[TerritoryDescription] [nchar] (50) NOT NULL ,
-        [RegionID] [int] NOT NULL
-);
+Insert Into "Territories" Values ('01581','Westboro',1);
+Insert Into "Territories" Values ('01730','Bedford',1);
+Insert Into "Territories" Values ('01833','Georgetow',1);
+Insert Into "Territories" Values ('02116','Boston',1);
+Insert Into "Territories" Values ('02139','Cambridge',1);
+Insert Into "Territories" Values ('02184','Braintree',1);
+Insert Into "Territories" Values ('02903','Providence',1);
+Insert Into "Territories" Values ('03049','Hollis',3);
+Insert Into "Territories" Values ('03801','Portsmouth',3);
+Insert Into "Territories" Values ('06897','Wilton',1);
+Insert Into "Territories" Values ('07960','Morristown',1);
+Insert Into "Territories" Values ('08837','Edison',1);
+Insert Into "Territories" Values ('10019','New York',1);
+Insert Into "Territories" Values ('10038','New York',1);
+Insert Into "Territories" Values ('11747','Mellvile',1);
+Insert Into "Territories" Values ('14450','Fairport',1);
+Insert Into "Territories" Values ('19428','Philadelphia',3);
+Insert Into "Territories" Values ('19713','Neward',1);
+Insert Into "Territories" Values ('20852','Rockville',1);
+Insert Into "Territories" Values ('27403','Greensboro',1);
+Insert Into "Territories" Values ('27511','Cary',1);
+Insert Into "Territories" Values ('29202','Columbia',4);
+Insert Into "Territories" Values ('30346','Atlanta',4);
+Insert Into "Territories" Values ('31406','Savannah',4);
+Insert Into "Territories" Values ('32859','Orlando',4);
+Insert Into "Territories" Values ('33607','Tampa',4);
+Insert Into "Territories" Values ('40222','Louisville',1);
+Insert Into "Territories" Values ('44122','Beachwood',3);
+Insert Into "Territories" Values ('45839','Findlay',3);
+Insert Into "Territories" Values ('48075','Southfield',3);
+Insert Into "Territories" Values ('48084','Troy',3);
+Insert Into "Territories" Values ('48304','Bloomfield Hills',3);
+Insert Into "Territories" Values ('53404','Racine',3);
+Insert Into "Territories" Values ('55113','Roseville',3);
+Insert Into "Territories" Values ('55439','Minneapolis',3);
+Insert Into "Territories" Values ('60179','Hoffman Estates',2);
+Insert Into "Territories" Values ('60601','Chicago',2);
+Insert Into "Territories" Values ('72716','Bentonville',4);
+Insert Into "Territories" Values ('75234','Dallas',4);
+Insert Into "Territories" Values ('78759','Austin',4);
+Insert Into "Territories" Values ('80202','Denver',2);
+Insert Into "Territories" Values ('80909','Colorado Springs',2);
+Insert Into "Territories" Values ('85014','Phoenix',2);
+Insert Into "Territories" Values ('85251','Scottsdale',2);
+Insert Into "Territories" Values ('90405','Santa Monica',2);
+Insert Into "Territories" Values ('94025','Menlo Park',2);
+Insert Into "Territories" Values ('94105','San Francisco',2);
+Insert Into "Territories" Values ('95008','Campbell',2);
+Insert Into "Territories" Values ('95054','Santa Clara',2);
+Insert Into "Territories" Values ('95060','Santa Cruz',2);
+Insert Into "Territories" Values ('98004','Bellevue',2);
+Insert Into "Territories" Values ('98052','Redmond',2);
+Insert Into "Territories" Values ('98104','Seattle',2);
 
-CREATE TABLE [EmployeeTerritories] 
-	([EmployeeID] [int] NOT NULL,
-	[TerritoryID] [nvarchar] (20) NOT NULL 
-);
-
-Insert Into Territories Values ('01581','Westboro',1);
-Insert Into Territories Values ('01730','Bedford',1);
-Insert Into Territories Values ('01833','Georgetow',1);
-Insert Into Territories Values ('02116','Boston',1);
-Insert Into Territories Values ('02139','Cambridge',1);
-Insert Into Territories Values ('02184','Braintree',1);
-Insert Into Territories Values ('02903','Providence',1);
-Insert Into Territories Values ('03049','Hollis',3);
-Insert Into Territories Values ('03801','Portsmouth',3);
-Insert Into Territories Values ('06897','Wilton',1);
-Insert Into Territories Values ('07960','Morristown',1);
-Insert Into Territories Values ('08837','Edison',1);
-Insert Into Territories Values ('10019','New York',1);
-Insert Into Territories Values ('10038','New York',1);
-Insert Into Territories Values ('11747','Mellvile',1);
-Insert Into Territories Values ('14450','Fairport',1);
-Insert Into Territories Values ('19428','Philadelphia',3);
-Insert Into Territories Values ('19713','Neward',1);
-Insert Into Territories Values ('20852','Rockville',1);
-Insert Into Territories Values ('27403','Greensboro',1);
-Insert Into Territories Values ('27511','Cary',1);
-Insert Into Territories Values ('29202','Columbia',4);
-Insert Into Territories Values ('30346','Atlanta',4);
-Insert Into Territories Values ('31406','Savannah',4);
-Insert Into Territories Values ('32859','Orlando',4);
-Insert Into Territories Values ('33607','Tampa',4);
-Insert Into Territories Values ('40222','Louisville',1);
-Insert Into Territories Values ('44122','Beachwood',3);
-Insert Into Territories Values ('45839','Findlay',3);
-Insert Into Territories Values ('48075','Southfield',3);
-Insert Into Territories Values ('48084','Troy',3);
-Insert Into Territories Values ('48304','Bloomfield Hills',3);
-Insert Into Territories Values ('53404','Racine',3);
-Insert Into Territories Values ('55113','Roseville',3);
-Insert Into Territories Values ('55439','Minneapolis',3);
-Insert Into Territories Values ('60179','Hoffman Estates',2);
-Insert Into Territories Values ('60601','Chicago',2);
-Insert Into Territories Values ('72716','Bentonville',4);
-Insert Into Territories Values ('75234','Dallas',4);
-Insert Into Territories Values ('78759','Austin',4);
-Insert Into Territories Values ('80202','Denver',2);
-Insert Into Territories Values ('80909','Colorado Springs',2);
-Insert Into Territories Values ('85014','Phoenix',2);
-Insert Into Territories Values ('85251','Scottsdale',2);
-Insert Into Territories Values ('90405','Santa Monica',2);
-Insert Into Territories Values ('94025','Menlo Park',2);
-Insert Into Territories Values ('94105','San Francisco',2);
-Insert Into Territories Values ('95008','Campbell',2);
-Insert Into Territories Values ('95054','Santa Clara',2);
-Insert Into Territories Values ('95060','Santa Cruz',2);
-Insert Into Territories Values ('98004','Bellevue',2);
-Insert Into Territories Values ('98052','Redmond',2);
-Insert Into Territories Values ('98104','Seattle',2);
-
-Insert Into EmployeeTerritories Values (1,'06897');
-Insert Into EmployeeTerritories Values (1,'19713');
-Insert Into EmployeeTerritories Values (2,'01581');
-Insert Into EmployeeTerritories Values (2,'01730');
-Insert Into EmployeeTerritories Values (2,'01833');
-Insert Into EmployeeTerritories Values (2,'02116');
-Insert Into EmployeeTerritories Values (2,'02139');
-Insert Into EmployeeTerritories Values (2,'02184');
-Insert Into EmployeeTerritories Values (2,'40222');
-Insert Into EmployeeTerritories Values (3,'30346');
-Insert Into EmployeeTerritories Values (3,'31406');
-Insert Into EmployeeTerritories Values (3,'32859');
-Insert Into EmployeeTerritories Values (3,'33607');
-Insert Into EmployeeTerritories Values (4,'20852');
-Insert Into EmployeeTerritories Values (4,'27403');
-Insert Into EmployeeTerritories Values (4,'27511');
-Insert Into EmployeeTerritories Values (5,'02903');
-Insert Into EmployeeTerritories Values (5,'07960');
-Insert Into EmployeeTerritories Values (5,'08837');
-Insert Into EmployeeTerritories Values (5,'10019');
-Insert Into EmployeeTerritories Values (5,'10038');
-Insert Into EmployeeTerritories Values (5,'11747');
-Insert Into EmployeeTerritories Values (5,'14450');
-Insert Into EmployeeTerritories Values (6,'85014');
-Insert Into EmployeeTerritories Values (6,'85251');
-Insert Into EmployeeTerritories Values (6,'98004');
-Insert Into EmployeeTerritories Values (6,'98052');
-Insert Into EmployeeTerritories Values (6,'98104');
-Insert Into EmployeeTerritories Values (7,'60179');
-Insert Into EmployeeTerritories Values (7,'60601');
-Insert Into EmployeeTerritories Values (7,'80202');
-Insert Into EmployeeTerritories Values (7,'80909');
-Insert Into EmployeeTerritories Values (7,'90405');
-Insert Into EmployeeTerritories Values (7,'94025');
-Insert Into EmployeeTerritories Values (7,'94105');
-Insert Into EmployeeTerritories Values (7,'95008');
-Insert Into EmployeeTerritories Values (7,'95054');
-Insert Into EmployeeTerritories Values (7,'95060');
-Insert Into EmployeeTerritories Values (8,'19428');
-Insert Into EmployeeTerritories Values (8,'44122');
-Insert Into EmployeeTerritories Values (8,'45839');
-Insert Into EmployeeTerritories Values (8,'53404');
-Insert Into EmployeeTerritories Values (9,'03049');
-Insert Into EmployeeTerritories Values (9,'03801');
-Insert Into EmployeeTerritories Values (9,'48075');
-Insert Into EmployeeTerritories Values (9,'48084');
-Insert Into EmployeeTerritories Values (9,'48304');
-Insert Into EmployeeTerritories Values (9,'55113');
-Insert Into EmployeeTerritories Values (9,'55439');
+Insert Into "EmployeeTerritories" Values (1,'06897');
+Insert Into "EmployeeTerritories" Values (1,'19713');
+Insert Into "EmployeeTerritories" Values (2,'01581');
+Insert Into "EmployeeTerritories" Values (2,'01730');
+Insert Into "EmployeeTerritories" Values (2,'01833');
+Insert Into "EmployeeTerritories" Values (2,'02116');
+Insert Into "EmployeeTerritories" Values (2,'02139');
+Insert Into "EmployeeTerritories" Values (2,'02184');
+Insert Into "EmployeeTerritories" Values (2,'40222');
+Insert Into "EmployeeTerritories" Values (3,'30346');
+Insert Into "EmployeeTerritories" Values (3,'31406');
+Insert Into "EmployeeTerritories" Values (3,'32859');
+Insert Into "EmployeeTerritories" Values (3,'33607');
+Insert Into "EmployeeTerritories" Values (4,'20852');
+Insert Into "EmployeeTerritories" Values (4,'27403');
+Insert Into "EmployeeTerritories" Values (4,'27511');
+Insert Into "EmployeeTerritories" Values (5,'02903');
+Insert Into "EmployeeTerritories" Values (5,'07960');
+Insert Into "EmployeeTerritories" Values (5,'08837');
+Insert Into "EmployeeTerritories" Values (5,'10019');
+Insert Into "EmployeeTerritories" Values (5,'10038');
+Insert Into "EmployeeTerritories" Values (5,'11747');
+Insert Into "EmployeeTerritories" Values (5,'14450');
+Insert Into "EmployeeTerritories" Values (6,'85014');
+Insert Into "EmployeeTerritories" Values (6,'85251');
+Insert Into "EmployeeTerritories" Values (6,'98004');
+Insert Into "EmployeeTerritories" Values (6,'98052');
+Insert Into "EmployeeTerritories" Values (6,'98104');
+Insert Into "EmployeeTerritories" Values (7,'60179');
+Insert Into "EmployeeTerritories" Values (7,'60601');
+Insert Into "EmployeeTerritories" Values (7,'80202');
+Insert Into "EmployeeTerritories" Values (7,'80909');
+Insert Into "EmployeeTerritories" Values (7,'90405');
+Insert Into "EmployeeTerritories" Values (7,'94025');
+Insert Into "EmployeeTerritories" Values (7,'94105');
+Insert Into "EmployeeTerritories" Values (7,'95008');
+Insert Into "EmployeeTerritories" Values (7,'95054');
+Insert Into "EmployeeTerritories" Values (7,'95060');
+Insert Into "EmployeeTerritories" Values (8,'19428');
+Insert Into "EmployeeTerritories" Values (8,'44122');
+Insert Into "EmployeeTerritories" Values (8,'45839');
+Insert Into "EmployeeTerritories" Values (8,'53404');
+Insert Into "EmployeeTerritories" Values (9,'03049');
+Insert Into "EmployeeTerritories" Values (9,'03801');
+Insert Into "EmployeeTerritories" Values (9,'48075');
+Insert Into "EmployeeTerritories" Values (9,'48084');
+Insert Into "EmployeeTerritories" Values (9,'48304');
+Insert Into "EmployeeTerritories" Values (9,'55113');
+Insert Into "EmployeeTerritories" Values (9,'55439');

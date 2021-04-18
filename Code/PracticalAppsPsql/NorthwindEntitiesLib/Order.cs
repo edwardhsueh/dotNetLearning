@@ -30,11 +30,11 @@ namespace Packt.Shared
         public string CustomerId { get; set; }
         [Column("EmployeeID", TypeName = "integer")]
         public long? EmployeeId { get; set; }
-        [Column(TypeName = "timestamp")]
+        [Column(TypeName = "date")]
         public DateTime? OrderDate { get; set; }
-        [Column(TypeName = "timestamp")]
+        [Column(TypeName = "date")]
         public DateTime? RequiredDate { get; set; }
-        [Column(TypeName = "timestamp")]
+        [Column(TypeName = "date")]
         public DateTime? ShippedDate { get; set; }
         [Column(TypeName = "integer")]
         public long? ShipVia { get; set; }

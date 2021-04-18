@@ -30,9 +30,9 @@ namespace Packt.Shared
         public string Title { get; set; }
         [Column(TypeName = "varchar (25)")]
         public string TitleOfCourtesy { get; set; }
-        [Column(TypeName = "timestamp")]
+        [Column(TypeName = "date")]
         public DateTime? BirthDate { get; set; }
-        [Column(TypeName = "timestamp")]
+        [Column(TypeName = "date")]
         public DateTime? HireDate { get; set; }
         [Column(TypeName = "varchar (60)")]
         public string Address { get; set; }
