@@ -84,8 +84,8 @@ namespace Exercise
                 using (IDbContextTransaction t = dbContext.Database.BeginTransaction()){
                     try{
                         Console.WriteLine("Transaction isolation level: {0}", t.GetDbTransaction().IsolationLevel);
-                        // var newBlog = new Blog { BlogId = 10, Url = "http://100000000000000000000000000000.com" , NameMapId=4};
-                        var newBlog = new Blog { BlogId = 10, Url = "http://1000.com" , NameMapId=4};
+                        var newBlog = new Blog { BlogId = 10, Url = "http://100000000000000000000000000000.com" , NameMapId=4};
+                        // var newBlog = new Blog { BlogId = 10, Url = "http://1000.com" , NameMapId=4};
                         dbContext.Blogs.Add(newBlog);
                         int affected = dbContext.SaveChanges();
                         t.Commit();

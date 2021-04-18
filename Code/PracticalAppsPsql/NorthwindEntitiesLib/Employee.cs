@@ -21,40 +21,40 @@ namespace Packt.Shared
         [Column("EmployeeID")]
         public long EmployeeId { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar (20)")]
+        [Column(TypeName = "varchar (20)")]
         public string LastName { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar (10)")]
+        [Column(TypeName = "varchar (10)")]
         public string FirstName { get; set; }
-        [Column(TypeName = "nvarchar (30)")]
+        [Column(TypeName = "varchar (30)")]
         public string Title { get; set; }
-        [Column(TypeName = "nvarchar (25)")]
+        [Column(TypeName = "varchar (25)")]
         public string TitleOfCourtesy { get; set; }
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "timestamp")]
         public DateTime? BirthDate { get; set; }
-        [Column(TypeName = "datetime")]
+        [Column(TypeName = "timestamp")]
         public DateTime? HireDate { get; set; }
-        [Column(TypeName = "nvarchar (60)")]
+        [Column(TypeName = "varchar (60)")]
         public string Address { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "varchar (15)")]
         public string City { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "varchar (15)")]
         public string Region { get; set; }
-        [Column(TypeName = "nvarchar (10)")]
+        [Column(TypeName = "varchar (10)")]
         public string PostalCode { get; set; }
-        [Column(TypeName = "nvarchar (15)")]
+        [Column(TypeName = "varchar (15)")]
         public string Country { get; set; }
-        [Column(TypeName = "nvarchar (24)")]
+        [Column(TypeName = "varchar (24)")]
         public string HomePhone { get; set; }
-        [Column(TypeName = "nvarchar (4)")]
+        [Column(TypeName = "varchar (4)")]
         public string Extension { get; set; }
-        [Column(TypeName = "image")]
+        [Column(TypeName = "bytea")]
         public byte[] Photo { get; set; }
-        [Column(TypeName = "ntext")]
+        [Column(TypeName = "text")]
         public string Notes { get; set; }
-        [Column(TypeName = "int")]
+        [Column(TypeName = "integer")]
         public long? ReportsTo { get; set; }
-        [Column(TypeName = "nvarchar (255)")]
+        [Column(TypeName = "varchar (255)")]
         public string PhotoPath { get; set; }
 
         [InverseProperty(nameof(Order.Employee))]

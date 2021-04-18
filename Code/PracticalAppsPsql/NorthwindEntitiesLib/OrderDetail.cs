@@ -16,10 +16,10 @@ namespace Packt.Shared
     public partial class OrderDetail
     {
         [Key]
-        [Column("OrderID", TypeName = "int")]
+        [Column("OrderID", TypeName = "integer")]
         public long OrderId { get; set; }
         [Key]
-        [Column("ProductID", TypeName = "int")]
+        [Column("ProductID", TypeName = "integer")]
         public long ProductId { get; set; }
         [Required]
         [Column(TypeName = "money")]

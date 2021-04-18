@@ -12,7 +12,8 @@ namespace Edward.Shared{
       // disable auto generation Key
       [DatabaseGenerated(DatabaseGeneratedOption.None)]
       public int BlogId { get; set; }
-      [MaxLength(20)]
+      // [MaxLength(20)]
+      [Column(TypeName = "varchar (20)")]
       public string Url { get; set; }
       public uint xmin { get; set; }
 

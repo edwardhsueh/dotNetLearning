@@ -15,22 +15,22 @@ namespace Packt.Shared
     [Index(nameof(SupplierId), Name = "SuppliersProducts")]
     public partial class Product
     {
-        public Product()
-        {
-            OrderDetails = new HashSet<OrderDetail>();
-        }
+        // public Product()
+        // {
+        //     OrderDetails = new HashSet<OrderDetail>();
+        // }
 
         [Key]
         [Column("ProductID")]
         public long ProductId { get; set; }
         [Required]
-        [Column(TypeName = "nvarchar (40)")]
+        [Column(TypeName = "varchar (40)")]
         public string ProductName { get; set; }
-        [Column("SupplierID", TypeName = "int")]
+        [Column("SupplierID", TypeName = "integer")]
         public long? SupplierId { get; set; }
-        [Column("CategoryID", TypeName = "int")]
+        [Column("CategoryID", TypeName = "integer")]
         public long? CategoryId { get; set; }
-        [Column(TypeName = "nvarchar (20)")]
+        [Column(TypeName = "varchar (20)")]
         public string QuantityPerUnit { get; set; }
         [Column(TypeName = "money")]
         public decimal? UnitPrice { get; set; }
@@ -41,8 +41,8 @@ namespace Packt.Shared
         [Column(TypeName = "smallint")]
         public long? ReorderLevel { get; set; }
         [Required]
-        [Column(TypeName = "bit")]
-        public bool Discontinued { get; set; }
+        [Column(TypeName = "boolean")]
+        public bool Discontinued { get; set; } = false;
 
         [ForeignKey(nameof(CategoryId))]
         [InverseProperty("Products")]

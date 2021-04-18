@@ -32,7 +32,7 @@ CREATE TABLE "Tags" (
 
 CREATE TABLE "Blogs" (
     "BlogId" integer NOT NULL,
-    "Url" character varying(20) NULL,
+    "Url" varchar (20) NULL,
     "NameMapId" integer NOT NULL,
     CONSTRAINT "PK_Blogs" PRIMARY KEY ("BlogId"),
     CONSTRAINT "FK_Blogs_NameMaps_NameMapId" FOREIGN KEY ("NameMapId") REFERENCES "NameMaps" ("NameMapId") ON DELETE RESTRICT
@@ -91,9 +91,9 @@ VALUES (3, 3, 'http://3.com');
 
 
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (1, '第一篇內容', TIMESTAMP '2021-04-17 17:21:50.605729', 1, 1, 0.0, 2, '第一篇');
+VALUES (1, '第一篇內容', TIMESTAMP '2021-04-18 11:42:55.078727', 1, 1, 0.0, 2, '第一篇');
 INSERT INTO "Posts" ("PostId", "Content", "LastUpated", "MainBlogId", "NameMapId", "Pay", "SubBlogId", "Title")
-VALUES (2, '第二篇內容', TIMESTAMP '2021-04-17 17:21:50.605796', 1, 2, 0.0, 3, '第二篇');
+VALUES (2, '第二篇內容', TIMESTAMP '2021-04-18 11:42:55.078798', 1, 2, 0.0, 3, '第二篇');
 
 
 CREATE UNIQUE INDEX "IX_Blogs_NameMapId" ON "Blogs" ("NameMapId");
