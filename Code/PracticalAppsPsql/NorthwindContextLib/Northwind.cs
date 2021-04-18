@@ -32,7 +32,7 @@ namespace Packt.Shared
         {
             if (!optionsBuilder.IsConfigured)
             {
-             string connectionString = "Server=127.0.0.1;Port=5432;Database=EdwardDb;User Id=postgres;Password=@Domy5506987;";
+             string connectionString = "Server=127.0.0.1;Port=5432;Database=NorthWind;User Id=postgres;Password=@Domy5506987;";
              optionsBuilder.UseNpgsql(connectionString);
             }
         }
