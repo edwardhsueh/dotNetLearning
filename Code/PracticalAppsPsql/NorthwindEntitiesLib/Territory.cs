@@ -12,10 +12,10 @@ namespace Packt.Shared
     public partial class Territory
     {
         [Required]
-        [Column("TerritoryID", TypeName = "varchar")]
+        [Column("TerritoryID", TypeName = "varchar (20)")]
         public string TerritoryId { get; set; }
         [Required]
-        [Column(TypeName = "varchar (25)")]
+        [Column(TypeName = "varchar (50)")]
         public string TerritoryDescription { get; set; }
         [Column("RegionID", TypeName = "integer")]
         public long RegionId { get; set; }

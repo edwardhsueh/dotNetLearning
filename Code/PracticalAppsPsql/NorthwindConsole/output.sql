@@ -48,7 +48,7 @@ CREATE TABLE "Employees" (
 
 CREATE TABLE "EmployeeTerritories" (
     "EmployeeID" integer NOT NULL,
-    "TerritoryID" varchar NOT NULL
+    "TerritoryID" varchar (20) NOT NULL
 );
 
 
@@ -78,8 +78,8 @@ CREATE TABLE "Suppliers" (
 
 
 CREATE TABLE "Territories" (
-    "TerritoryID" varchar NOT NULL,
-    "TerritoryDescription" varchar (25) NOT NULL,
+    "TerritoryID" varchar (20) NOT NULL,
+    "TerritoryDescription" varchar (50) NOT NULL,
     "RegionID" integer NOT NULL
 );
 

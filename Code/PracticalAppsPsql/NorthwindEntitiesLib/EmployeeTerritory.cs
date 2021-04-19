@@ -14,7 +14,7 @@ namespace Packt.Shared
         [Column("EmployeeID", TypeName = "integer")]
         public long EmployeeId { get; set; }
         [Required]
-        [Column("TerritoryID", TypeName = "varchar")]
+        [Column("TerritoryID", TypeName = "varchar (20)")]
         public string TerritoryId { get; set; }
     }
 }
