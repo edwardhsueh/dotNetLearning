@@ -79,7 +79,7 @@ CREATE TABLE "Suppliers" (
 
 CREATE TABLE "Territories" (
     "TerritoryID" varchar NOT NULL,
-    "TerritoryDescription" char NOT NULL,
+    "TerritoryDescription" varchar (25) NOT NULL,
     "RegionID" integer NOT NULL
 );
 
