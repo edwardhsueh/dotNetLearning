@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "NorthwindConsole"
+		},
+		{
+			"path": "NorthwindWeb"
 		}
 	]
 }
