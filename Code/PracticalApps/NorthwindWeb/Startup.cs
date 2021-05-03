@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using Microsoft.EntityFrameworkCore; 
+using Packt.Shared;
 
 namespace NorthwindWeb
 {
@@ -18,6 +21,10 @@ namespace NorthwindWeb
         {
             // add statements to add Razor Pages and its related services like model binding, authorization, anti-forgery, views, and tag helpers
             services.AddRazorPages();    
+            // register the Northwind database context class to use SQLite as its database provider and 
+            // specify its database connection string, as shown in the following code:
+            string databasePath = Path.Combine("..", "Northwind.db");
+            services.AddDbContext<Northwind>(options =>    options.UseSqlite($"Data Source={databasePath}"));            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
