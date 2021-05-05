@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace NorthwindWeb.Pages
 {
@@ -20,14 +21,16 @@ namespace NorthwindWeb.Pages
     {
         db = injectedContext;
     }
-    public IEnumerable<string> Suppliers { get; set; } 
+    public IEnumerable<Supplier> Suppliers { get; set; } 
     public void OnGet()
     {
       ViewData["Title"] = "Northwind Web Site - Suppliers"; 
     //   Suppliers = new[] { 
     //     "Alpha Co", "Beta Limited", "Gamma Corp"
     //   };
-      Suppliers = db.Suppliers.Select(s => s.CompanyName);    
+      // Suppliers = db.Suppliers.Select(s => s.CompanyName);    
+      Suppliers = from s in db.Suppliers  
+                  select s;
     }
 
 
@@ -40,13 +43,16 @@ namespace NorthwindWeb.Pages
     // Then it redirects to the Suppliers page so that the visitor sees the newly added supplier.
     public IActionResult OnPost()
     {
+        // checks that all property values conform to validation rules
         if (ModelState.IsValid)
         {
             var loggerFactory = db.GetService<ILoggerFactory>();
             loggerFactory.AddProvider(new ConsoleLoggerProvider());  
-            Supplier.SupplierId = 10000;          
+            // Console.WriteLine("SupplierId/Name:{0}/{1}", Supplier.SupplierId, Supplier.CompanyName);
+            // saves changes to the database context
             db.Suppliers.Add(Supplier);
             db.SaveChanges();
+            // it redirects to the Suppliers page so that the visitor sees the newly added supplier.
             return RedirectToPage("/suppliers");
         }
         return Page();
