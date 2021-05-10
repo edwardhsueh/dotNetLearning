@@ -34,8 +34,12 @@ namespace NorthwindWeb.Pages
     }
 
 
-    //   added a property named Supplier that is decorated with the [BindProperty] attribute 
-    // so that we can easily connect HTML elements on the web page to properties in the Supplier class
+    // added a property named Supplier 
+    // that is decorated with the [BindProperty] attribute 
+    // so that we can easily connect HTML elements 
+    // on the web page to properties in the Supplier class
+    // https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-5.0
+    // will search Supplier in form
     [BindProperty(SupportsGet = true)]
     public Supplier Supplier { get; set; }
     // added a method that responds to HTTP POST requests. 
@@ -48,7 +52,7 @@ namespace NorthwindWeb.Pages
         {
             var loggerFactory = db.GetService<ILoggerFactory>();
             loggerFactory.AddProvider(new ConsoleLoggerProvider());  
-            // Console.WriteLine("SupplierId/Name:{0}/{1}", Supplier.SupplierId, Supplier.CompanyName);
+            Console.WriteLine("SupplierId/Name:{0}/{1}", Supplier.SupplierId, Supplier.CompanyName);
             // saves changes to the database context
             db.Suppliers.Add(Supplier);
             db.SaveChanges();
