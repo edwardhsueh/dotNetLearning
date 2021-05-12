@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 using System.IO;
 using Microsoft.EntityFrameworkCore; 
 using Packt.Shared;
+using static System.Console;
+using Microsoft.AspNetCore.Routing;
 
 namespace NorthwindWeb
 {
@@ -41,8 +43,31 @@ namespace NorthwindWeb
                 // communication over HTTPS and prevents the visitor from using untrusted or invalid certificates.
                 app.UseHsts();
             }            
-
+            // Adds middleware that defines a point in the pipeline where routing decisions are made 
+            // and must be combined with a call to UseEndpoints where the processing is then executed. 
+            // This means that for our code, any URL paths that match / or /index or /suppliers will be 
+            // mapped to Razor Pages and a match on /hello will be mapped to the anonymous delegate. 
+            // Any other URL paths will be passed on to the next delegate for matching, for example, static files. This is why, although it looks like the mapping for Razor Pages and /hello happen after static files in the pipeline, they actually take priority because the call to UseRouting happens before UseStaticFiles.
             app.UseRouting();
+            app.Use(async (HttpContext context, Func<Task> next) =>
+            {
+                var rep = context.GetEndpoint() as RouteEndpoint;
+                if (rep != null)
+                {
+                    WriteLine($"Endpoint name: {rep.DisplayName}");
+                    WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+                }
+                if (context.Request.Path == "/bonjour")
+                {
+                    // in the case of a match on URL path, this becomes a terminating
+                    // delegate that returns so does not call the next delegate
+                    await context.Response.WriteAsync("Bonjour Monde!");
+                    return; 
+                }
+                // we could modify the request before calling the next delegate
+                await next();
+                // we could modify the response after calling the next delegate
+            });            
             // redirect HTTP requests to HTTPS
             app.UseHttpsRedirection();
             // The call to UseDefaultFiles must be before the call to UseStaticFiles, or it won't work!
