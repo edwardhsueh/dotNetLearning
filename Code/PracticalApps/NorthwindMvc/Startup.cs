@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Packt.Shared;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,6 +33,9 @@ namespace NorthwindMvc
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+            string databasePath = Path.Combine("..", "Northwind.db");
+            services.AddDbContext<Northwind>(options => 
+            options.UseSqlite($"Data Source={databasePath}"));            
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
