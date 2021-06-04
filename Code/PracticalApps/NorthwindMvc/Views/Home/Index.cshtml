@@ -8,7 +8,8 @@
   <ol class="carousel-indicators">
   @for (int c = 0; c < Model.Categories.Count; c++)
   {
-    if (c == 2)
+    // make 1st element to be active
+    if (c == 0)
     {
       currentItem = "active";
     }
@@ -23,7 +24,8 @@
   <div class="carousel-inner">
   @for (int c = 0; c < Model.Categories.Count; c++)
   {
-    if (c == 2)
+    // make 1st element to be active
+    if (c == 0)
     {
       currentItem = "active";
     }
@@ -73,8 +75,8 @@
         <li>
           <a asp-controller="Home" 
             asp-action="ProductDetail" 
-            asp-route-id="@item.ProductId">
-            @item.ProductName costs
+            asp-route-id="@(item.ProductId)">
+            @item.ProductName belongs to Category@(item.CategoryId) and costs
             @item.UnitPrice.ToString()
           </a>
         </li>
