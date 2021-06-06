@@ -83,5 +83,10 @@
       }
       </ul>
     </div>
+    <h3>Query products by price</h3>
+    <form asp-action="ProductsThatCostMoreThan" method="get">
+      <input name="price" placeholder="Enter a product price" />
+      <input type="submit" />
+    </form>    
   </div>
 </div>
