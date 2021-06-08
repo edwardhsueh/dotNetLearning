@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Logging;
 
 #nullable disable
 
@@ -28,11 +29,17 @@ namespace Packt.Shared
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Territory> Territories { get; set; }
 
+ //static LoggerFactory object
+        public static readonly ILoggerFactory loggerFactory = new LoggerFactory(new[] {
+            new ConsoleLoggerProvider()
+        });
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Filename=../Northwind.db");
+                optionsBuilder
+                .UseLoggerFactory(loggerFactory)
+                .UseSqlite("Filename=../Northwind.db");
             }
         }
 

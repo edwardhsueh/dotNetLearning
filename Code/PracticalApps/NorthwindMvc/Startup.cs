@@ -14,6 +14,7 @@ using NorthwindMvc.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace NorthwindMvc
 {
@@ -26,6 +27,11 @@ namespace NorthwindMvc
 
         public IConfiguration Configuration { get; }
 
+        // add database logger
+        public static readonly ILoggerFactory loggerFactory = new LoggerFactory(new[] {
+            new ConsoleLoggerProvider()
+        });
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -34,8 +40,9 @@ namespace NorthwindMvc
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             string databasePath = Path.Combine("..", "Northwind.db");
+            // add databaseLogger: tie-up DbContext with LoggerFactory object
             services.AddDbContext<Northwind>(options => 
-            options.UseSqlite($"Data Source={databasePath}"));            
+            options.UseLoggerFactory(loggerFactory).UseSqlite($"Data Source={databasePath}"));            
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

@@ -22,24 +22,36 @@ namespace NorthwindMvc.Controllers
         }
 
         // for Home/Index
-        public IActionResult Index()
+        // public IActionResult Index()
+        // {
+        //     _logger.LogInformation("Index Page");
+        //     var model = new HomeIndexViewModel
+        //     {
+        //         VisitorCount = (new Random()).Next(1, 1001), 
+        //         Categories = db.Categories.ToList(), 
+        //         Products = db.Products.ToList()
+        //     };            
+        //     // pass model to View
+        //     return View(model);
+        // }
+        // Improving scalability using asynchronous tasks
+        public async Task<IActionResult> Index()
         {
             var model = new HomeIndexViewModel
             {
-                VisitorCount = (new Random()).Next(1, 1001), 
-                Categories = db.Categories.ToList(), 
-                Products = db.Products.ToList()
-            };            
-            // pass model to View
-            return View(model);
+                VisitorCount = (new Random()).Next(1, 1001),
+                Categories = await db.Categories.ToListAsync(),
+                Products = await db.Products.ToListAsync()
+            };
+            return View(model); // pass model to view
         }
-
         public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult ProductDetail(int? id)
+        // Improving scalability using asynchronous tasks
+        public async Task<IActionResult> ProductDetail(int? id)
         {
             if (!id.HasValue)
             {
@@ -47,9 +59,9 @@ namespace NorthwindMvc.Controllers
             }
             // var model = db.Products
             //     .SingleOrDefault(p => p.ProductId == id);
-            var model = (from p in db.Products 
+            var model = await (from p in db.Products 
                         where p.ProductId == id
-                        select p).ToList();
+                        select p).ToListAsync();
             if (model == null)
             {
                 return NotFound($"Product with ID of {id} not found.");
@@ -63,7 +75,35 @@ namespace NorthwindMvc.Controllers
             else {
             return View(model.First()); // pass model to view and then return result
             }
+
+
         }
+
+        // public IActionResult ProductDetail(int? id)
+        // {
+        //     if (!id.HasValue)
+        //     {
+        //         return NotFound("You must pass a product ID in the route, for example, /Home/ProductDetail/21");
+        //     }
+        //     // var model = db.Products
+        //     //     .SingleOrDefault(p => p.ProductId == id);
+        //     var model = (from p in db.Products 
+        //                 where p.ProductId == id
+        //                 select p).ToList();
+        //     if (model == null)
+        //     {
+        //         return NotFound($"Product with ID of {id} not found.");
+        //     }
+        //     if(model.Count == 0){
+        //         return NotFound($"Product with ID of {id} not found.");
+        //     }
+        //     else if(model.Count > 1){
+        //         return NotFound($"Product with ID of {id} more than 1.");
+        //     }
+        //     else {
+        //     return View(model.First()); // pass model to view and then return result
+        //     }
+        // }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
