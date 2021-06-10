@@ -20,6 +20,12 @@
 		},
 		{
 			"path": "NorthwindMvc"
+		},
+		{
+			"path": "NorthwindCms"
+		},
+		{
+			"path": "NorthwindService"
 		}
 	]
 }

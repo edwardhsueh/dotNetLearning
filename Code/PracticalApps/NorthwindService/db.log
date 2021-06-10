@@ -1,0 +1,105 @@
+**Added on:2021/6/10 下午 04:30:28
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/10 下午 04:51:07
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/10 下午 04:53:29
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/10 下午 04:53:29
+Level: Error, Event ID: 20102
+, State: Failed executing DbCommand (1ms) [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/10 下午 04:53:29
+Level: Error, Event ID: 10000
+, State: An exception occurred in the database while saving changes for context type 'Packt.Shared.Northwind'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'UNIQUE constraint failed: Customers.CustomerID'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+, Exception: An error occurred while updating the entries. See the inner exception for details.
+
+**Added on:2021/6/10 下午 04:56:12
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/10 下午 04:56:12
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/10 下午 05:01:13
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/10 下午 05:01:13
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/10 下午 05:05:12
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p10='?' (Size = 5), @p0='?' (Size = 11), @p1='?' (Size = 8), @p2='?' (Size = 10), @p3='?' (Size = 10), @p4='?' (Size = 3), @p5='?' (Size = 3), @p6='?', @p7='?' (Size = 14), @p8='?' (Size = 5), @p9='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+UPDATE "Customers" SET "Address" = @p0, "City" = @p1, "CompanyName" = @p2, "ContactName" = @p3, "ContactTitle" = @p4, "Country" = @p5, "Fax" = @p6, "Phone" = @p7, "PostalCode" = @p8, "Region" = @p9
+WHERE "CustomerID" = @p10;
+SELECT changes();
+
+**Added on:2021/6/10 下午 05:11:16
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@__p_0='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+WHERE "c"."CustomerID" = @__p_0
+LIMIT 1
+
+**Added on:2021/6/10 下午 05:11:16
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Customers"
+WHERE "CustomerID" = @p0;
+SELECT changes();
+
+**Added on:2021/6/10 下午 05:17:17
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/10 下午 05:24:27
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
