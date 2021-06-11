@@ -1,23 +1,23 @@
-** Created on: 2021/6/10 下午 12:08:35
-**Added on:2021/6/10 下午 12:08:45
+** Created on: 2021/6/11 下午 03:04:53
+**Added on:2021/6/11 下午 03:10:01
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT "c"."CategoryID", "c"."CategoryName", "c"."Description", "c"."Picture"
 FROM "Categories" AS "c"
 
-**Added on:2021/6/10 下午 12:08:45
+**Added on:2021/6/11 下午 03:10:01
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT "p"."ProductID", "p"."CategoryID", "p"."Discontinued", "p"."ProductName", "p"."QuantityPerUnit", "p"."ReorderLevel", "p"."SupplierID", "p"."UnitPrice", "p"."UnitsInStock", "p"."UnitsOnOrder"
 FROM "Products" AS "p"
 
-**Added on:2021/6/10 下午 12:09:27
+**Added on:2021/6/11 下午 03:16:03
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT "c"."CategoryID", "c"."CategoryName", "c"."Description", "c"."Picture"
 FROM "Categories" AS "c"
 
-**Added on:2021/6/10 下午 12:09:27
+**Added on:2021/6/11 下午 03:16:03
 Level: Debug, Event ID: 20100
 , State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
 SELECT "p"."ProductID", "p"."CategoryID", "p"."Discontinued", "p"."ProductName", "p"."QuantityPerUnit", "p"."ReorderLevel", "p"."SupplierID", "p"."UnitPrice", "p"."UnitsInStock", "p"."UnitsOnOrder"

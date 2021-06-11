@@ -19,6 +19,7 @@ namespace NorthwindService.Controllers
       this.repo = repo;
     }
     // GET: api/customers
+    // GET: api/customers/
     // GET: api/customers/?country=[country]
     // this will always return a list of customers even if its empty
     [HttpGet]

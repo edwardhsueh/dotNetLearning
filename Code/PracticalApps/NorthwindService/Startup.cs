@@ -19,6 +19,7 @@ using static System.Console;
 using NorthwindService.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
+
 namespace NorthwindService
 {
     public class Startup
@@ -36,10 +37,11 @@ namespace NorthwindService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             string databasePath = Path.Combine("..", "Northwind.db");
             // add databaseLogger: tie-up DbContext with LoggerFactory object
-            services.AddDbContext<Northwind>(options => 
-            options.UseLoggerFactory(loggerFactory).UseSqlite($"Data Source={databasePath}"));            
+            services.AddDbContext<Northwind>(options =>
+            options.UseLoggerFactory(loggerFactory).UseSqlite($"Data Source={databasePath}"));
 
             // services.AddControllers();
             services.AddControllers(options =>
@@ -55,15 +57,15 @@ namespace NorthwindService
                 else // OutputFormatter class has SupportedMediaTypes
                 {
                     WriteLine(" {0}, Media types: {1}",
-                    arg0: mediaFormatter.GetType().Name, 
-                    arg1: string.Join(", ", 
+                    arg0: mediaFormatter.GetType().Name,
+                    arg1: string.Join(", ",
                         mediaFormatter.SupportedMediaTypes));
                 }
                 }
             })
             .AddXmlDataContractSerializerFormatters()
             .AddXmlSerializerFormatters()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);            
+            .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NorthwindService", Version = "v1" });
@@ -83,16 +85,22 @@ namespace NorthwindService
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json",
                         "Northwind Service API Version 1");
-                    c.SupportedSubmitMethods(new[] { 
+                    c.SupportedSubmitMethods(new[] {
                         SubmitMethod.Get, SubmitMethod.Post,
                         SubmitMethod.Put, SubmitMethod.Delete });
-                });                
+                });
             }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            // must be after UseRouting and before UseEndpoints
+            app.UseCors(configurePolicy: options => 
+            {
+                options.WithMethods("GET", "POST", "PUT", "DELETE");
+                options.WithOrigins(
+                    "https://localhost:5002" // for MVC client
+            );
+            });
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

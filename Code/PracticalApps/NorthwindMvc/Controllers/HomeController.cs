@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NorthwindMvc.Models;
 using　Packt.Shared;
+using System.Net.Http;
+using System.Net.Http.Json;
 namespace NorthwindMvc.Controllers
 {
     public class HomeController : Controller
@@ -15,10 +17,12 @@ namespace NorthwindMvc.Controllers
         private readonly ILogger<HomeController> _logger;
         // injected database to Controller
         private Northwind db;
-        public HomeController(ILogger<HomeController> logger,  Northwind injectedContext)
+        private readonly IHttpClientFactory clientFactory;
+        public HomeController(ILogger<HomeController> logger,  Northwind injectedContext, IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
             db = injectedContext;
+            clientFactory = httpClientFactory;
         }
 
         // for Home/Index
@@ -132,42 +136,64 @@ namespace NorthwindMvc.Controllers
         }       
         public IActionResult ProductsThatCostMoreThan(decimal? price)
         {
-        if (!price.HasValue)
-        {
-            return NotFound("You must pass a product price in the query string, for example, /Home/ProductsThatCostMoreThan?price=50");
-        }
-        // IEnumerable<Product> model = db.Products
-        //     .Include(p => p.Category)
-        //     .Include(p => p.Supplier)
-        //     .Where(p => p.UnitPrice > price);
+            if (!price.HasValue)
+            {
+                return NotFound("You must pass a product price in the query string, for example, /Home/ProductsThatCostMoreThan?price=50");
+            }
+            // IEnumerable<Product> model = db.Products
+            //     .Include(p => p.Category)
+            //     .Include(p => p.Supplier)
+            //     .Where(p => p.UnitPrice > price);
 
-        var model = (from p in db.Products
-                     where p.UnitPrice > price
-                     join c in db.Categories on p.CategoryId equals c.CategoryId
-                     join s in db.Suppliers on p.SupplierId equals s.SupplierId
-                     select p).ToList();
+            var model = (from p in db.Products
+                        where p.UnitPrice > price
+                        join c in db.Categories on p.CategoryId equals c.CategoryId
+                        join s in db.Suppliers on p.SupplierId equals s.SupplierId
+                        select p).ToList();
 
-        // // force include Category      
-        // var m_lj_c = from m in model
-        //              join c in db.Categories on m.CategoryId equals c.CategoryId into pcGroup
-        //              from pc in pcGroup.DefaultIfEmpty()
-        //              select pc;
-        // m_lj_c.ToList();                   
-        // // force include Supplier      
-        // var m_lj_s = from m in model
-        //              join s in db.Suppliers on m.SupplierId equals s.SupplierId into psGroup
-        //              from ps in psGroup.DefaultIfEmpty()
-        //              select ps;
-        // m_lj_s.ToList();                   
-        // force include Category and Supplier
-        // force include Supplier      
-        if (model.Count() == 0)
-        {
-            return NotFound(
-            $"No products cost more than {price:C}.");
-        }
-        ViewData["MaxPrice"] = price.Value.ToString("C");
-        return View(model); // pass model to view
+            // // force include Category      
+            // var m_lj_c = from m in model
+            //              join c in db.Categories on m.CategoryId equals c.CategoryId into pcGroup
+            //              from pc in pcGroup.DefaultIfEmpty()
+            //              select pc;
+            // m_lj_c.ToList();                   
+            // // force include Supplier      
+            // var m_lj_s = from m in model
+            //              join s in db.Suppliers on m.SupplierId equals s.SupplierId into psGroup
+            //              from ps in psGroup.DefaultIfEmpty()
+            //              select ps;
+            // m_lj_s.ToList();                   
+            // force include Category and Supplier
+            // force include Supplier      
+            if (model.Count() == 0)
+            {
+                return NotFound(
+                $"No products cost more than {price:C}.");
+            }
+            ViewData["MaxPrice"] = price.Value.ToString("C");
+            return View(model); // pass model to view
         }         
+        public async Task<IActionResult> Customers(string country)
+        {
+            string uri;
+            if (string.IsNullOrEmpty(country))
+            {
+                ViewData["Title"] = "All Customers Worldwide";
+                uri = "api/customers/";
+            }
+            else
+            {
+                ViewData["Title"] = $"Customers in {country}";
+                uri = $"api/customers/?country={country}";
+            }
+            var client = clientFactory.CreateClient(
+                name: "NorthwindService");
+            var request = new HttpRequestMessage(
+                method: HttpMethod.Get, requestUri: uri);
+            HttpResponseMessage response = await client.SendAsync(request);
+            var model = await response.Content
+                .ReadFromJsonAsync<IEnumerable<Customer>>();
+            return View(model);
+        }        
     }
 }
