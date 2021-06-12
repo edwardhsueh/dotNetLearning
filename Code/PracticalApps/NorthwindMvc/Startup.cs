@@ -57,6 +57,7 @@ namespace NorthwindMvc
                 new MediaTypeWithQualityHeaderValue(
                 "application/json", 1.0));
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

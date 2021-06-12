@@ -19,7 +19,8 @@ using static System.Console;
 using NorthwindService.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
-
+using Microsoft.AspNetCore.Http;    // GetEndpoint() extension method
+using Microsoft.AspNetCore.Routing; // RouteEndpoint
 namespace NorthwindService
 {
     public class Startup
@@ -102,11 +103,47 @@ namespace NorthwindService
             );
             });
             app.UseAuthorization();
+            app.Use(next => context =>
+            {
+                var endpoint = context.GetEndpoint();
+                if (endpoint is null)
+                {
+                    return next(context);
+                }
+                
+                Console.WriteLine($"Endpoint: {endpoint.DisplayName}");
 
+                if (endpoint is RouteEndpoint routeEndpoint)
+                {
+                    Console.WriteLine("Endpoint has route pattern: " +
+                        routeEndpoint.RoutePattern.RawText);
+                }
+
+                foreach (var metadata in endpoint.Metadata)
+                {
+                    Console.WriteLine($"Endpoint has metadata: {metadata}");
+                }
+
+                return next(context);
+            });            
+            // app.Use(next => (context) =>
+            // {
+            //     var endpoint = context.GetEndpoint();
+            //     if (endpoint != null)
+            //     {
+            //         WriteLine("*** Name: {0};\n Route: {1};\n Metadata: {2}",
+            //         arg0: endpoint.DisplayName,
+            //         arg1: (endpoint as RouteEndpoint)?.RoutePattern,
+            //         arg2: string.Join(", ", endpoint.Metadata));
+            //     }
+            //     // pass context to next middleware in pipeline
+            //     return next(context);
+            // });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+           
         }
     }
 }

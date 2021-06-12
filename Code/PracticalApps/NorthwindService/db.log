@@ -127,3 +127,36 @@ Level: Debug, Event ID: 20100
 SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
 FROM "Customers" AS "c"
 
+**Added on:2021/6/12 上午 11:23:50
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/12 上午 11:33:11
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+
+**Added on:2021/6/12 上午 11:33:11
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5), @p1='?' (Size = 11), @p2='?' (Size = 8), @p3='?' (Size = 8), @p4='?' (Size = 10), @p5='?' (Size = 3), @p6='?' (Size = 3), @p7='?', @p8='?' (Size = 14), @p9='?' (Size = 5), @p10='?' (Size = 2)], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Customers" ("CustomerID", "Address", "City", "CompanyName", "ContactName", "ContactTitle", "Country", "Fax", "Phone", "PostalCode", "Region")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+
+**Added on:2021/6/12 上午 11:35:06
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@__p_0='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+SELECT "c"."CustomerID", "c"."Address", "c"."City", "c"."CompanyName", "c"."ContactName", "c"."ContactTitle", "c"."Country", "c"."Fax", "c"."Phone", "c"."PostalCode", "c"."Region"
+FROM "Customers" AS "c"
+WHERE "c"."CustomerID" = @__p_0
+LIMIT 1
+
+**Added on:2021/6/12 上午 11:35:06
+Level: Debug, Event ID: 20100
+, State: Executing DbCommand [Parameters=[@p0='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+DELETE FROM "Customers"
+WHERE "CustomerID" = @p0;
+SELECT changes();
+
